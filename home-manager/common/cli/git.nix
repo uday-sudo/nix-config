@@ -11,9 +11,7 @@
         key = "${config.home.homeDirectory}/.ssh/sign_ed25519";
       };
 
-      extraConfig = {
-        gpg.format = "ssh";
-      };
+      extraConfig.gpg.format = "ssh";
 
       aliases = {
         co = "checkout";

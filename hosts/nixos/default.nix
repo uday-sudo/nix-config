@@ -6,6 +6,7 @@
 	imports = [
 		../common/global
 		../common/optional/de.nix
+		../common/optional/fonts.nix
 		../common/optional/quietboot.nix
 		../common/optional/nvidia.nix
 		../common/users/uday

@@ -17,6 +17,7 @@
     ../common/cli
     ../common/productivity
     ../common/applications
+    ../common/misc
   ];
 
   nixpkgs = {
