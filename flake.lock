@@ -38,6 +38,24 @@
         "type": "github"
       }
     },
+    "mysecrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740506597,
+        "narHash": "sha256-6w25j9EjHyUgenfFO/GSvaArwJtMxOuQXTyzJhl/QDw=",
+        "ref": "main",
+        "rev": "965cbbeadcacf1602033c81842c22c041862e070",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/uday-sudo/nix-secrets.git"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/uday-sudo/nix-secrets.git"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1738816619,
@@ -122,6 +140,7 @@
       "inputs": {
         "grub2-themes": "grub2-themes",
         "home-manager": "home-manager",
+        "mysecrets": "mysecrets",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",

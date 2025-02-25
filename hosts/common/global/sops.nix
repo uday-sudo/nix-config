@@ -1,7 +1,9 @@
 # configuration.nix
 
 { pkgs, inputs, config, ... }:
-
+let
+  secretspath = builtins.toString inputs.mysecrets;
+in
 {
 
   imports =
@@ -10,11 +12,11 @@
     ];
 
   sops = {
-    defaultSopsFile = ../../../secrets.yaml;
+    defaultSopsFile = "${secretspath}/secrets.yaml";
     defaultSopsFormat = "yaml";
 
     age = {
-      keyFile = "${config.users.users.uday.home}/.config/sops/age/keys.txt";
+      keyFile = "/var/lib/sops-nix/key.txt";
     };
 
     # secrets = {
