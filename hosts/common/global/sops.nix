@@ -19,6 +19,7 @@ in
       keyFile = "/var/lib/sops-nix/key.txt";
     };
 
+    # Previously required not needed anymore
     # secrets = {
     #   "root/sshPrivate".path = "/etc/ssh/ssh_host_ed25519_key";
     #   "root/sshPublic".path = "/etc/ssh/ssh_host_ed25519_key.pub";

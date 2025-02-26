@@ -6,26 +6,6 @@ in
 
   sops.secrets = {
     "user_password/uday".neededForUsers = true;
-
-    # ssh keys
-    "uday/sshPrivate" = {
-      owner = config.users.users.uday.name;
-      path = "${config.users.users.uday.home}/.ssh/id_ed25519";
-    };
-    "uday/sshPublic" = {
-      owner = config.users.users.uday.name;
-      path = "${config.users.users.uday.home}/.ssh/id_ed25519.pub";
-    };
-
-
-    "uday/signPrivate" = {
-      owner = config.users.users.uday.name;
-      path = "${config.users.users.uday.home}/.ssh/sign_ed25519";
-    };
-    "uday/signPublic" = {
-      owner = config.users.users.uday.name;
-      path = "${config.users.users.uday.home}/.ssh/sign_ed25519.pub";
-    };
   };
 
   users.mutableUsers = false;
