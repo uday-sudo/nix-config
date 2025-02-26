@@ -8,4 +8,6 @@
     enable = true;
     defaultOptions = [ "--color 16" ];
   };
+
+  programs.less.enable = true;
 }

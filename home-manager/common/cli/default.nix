@@ -13,6 +13,7 @@
     ./misc.nix
     ./lf.nix
     ./direnv.nix
+    ./btop.nix
   ];
 
   home.packages = with pkgs; [
@@ -42,9 +43,6 @@
     gnutar
     gawk
     zstd
-    gnupg
-
-    btop  # replacement of htop/nmon
 
     # system tools
     sysstat
