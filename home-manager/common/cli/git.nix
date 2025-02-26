@@ -48,6 +48,16 @@
         authorColors = {
           "*" = "#b4befe";
         };
+
+        git = {
+          paging = {
+            colorArg = "always";
+            pager = "diff-so-fancy"; # Use diff-so-fancy for diffs
+          };
+          autoFetch = true; # Automatically fetch updates from remotes
+          skipHookPrefix = "WIP"; # Skip Git hooks for commits with this prefix
+          parseEmoji = true; # Parse emojis in commit messages
+        };
       };
     };
   };

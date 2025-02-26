@@ -10,6 +10,22 @@
   #zsh 
   programs.zsh = {
     enable = true;
+    autocd = true;
+    autosuggestion.enable = true;
+  };
+
+  home = {
+    shellAliases = {
+      reborn = "reboot";
+      die = "shutdown -P now";
+      pls = "sudo";
+      icat = "kitten icat";
+    };
+    sessionVariables = {
+      TERMINAL = "ghostty";
+      EDITOR = "nvim";
+      MANPAGER="nvim +Man!";
+	  };
   };
 
   programs.starship = {
@@ -17,7 +33,6 @@
 
     enableBashIntegration = config.programs.bash.enable;
     enableZshIntegration = config.programs.zsh.enable;
-    enableFishIntegration = config.programs.fish.enable;
 
     settings = {
       # Inserts a blank line between shell prompts
@@ -61,11 +76,6 @@
         diverged = "⇕⇡\${ahead_count}⇣\${behind_count}";
         behind = "⇣\${count}";
       };
-
-      # conda module
-      # conda = {
-      #   format = "([$symbol$environment](dimmed green)) ";
-      # };
 
       # package module
       package = {

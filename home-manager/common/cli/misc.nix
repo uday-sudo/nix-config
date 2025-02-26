@@ -1,3 +1,4 @@
+{config, ...}:
 {
   programs.bat = {
     enable = true;
@@ -7,6 +8,9 @@
   programs.fzf = {
     enable = true;
     defaultOptions = [ "--color 16" ];
+
+    enableZshIntegration = config.programs.zsh.enable;
+    enableBashIntegration = config.programs.bash.enable;
   };
 
   programs.less.enable = true;
