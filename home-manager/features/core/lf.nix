@@ -6,6 +6,8 @@
   home.packages = with pkgs; [
     pistol
     xdragon
+    trash-cli #FreeDesktop.org trashcan
+    wl-clipboard
   ];
 
   programs.lf = {
@@ -22,6 +24,57 @@
           mkdir $DIR
       }}
       '';
+      mkfile = ''
+        ''${{
+          printf "File Name: "
+          read ans
+          $EDITOR $ans
+        }}
+      '';
+      chmod = ''
+        ''${{
+            printf "Mode Bits: "
+            read ans
+
+            for file in "$fx"
+            do
+              chmod $ans $file
+            done
+
+            lf -remote 'send reload'
+          }}
+      '';
+      trash = ''
+        ''${{
+          files=$(printf "$fx" | tr '\n' ';')
+          while [ "$files" ]; do
+            # extract the substring from start of string up to delimiter.
+            # this is the first "element" of the string.
+            file=''${files%%;*}
+
+            trash-put "$(basename "$file")"
+            # if there's only one element left, set `files` to an empty string.
+            # this causes us to exit this `while` loop.
+            # else, we delete the first "element" of the string from files, and move onto the next.
+            if [ "$files" = "$file" ]; then
+              files='''
+            else
+              files="''${files#*;}"
+            fi
+          done
+          }}
+      '';
+      yank-paths = ''$printf '%s' "$fx" | wl-copy'';
+      yank-basename = ''&basename -a -- $fx | head -c-1 | wl-copy'';
+      open = ''
+        ''${{
+          case $(file --mime-type "$f" -bL) in
+            text/*|application/json) $EDITOR "$f";;
+            video/*|image/*/application/pdf) xdg-open "$f";;
+            *) xdg-open "$f";;
+          esac
+        }}
+      '';
     };
 
      keybindings = {
@@ -33,11 +86,26 @@
       "\\'" = "mark-load";
       "<enter>" = "open";
       
+      d = null;
       do = "dragon-out";
+      dd = "trash";
+
+      h = "chmod";
+      ";" = "open";
+      x = "cut";
+
+      m = null;
+      md = "mkdir";
+      mf = "mkfile";
       
       "g~" = "cd";
       gh = "cd";
       "g/" = "/";
+
+      y = null;
+      yy = "copy";
+      yp = "yank-paths";
+      yf = "yank-basename";
 
       ee = "editor-open";
       V = ''''$${pkgs.bat}/bin/bat --paging=always --theme=gruvbox "$f"'';
@@ -49,8 +117,11 @@
       drawbox = true;
       icons = true;
       ignorecase = true;
+      ifs = "\n";
     };
 
+
+    # idk why but --transfer-mode file doesn't work in ghostty but works in kitty
     extraConfig = 
     let 
       previewer = 
@@ -62,14 +133,14 @@
         y=$5
         
         if [[ "$( ${pkgs.file}/bin/file -Lb --mime-type "$file")" =~ ^image ]]; then
-            ${pkgs.kitty}/bin/kitty +kitten icat --silent --stdin no --transfer-mode file --place "''${w}x''${h}@''${x}x''${y}" "$file" < /dev/null > /dev/tty
+            ${pkgs.kitty}/bin/kitty +kitten icat --stdin no --transfer-mode memory --place "''${w}x''${h}@''${x}x''${y}" "$file" < /dev/null > /dev/tty
             exit 1
         fi
         
         ${pkgs.pistol}/bin/pistol "$file"
       '';
       cleaner = pkgs.writeShellScriptBin "clean.sh" ''
-        ${pkgs.kitty}/bin/kitty +kitten icat --clear --stdin no --silent --transfer-mode file < /dev/null > /dev/tty
+        ${pkgs.kitty}/bin/kitty +kitten icat --clear --stdin no --transfer-mode memory < /dev/null > /dev/tty
       '';
     in
     ''

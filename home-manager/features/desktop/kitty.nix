@@ -9,7 +9,7 @@
       bold_font = "auto";
       italic_font = "auto";
       bold_italic_font = "auto";
-      font_size = 16;
+      font_size = 14;
       adjust_line_height = 1;
       adjust_column_width = 0;
       tab_bar_style = "powerline";
@@ -17,7 +17,7 @@
       tab_powerline_style = "round";
       active_tab_font_style = "bold-italic";
       inactive_tab_font_style = "normal";
-      background_opacity = 0.98;
+      background_opacity = 1;
     };
 
     # Catpuccin Mocha theme
