@@ -31,8 +31,6 @@
     ripgrep
     jq
 
-    brave
-
     # misc
     cowsay
     which

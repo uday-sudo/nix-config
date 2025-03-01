@@ -17,6 +17,7 @@
     ../features/core
     ../features/productivity
     ../features/desktop
+
     ./secrets.nix
   ];
 

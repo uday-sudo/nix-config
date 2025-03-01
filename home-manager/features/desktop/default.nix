@@ -1,3 +1,4 @@
+
 {
   inputs,
   outputs,
@@ -11,6 +12,7 @@
     ./kitty.nix
   ];
 
-  # home.packages = with pkgs; [
-  # ];
+  home.packages = with pkgs; [
+    brave
+  ];
 }
