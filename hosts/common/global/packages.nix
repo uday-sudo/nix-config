@@ -7,16 +7,14 @@
 	# List packages installed in system profile. To search, run:
 	# $ nix search wget
 	environment.systemPackages = with pkgs; [
-				acpi
-				brightnessctl
-				vim
-				neovim
-				wget
-				lz4
-				unrar
-				unzip
-				sops
-				age
+		acpi
+		brightnessctl
+		vim
+		neovim
+		wget
+		lz4
+		sops
+		age
 	];
 	programs.zsh = {
 		enable = lib.mkDefault true;

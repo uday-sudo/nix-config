@@ -6,28 +6,6 @@
   pkgs,
   ...
 }: {
-
-  #zsh 
-  programs.zsh = {
-    enable = true;
-    autocd = true;
-    autosuggestion.enable = true;
-  };
-
-  home = {
-    shellAliases = {
-      reborn = "reboot";
-      die = "shutdown -P now";
-      pls = "sudo";
-      icat = "kitten icat";
-    };
-    sessionVariables = {
-      TERMINAL = "ghostty";
-      EDITOR = "nvim";
-      MANPAGER="nvim +Man!";
-	  };
-  };
-
   programs.starship = {
     enable = true;
 

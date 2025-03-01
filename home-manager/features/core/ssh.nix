@@ -3,7 +3,7 @@
   programs.ssh = {
     enable = true;
 
-    addKeysToAgent = "yes";
+    addKeysToAgent = lib.mkDefault "yes";
 
     matchBlocks = {
       "hosts" = {
@@ -11,6 +11,7 @@
         identitiesOnly = false;
         identityFile = [
           "~/.ssh/id_ed25519"
+          "~/.ssh/id_backup"
         ];
       };
     };

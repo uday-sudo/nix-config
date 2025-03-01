@@ -9,31 +9,29 @@
   imports = [
     # ./cli
     ./shell.nix
+    ./starship.nix
     ./git.nix
-    ./misc.nix
     ./lf.nix
     ./direnv.nix
     ./btop.nix
     ./eza.nix
+    ./ssh.nix
+    ./fzf.nix
+    ./bat.nix
   ];
 
   home.packages = with pkgs; [
     neofetch
 
-    # archives
     zip
     xz
     unzip
 
     # utils
-    ripgrep # recursively searches directories for a regex pattern
-    jq # A lightweight and flexible command-line JSON processor
-    fzf # A command-line fuzzy finder
+    ripgrep
+    jq
 
-    # networking tools
     brave
-    starship #Prompt
-    kate
 
     # misc
     cowsay

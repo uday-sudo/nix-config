@@ -7,13 +7,13 @@
   programs = {
     git = {
       enable = true;
-      userName = "uday-sudo";
-      userEmail = "udayavengerdude@gmail.com";
+      userName = lib.mkDefault "uday-sudo";
+      userEmail = lib.mkDefault "udayavengerdude@gmail.com";
 
       ignores = lib.mkDefault [ "*.tmp" "*.temp" "tmp.*" "temp.*" ];
 
       signing = {
-        signByDefault = true;
+        signByDefault = lib.mkDefault true;
         key = "${config.home.homeDirectory}/.ssh/sign_ed25519";
       };
 
@@ -31,7 +31,7 @@
     };
 
     lazygit = {
-      enable = true;
+      enable = lib.mkDefault true;
       settings = {
         gui.theme = {
           activeBorderColor = [ "#89b4fa" "bold" ];
@@ -52,11 +52,11 @@
         git = {
           paging = {
             colorArg = "always";
-            pager = "diff-so-fancy"; # Use diff-so-fancy for diffs
+            pager = "diff-so-fancy";
           };
-          autoFetch = true; # Automatically fetch updates from remotes
-          skipHookPrefix = "WIP"; # Skip Git hooks for commits with this prefix
-          parseEmoji = true; # Parse emojis in commit messages
+          autoFetch = true;
+          skipHookPrefix = "WIP";
+          parseEmoji = true;
         };
       };
     };

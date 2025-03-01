@@ -7,6 +7,8 @@
   ...
 }: {
   imports = [
+    ./ghostty.nix
+    ./kitty.nix
   ];
 
   # home.packages = with pkgs; [

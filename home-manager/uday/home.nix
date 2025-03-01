@@ -14,10 +14,10 @@
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
-    ../common/cli
-    ../common/productivity
-    ../common/applications
-    ../common/misc
+    ../features/core
+    ../features/productivity
+    ../features/desktop
+    ./secrets.nix
   ];
 
   nixpkgs = {
