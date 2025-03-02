@@ -11,6 +11,7 @@
     ./ghostty.nix
     ./kitty.nix
     ./mpv.nix
+    ./firefox
   ];
 
   home.packages = with pkgs; [

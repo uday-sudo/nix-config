@@ -78,5 +78,15 @@
       flake = false;
     };
 
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Arc theme
+    firefox-theme = {
+      url = "git+ssh://git@github.com/nuclearcodecat/shimmer.git?ref=main&shallow=1";
+      flake = false;
+    };
   };
 }

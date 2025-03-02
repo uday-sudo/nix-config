@@ -120,7 +120,7 @@
       ifs = "\n";
     };
 
-
+    # TODO: --transfer-mode file instead of memory in case of bug fix
     # idk why but --transfer-mode file doesn't work in ghostty but works in kitty
     extraConfig = 
     let 

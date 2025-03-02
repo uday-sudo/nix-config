@@ -1,5 +1,61 @@
 {
   "nodes": {
+    "firefox-addons": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "pkgs/firefox-addons",
+        "lastModified": 1740888229,
+        "narHash": "sha256-1MU1oKjUuClivWTvJRIdWphLRoY8EByHgt2nr4IpwtA=",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "rev": "1e46c2a53468ce23870a510123f5c4b4702f16b1",
+        "type": "gitlab"
+      },
+      "original": {
+        "dir": "pkgs/firefox-addons",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "type": "gitlab"
+      }
+    },
+    "firefox-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739835279,
+        "narHash": "sha256-qPEnfAzpfT5qrCWI106bswwX4UBdR+j00UsA3hHxOZc=",
+        "ref": "main",
+        "rev": "344a72293a2415d699bafc8aa46ea867956dca36",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/nuclearcodecat/shimmer.git"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/nuclearcodecat/shimmer.git"
+      }
+    },
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1629284811,
+        "narHash": "sha256-JHgasjPR0/J1J3DRm4KxM4zTyAj4IOJY8vIl75v/kPI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "c5d161cc0af116a2e17f54316f0bf43f0819785c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "grub2-themes": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -138,6 +194,8 @@
     },
     "root": {
       "inputs": {
+        "firefox-addons": "firefox-addons",
+        "firefox-theme": "firefox-theme",
         "grub2-themes": "grub2-themes",
         "home-manager": "home-manager",
         "mysecrets": "mysecrets",
