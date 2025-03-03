@@ -85,7 +85,7 @@
 
     # Arc theme
     firefox-theme = {
-      url = "git+ssh://git@github.com/nuclearcodecat/shimmer.git?ref=main&shallow=1";
+      url = "github:nuclearcodecat/shimmer?ref=main&shallow=1";
       flake = false;
     };
   };
