@@ -16,30 +16,150 @@
         Fingerprinting = true;
       };
       DisablePocket = true;
+      DisplayBookmarksToolbar = "never"; 
+      SearchBar = "unified";
       #   "{7aa7c68a-141f-45c9-a1c6-6e7382debbe1}" 
-      Extensions = {
-        Install = [
-          # catpuccin-mocha theme
-          "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-mocha-blue-git/latest.xpi"
-        ];
+      # Extensions = {
+      #   Install = [
+      #     # catpuccin-mocha theme
+      #     "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-mocha-blue-git/latest.xpi"
+      #   ];
+      # };
+      ExtensionSettings = {
+        # "*".installation_mode = "blocked";
+        "{2adf0361-e6d8-4b74-b3bc-3f450e8ebb69}" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-mocha-blue-git/latest.xpi";
+          installation_mode = "force_installed";
+        };
       };
     };
     profiles.uday = {
-      search.engines = {
-        "Nix Packages" = {
-          urls = [{
-            template = "https://search.nixos.org/packages";
-            params = [
-              { name = "type"; value = "packages"; }
-              { name = "query"; value = "{searchTerms}"; }
+      search = {
+        force = true;
+        engines = {
+          # don't need these default ones
+          "Amazon.com".metaData.hidden = true;
+          "Bing".metaData.hidden = true;
+          "eBay".metaData.hidden = true;
+          "Google" = {
+            urls = [
+              {
+                template = "https://google.com/search";
+                params = [
+                  {
+                    name = "q";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
             ];
-          }];
-
-          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "@np" ];
+            definedAliases = [ ",g" ];
+          };
+          "DuckDuckGo" = {
+            urls = [
+              {
+                template = "https://duckduckgo.com";
+                params = [
+                  {
+                    name = "q";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            definedAliases = [ ",d" ];
+          };
+          "Home Manager Options" = {
+            urls = [
+              {
+                template = "https://mipmip.github.io/home-manager-option-search/";
+                params = [
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            definedAliases = [ "ho" ];
+          };
+          "Nix Packages" = {
+            urls = [
+              {
+                template = "https://search.nixos.org/packages";
+                params = [
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            definedAliases = [ "np" ];
+          };
+          "YouTube" = {
+            urls = [
+              {
+                template = "https://www.youtube.com/results";
+                params = [
+                  {
+                    name = "search_query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            definedAliases = [ "y" ];
+          };
+          "Wikipedia" = {
+            urls = [
+              {
+                template = "https://en.wikipedia.org/wiki/Special:Search";
+                params = [
+                  {
+                    name = "search";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            definedAliases = [ "wik" ];
+          };
+          "DockerHub" = {
+            urls = [
+              {
+                template = "https://hub.docker.com/search";
+                params = [
+                  {
+                    name = "q";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            definedAliases = [ "dh" ];
+          };
+          "GitHub" = {
+            urls = [
+              {
+                template = "https://github.com/search";
+                params = [
+                  {
+                    name = "q";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            definedAliases = [ "gh" ];
+          };
         };
+        default = "DuckDuckGo";
       };
-      search.force = true;
 
       #Example For bookmarks, will overwrite other bookmarks
       # bookmarks = [
@@ -52,11 +172,37 @@
       # ];
 
       settings = {
+        "shimmer.disable-collapsing-sidebar" = true;
+
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "svg.context-properties.content.enabled" = true;
         "browser.ctrlTab.sortByRecentlyUsed" = true;
         "browser.sessionstore.resume_from_crash" = true;
-        "shimmer.disable-collapsing-sidebar" = true;
+        "app.update.auto" = true;
+        "browser.download.panel.shown" = true;
+        "browser.quitShortcut.disabled" = true; # disable ctrl+q
+
+        # Disable telemetry
+        "toolkit.telemetry.enabled" = false;
+        "toolkit.telemetry.unified" = false;
+        "browser.ping-centre.telemetry" = false;
+        "toolkit.telemetry.archive.enabled" = false;
+        "toolkit.telemetry.bhrPing.enabled" = false;
+        "toolkit.telemetry.updatePing.enabled" = false;
+        "toolkit.telemetry.hybridContent.enabled" = false;
+        "toolkit.telemetry.newProfilePing.enabled" = false;
+        "toolkit.telemetry.reportingpolicy.firstRun" = false;
+        "toolkit.telemetry.firstShutdownPing.enabled" = false;
+        "browser.newtabpage.activity-stream.telemetry" = false;
+        "toolkit.telemetry.shutdownPingSender.enabled" = false;
+        "browser.newtabpage.activity-stream.feeds.telemetry" = false;
+
+        # other
+        "media.autoplay.default" = 0; # enable autoplay on open
+        "devtools.toolbox.host" = "right"; # move devtools to right
+        "media.rdd-vpx.enabled" = true; # enable hardware acceleration
+        "devtools.cache.disabled" = true; # disable caching in devtools
+        "media.ffmpeg.vaapi.enabled" = true; # enable hardware acceleration
       };
 
       extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [

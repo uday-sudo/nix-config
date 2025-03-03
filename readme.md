@@ -9,3 +9,4 @@ click on "import addon data",
 select "sidebery.json" from the downloaded archive or from [shimmer](https://github.com/nuclearcodecat/shimmer) github repo
 keep the toggles at default and click "import".
 - Go to ```about:config``` where ```shimmer.disable-collapsing-sidebar``` is set to ```true``` to disable the collapsing sidebar (unfortunately this also requires commenting out some sidebery styles, they are marked in the styles editor inside of sidebery settings). So you have to comment it out manually
+- Sometimes the theme is not automatically installed, since it is being installed using policies go to ```about:policies``` to check for any errors.

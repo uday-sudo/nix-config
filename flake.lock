@@ -28,17 +28,16 @@
       "locked": {
         "lastModified": 1739835279,
         "narHash": "sha256-qPEnfAzpfT5qrCWI106bswwX4UBdR+j00UsA3hHxOZc=",
-        "ref": "main",
+        "owner": "nuclearcodecat",
+        "repo": "shimmer",
         "rev": "344a72293a2415d699bafc8aa46ea867956dca36",
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@github.com/nuclearcodecat/shimmer.git"
+        "type": "github"
       },
       "original": {
+        "owner": "nuclearcodecat",
         "ref": "main",
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@github.com/nuclearcodecat/shimmer.git"
+        "repo": "shimmer",
+        "type": "github"
       }
     },
     "flake-utils": {
