@@ -2,8 +2,6 @@
 let ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in
 {
-  imports = [ ./packages.nix ];
-
   sops.secrets = {
     "user_password/uday".neededForUsers = true;
   };
@@ -26,7 +24,21 @@ in
       "libvirtd"
     ];
 
-    packages = [ pkgs.home-manager ];
+    packages = with pkgs; [ 
+      home-manager
+
+      discord
+      spotify
+
+      # yes i like chess
+      en-croissant
+    ];
+    
     hashedPasswordFile = config.sops.secrets."user_password/uday".path;
+  };
+
+  programs.gaming = {
+    enable = true;
+    enableWine = false;
   };
 }

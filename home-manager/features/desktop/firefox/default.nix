@@ -1,8 +1,6 @@
 {config, pkgs, inputs, ...}:
 {
-  imports = [
-    ./theme.nix
-  ];
+  home.file."${config.home.homeDirectory}/.mozilla/firefox/uday/chrome".source = inputs.firefox-theme;
 
   programs.firefox = {
     enable = true;
@@ -18,13 +16,6 @@
       DisablePocket = true;
       DisplayBookmarksToolbar = "never"; 
       SearchBar = "unified";
-      #   "{7aa7c68a-141f-45c9-a1c6-6e7382debbe1}" 
-      # Extensions = {
-      #   Install = [
-      #     # catpuccin-mocha theme
-      #     "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-mocha-blue-git/latest.xpi"
-      #   ];
-      # };
       ExtensionSettings = {
         # "*".installation_mode = "blocked";
         "{2adf0361-e6d8-4b74-b3bc-3f450e8ebb69}" = {

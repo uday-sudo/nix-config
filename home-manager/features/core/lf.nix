@@ -90,13 +90,13 @@
       do = "dragon-out";
       dd = "trash";
 
-      h = "chmod";
       ";" = "open";
       x = "cut";
 
       m = null;
       md = "mkdir";
       mf = "mkfile";
+      mc = "chmod";
       
       "g~" = "cd";
       gh = "cd";

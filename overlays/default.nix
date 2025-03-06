@@ -13,6 +13,13 @@
     discord = prev.discord.override {
       withVencord = true;
     };
+
+    lutris = prev.lutris.override {
+      extraPkgs = pkgs: [
+        pkgs.wineWowPackages.stagingFull
+        pkgs.winetricks
+      ];
+    };
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will

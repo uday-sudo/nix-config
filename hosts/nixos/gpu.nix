@@ -7,6 +7,8 @@
 		inputs.nixos-hardware.nixosModules.common-gpu-nvidia
 	];
 
+	hardware.nvidia-default.enable = true;
+
 	hardware.graphics = {
 		enable = true;
 		enable32Bit = true;
