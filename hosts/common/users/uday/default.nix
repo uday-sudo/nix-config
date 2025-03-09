@@ -1,7 +1,11 @@
-{ pkgs, config, inputs, ... }:
-let ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-in
 {
+  pkgs,
+  config,
+  inputs,
+  ...
+}: let
+  ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+in {
   sops.secrets = {
     "user_password/uday".neededForUsers = true;
   };
@@ -11,20 +15,22 @@ in
     isNormalUser = true;
     description = "Uday";
     shell = pkgs.zsh;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "video"
-      "audio"
-    ] ++ ifTheyExist [
-      "minecraft"
-      "network"
-      "i2c"
-      "git"
-      "libvirtd"
-    ];
+    extraGroups =
+      [
+        "networkmanager"
+        "wheel"
+        "video"
+        "audio"
+      ]
+      ++ ifTheyExist [
+        "minecraft"
+        "network"
+        "i2c"
+        "git"
+        "libvirtd"
+      ];
 
-    packages = with pkgs; [ 
+    packages = with pkgs; [
       home-manager
 
       discord
@@ -33,7 +39,7 @@ in
       # yes i like chess
       en-croissant
     ];
-    
+
     hashedPasswordFile = config.sops.secrets."user_password/uday".path;
   };
 

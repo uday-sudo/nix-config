@@ -48,7 +48,11 @@
       "uday@nixos" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
-        modules = [ ./home-manager/uday/home.nix ];
+        modules =
+          [
+            ./home-manager/uday/home.nix
+          ]
+          ++ (builtins.attrValues outputs.homeManagerModules);
       };
     };
   };
@@ -83,10 +87,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Arc theme
+    # Shimmer theme
     firefox-theme = {
       url = "github:nuclearcodecat/shimmer?ref=main&shallow=1";
       flake = false;
+    };
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
+    wallpapers = {
+      url = "github:uday-sudo/wallpapers?shallow=1";
     };
   };
 }

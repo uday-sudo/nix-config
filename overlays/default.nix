@@ -10,6 +10,26 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
+
+    catppuccin-kde = prev.catppuccin-kde.overrideAttrs (oldAttrs: {
+      postInstall = ''
+        ${oldAttrs.postInstall or ""}  # Preserve existing postInstall steps
+
+        # Patch the CatppuccinMocha-Modernrc file
+        file="$out/share/aurorae/themes/CatppuccinMocha-Modern/CatppuccinMocha-Modernrc"
+        echo $file
+        if [[ -f "$file" ]]; then
+          sed -i 's/TitleHeight=26/TitleHeight=26/' "$file"
+          sed -i 's/ButtonHeight=37/ButtonHeight=24/' "$file"
+          sed -i 's/ButtonWidth=37/ButtonWidth=24/' "$file"
+        else
+          echo "Error: File $file not found!"
+          exit 1
+        fi
+      '';
+    });
+
+    
     discord = prev.discord.override {
       withVencord = true;
     };

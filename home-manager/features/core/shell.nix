@@ -6,8 +6,7 @@
   pkgs,
   ...
 }: {
-
-  #zsh 
+  #zsh
   programs.zsh = {
     enable = true;
     autocd = true;
@@ -38,6 +37,6 @@
       TERMINAL = "ghostty";
       EDITOR = "nvim";
       MANPAGER = "nvim +Man!";
-	  };
+    };
   };
 }

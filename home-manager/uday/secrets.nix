@@ -1,13 +1,14 @@
-{ pkgs, inputs, config, ... }:
-let
-  secretspath = builtins.toString inputs.mysecrets;
-in
 {
-
-  imports =
-    [
-      inputs.sops-nix.homeManagerModules.sops
-    ];
+  pkgs,
+  inputs,
+  config,
+  ...
+}: let
+  secretspath = builtins.toString inputs.mysecrets;
+in {
+  imports = [
+    inputs.sops-nix.homeManagerModules.sops
+  ];
 
   sops = {
     defaultSopsFile = "${secretspath}/secrets.yaml";
@@ -24,5 +25,4 @@ in
       "${config.home.username}/signPublic".path = "${config.home.homeDirectory}/.ssh/sign_ed25519.pub";
     };
   };
-
 }

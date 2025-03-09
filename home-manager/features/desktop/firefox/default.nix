@@ -1,5 +1,9 @@
-{config, pkgs, inputs, ...}:
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   home.file."${config.home.homeDirectory}/.mozilla/firefox/uday/chrome".source = inputs.firefox-theme;
 
   programs.firefox = {
@@ -8,13 +12,13 @@
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
       EnableTrackingProtection = {
-        Value= true;
+        Value = true;
         Locked = true;
         Cryptomining = true;
         Fingerprinting = true;
       };
       DisablePocket = true;
-      DisplayBookmarksToolbar = "never"; 
+      DisplayBookmarksToolbar = "never";
       SearchBar = "unified";
       ExtensionSettings = {
         # "*".installation_mode = "blocked";
@@ -44,7 +48,7 @@
                 ];
               }
             ];
-            definedAliases = [ ",g" ];
+            definedAliases = [",g"];
           };
           "DuckDuckGo" = {
             urls = [
@@ -58,7 +62,7 @@
                 ];
               }
             ];
-            definedAliases = [ ",d" ];
+            definedAliases = [",d"];
           };
           "Home Manager Options" = {
             urls = [
@@ -72,7 +76,7 @@
                 ];
               }
             ];
-            definedAliases = [ "ho" ];
+            definedAliases = ["ho"];
           };
           "Nix Packages" = {
             urls = [
@@ -90,7 +94,7 @@
                 ];
               }
             ];
-            definedAliases = [ "np" ];
+            definedAliases = ["np"];
           };
           "YouTube" = {
             urls = [
@@ -104,7 +108,7 @@
                 ];
               }
             ];
-            definedAliases = [ "y" ];
+            definedAliases = ["y"];
           };
           "Wikipedia" = {
             urls = [
@@ -118,7 +122,7 @@
                 ];
               }
             ];
-            definedAliases = [ "wik" ];
+            definedAliases = ["wik"];
           };
           "DockerHub" = {
             urls = [
@@ -132,7 +136,7 @@
                 ];
               }
             ];
-            definedAliases = [ "dh" ];
+            definedAliases = ["dh"];
           };
           "GitHub" = {
             urls = [
@@ -146,7 +150,7 @@
                 ];
               }
             ];
-            definedAliases = [ "gh" ];
+            definedAliases = ["gh"];
           };
         };
         default = "DuckDuckGo";

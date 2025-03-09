@@ -1,4 +1,3 @@
-
 {
   inputs,
   outputs,
@@ -12,6 +11,8 @@
     ./kitty.nix
     ./mpv.nix
     ./firefox
+    ./cursor.nix
+    ./plasma.nix
   ];
 
   home.packages = with pkgs; [

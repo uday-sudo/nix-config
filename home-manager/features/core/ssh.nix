@@ -1,5 +1,10 @@
-{ outputs, lib, pkgs, config, ... }:
 {
+  outputs,
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   programs.ssh = {
     enable = true;
 

@@ -1,10 +1,10 @@
 {
-	inputs,
-	modulesPath,
-	...
+  inputs,
+  modulesPath,
+  ...
 }: {
-	imports = [
-		(modulesPath + "/installer/scan/not-detected.nix")
-		inputs.nixos-hardware.nixosModules.common-cpu-amd
-	];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    inputs.nixos-hardware.nixosModules.common-cpu-amd
+  ];
 }

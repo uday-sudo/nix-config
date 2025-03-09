@@ -1,11 +1,9 @@
-{
-	...
-}: {
-	hardware.bluetooth = {
-		settings = {
-			General = {
-				ControllerMode = "bredr";
-			};
-		};
-	};
+{...}: {
+  hardware.bluetooth = {
+    settings = {
+      General = {
+        ControllerMode = "bredr";
+      };
+    };
+  };
 }

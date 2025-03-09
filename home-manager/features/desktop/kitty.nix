@@ -1,6 +1,9 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
+  # theme.kitty.enable = true;
   programs.kitty = {
     enable = true;
 
@@ -20,7 +23,6 @@
       background_opacity = 1;
     };
 
-    # Catpuccin Mocha theme
     settings = {
       foreground = "#bbc2cf";
       background = "#282c34";

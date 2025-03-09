@@ -1,13 +1,13 @@
 # configuration.nix
-
-{ pkgs, inputs, config, ... }:
-let
-  secretspath = builtins.toString inputs.mysecrets;
-in
 {
-
-  imports =
-  [
+  pkgs,
+  inputs,
+  config,
+  ...
+}: let
+  secretspath = builtins.toString inputs.mysecrets;
+in {
+  imports = [
     inputs.sops-nix.nixosModules.sops
   ];
 
@@ -25,5 +25,4 @@ in
     #   "root/sshPublic".path = "/etc/ssh/ssh_host_ed25519_key.pub";
     # };
   };
-
 }

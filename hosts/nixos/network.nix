@@ -1,14 +1,12 @@
-{
-	...
-}: {
-	networking = {
-		hostName = "nixos";
+{...}: {
+  networking = {
+    hostName = "nixos";
 
-		firewall = {
-			# enable = false;
-			allowPing = true;
-		};
-	};
+    firewall = {
+      # enable = false;
+      allowPing = true;
+    };
+  };
 
-	# services.openssh.ports = [ 22 8022 ];
+  # services.openssh.ports = [ 22 8022 ];
 }

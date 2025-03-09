@@ -1,18 +1,26 @@
 # This file (and the global directory) holds config that i use on all hosts
-{ inputs, outputs, lib, config, ... }: {
-  imports = [
-    #TODO zsh ./fish.nix
-    ./sops.nix
-    ./locale.nix
-    ./nix.nix
-    ./steam-hardware.nix
-    ./boot.nix
-    ./filesystem.nix
-    ./packages.nix
-    ./audio.nix
-    ./bluetooth.nix
-    ./network.nix
-  ] ++ (builtins.attrValues outputs.nixosModules);
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  ...
+}: {
+  imports =
+    [
+      #TODO zsh ./fish.nix
+      ./sops.nix
+      ./locale.nix
+      ./nix.nix
+      ./steam-hardware.nix
+      ./boot.nix
+      ./filesystem.nix
+      ./packages.nix
+      ./audio.nix
+      ./bluetooth.nix
+      ./network.nix
+    ]
+    ++ (builtins.attrValues outputs.nixosModules);
 
   #home-manager.extraSpecialArgs = { inherit inputs outputs; };
 
@@ -26,7 +34,7 @@
   # Fix for qt6 plugins
   # TODO: maybe upstream this?
   environment.profileRelativeSessionVariables = {
-    QT_PLUGIN_PATH = [ "/lib/qt-6/plugins" ];
+    QT_PLUGIN_PATH = ["/lib/qt-6/plugins"];
   };
 
   hardware.enableRedistributableFirmware = true;

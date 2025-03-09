@@ -1,5 +1,4 @@
-{pkgs, ...}:
-{
+{pkgs, ...}: {
   #icons file
   xdg.configFile."lf/icons".source = ./icons;
 
@@ -11,18 +10,18 @@
   ];
 
   programs.lf = {
-    enable =  true;
+    enable = true;
 
     commands = {
       dragon-out = ''%${pkgs.xdragon}/bin/xdragon -a -x "$fx"'';
 
       editor-open = ''$$EDITOR $f'';
       mkdir = ''
-      ''${{
-          printf "Directory Name: "
-          read DIR
-          mkdir $DIR
-      }}
+        ''${{
+            printf "Directory Name: "
+            read DIR
+            mkdir $DIR
+        }}
       '';
       mkfile = ''
         ''${{
@@ -77,7 +76,7 @@
       '';
     };
 
-     keybindings = {
+    keybindings = {
       "\\\"" = "";
       o = "";
       c = "mkdir";
@@ -85,7 +84,7 @@
       "`" = "mark-load";
       "\\'" = "mark-load";
       "<enter>" = "open";
-      
+
       d = null;
       do = "dragon-out";
       dd = "trash";
@@ -97,7 +96,7 @@
       md = "mkdir";
       mf = "mkfile";
       mc = "chmod";
-      
+
       "g~" = "cd";
       gh = "cd";
       "g/" = "/";
@@ -108,7 +107,7 @@
       yf = "yank-basename";
 
       ee = "editor-open";
-      V = ''''$${pkgs.bat}/bin/bat --paging=always --theme=gruvbox "$f"'';
+      V = ''''$${pkgs.bat}/bin/bat --paging=always "$f"'';
     };
 
     settings = {
@@ -122,28 +121,25 @@
 
     # TODO: --transfer-mode file instead of memory in case of bug fix
     # idk why but --transfer-mode file doesn't work in ghostty but works in kitty
-    extraConfig = 
-    let 
-      previewer = 
-        pkgs.writeShellScriptBin "pv.sh" ''
+    extraConfig = let
+      previewer = pkgs.writeShellScriptBin "pv.sh" ''
         file=$1
         w=$2
         h=$3
         x=$4
         y=$5
-        
+
         if [[ "$( ${pkgs.file}/bin/file -Lb --mime-type "$file")" =~ ^image ]]; then
             ${pkgs.kitty}/bin/kitty +kitten icat --stdin no --transfer-mode memory --place "''${w}x''${h}@''${x}x''${y}" "$file" < /dev/null > /dev/tty
             exit 1
         fi
-        
+
         ${pkgs.pistol}/bin/pistol "$file"
       '';
       cleaner = pkgs.writeShellScriptBin "clean.sh" ''
         ${pkgs.kitty}/bin/kitty +kitten icat --clear --stdin no --transfer-mode memory < /dev/null > /dev/tty
       '';
-    in
-    ''
+    in ''
       set cleaner ${cleaner}/bin/clean.sh
       set previewer ${previewer}/bin/pv.sh
     '';

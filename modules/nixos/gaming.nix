@@ -1,23 +1,26 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.programs.gaming;
 
   steam-with-pkgs = pkgs.steam.override {
-    extraPkgs = pkgs: with pkgs; [
-      xorg.libXcursor
-      xorg.libXi
-      xorg.libXinerama
-      xorg.libXScrnSaver
-      libpng
-      libpulseaudio
-      libvorbis
-      stdenv.cc.cc.lib
-      libkrb5
-      keyutils
-    ];
+    extraPkgs = pkgs:
+      with pkgs; [
+        xorg.libXcursor
+        xorg.libXi
+        xorg.libXinerama
+        xorg.libXScrnSaver
+        libpng
+        libpulseaudio
+        libvorbis
+        stdenv.cc.cc.lib
+        libkrb5
+        keyutils
+      ];
   };
 in {
   options.programs.gaming = {
@@ -37,19 +40,25 @@ in {
   };
 
   config = mkIf cfg.enable {
-    users.users.${cfg.user}.packages = with pkgs; [
-      steam-with-pkgs
-      gamescope
-      protontricks
-      lutris
-      prismlauncher
-    ] ++ (if cfg.enableWine then [
-      # Wine packages for both 32-bit and 64-bit applications
-      wine64
-      # Winetricks for managing Wine environments
-      winetricks
-      # Native Wayland support for Wine (unstable)
-      wineWowPackages.waylandFull
-    ] else []);
+    users.users.${cfg.user}.packages = with pkgs;
+      [
+        steam-with-pkgs
+        gamescope
+        protontricks
+        lutris
+        prismlauncher
+      ]
+      ++ (
+        if cfg.enableWine
+        then [
+          # Wine packages for both 32-bit and 64-bit applications
+          wine64
+          # Winetricks for managing Wine environments
+          winetricks
+          # Native Wayland support for Wine (unstable)
+          wineWowPackages.waylandFull
+        ]
+        else []
+      );
   };
 }
