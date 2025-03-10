@@ -15,6 +15,11 @@
     plasma-browser-integration
     konsole
     oxygen
+    kate
+    elisa
+    kwallet
+    kwallet-pam
+    kwalletmanager
   ];
 
   # Configure keymap in X11

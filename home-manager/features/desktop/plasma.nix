@@ -4,11 +4,9 @@
   config,
   lib,
   ...
-}:
-let
+}: let
   theme = config.theme;
-in
-{
+in {
   imports = [
     inputs.plasma-manager.homeManagerModules.plasma-manager
   ];
@@ -16,6 +14,7 @@ in
   home.packages = with pkgs;
     [
       papirus-icon-theme
+      bibata-cursors
     ]
     ++ (
       if theme.scheme == "Catppuccin"
@@ -86,6 +85,10 @@ in
     #     "Switch Window Up" = "Meta+K";
     #   };
     # };
+    kwin.effects = {
+      shakeCursor.enable = true;
+      translucency.enable = true;
+    };
 
     #
     # Some low-level settings:

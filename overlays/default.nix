@@ -29,7 +29,6 @@
       '';
     });
 
-    
     discord = prev.discord.override {
       withVencord = true;
     };
