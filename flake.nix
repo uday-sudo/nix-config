@@ -41,6 +41,13 @@
           grub2-themes.nixosModules.default
         ];
       };
+      
+      homebox = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/homebox
+        ];
+      };
     };
 
     # Available through 'home-manager --flake .#your-username@your-hostname'
@@ -51,6 +58,16 @@
         modules =
           [
             ./home-manager/uday/home.nix
+          ]
+          ++ (builtins.attrValues outputs.homeManagerModules);
+      };
+
+      "hooman@homebox" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules =
+          [
+            ./home-manager/hooman/home.nix
           ]
           ++ (builtins.attrValues outputs.homeManagerModules);
       };
