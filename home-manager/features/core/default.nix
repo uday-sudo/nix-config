@@ -18,6 +18,7 @@
     ./ssh.nix
     ./fzf.nix
     ./bat.nix
+    ./tmux.nix
   ];
 
   home.packages = with pkgs; [
