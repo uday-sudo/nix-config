@@ -6,6 +6,7 @@
     nixpkgs,
     home-manager,
     grub2-themes,
+    disko,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -46,7 +47,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./hosts/homebox
-        ];
+        ] ++ (builtins.attrValues disko.nixosModules);
       };
     };
 
@@ -118,6 +119,11 @@
 
     wallpapers = {
       url = "github:uday-sudo/wallpapers?shallow=1";
+    };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }

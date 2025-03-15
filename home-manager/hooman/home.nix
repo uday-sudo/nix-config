@@ -14,8 +14,6 @@
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
     ../features/core
-    ../features/productivity
-    ../features/desktop
 
     ./secrets.nix
   ];
@@ -39,8 +37,8 @@
   };
 
   home = {
-    username = "uday";
-    homeDirectory = "/home/uday";
+    username = "hooman";
+    homeDirectory = "/home/hooman";
   };
 
   programs.home-manager.enable = true;
@@ -48,7 +46,4 @@
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.11";
-
-  #colorscheme module
-  theme.enable = true;
 }

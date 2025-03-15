@@ -15,6 +15,7 @@
     lz4
     sops
     age
+    sshfs
   ];
   programs.zsh = {
     enable = lib.mkDefault true;
@@ -56,6 +57,12 @@
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "${config.users.users.uday.home}/gitjargan/nix-config";
+    flake = lib.mkDefault "/home/uday/gitjargan/nix-config";
+  };
+
+  programs.mtr.enable = lib.mkDefault true;
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [];
   };
 }

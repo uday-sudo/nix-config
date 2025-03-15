@@ -8,5 +8,9 @@
     };
   };
 
-  services.openssh.ports = [ 22 8022 ];
+  services.openssh = {
+    settings = {
+      AllowUsers = [ "hooman" ];
+    };
+  };
 }

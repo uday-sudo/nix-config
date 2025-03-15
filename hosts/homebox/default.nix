@@ -1,27 +1,35 @@
 {
   outputs,
   pkgs,
+  lib,
+  config,
   ...
 }: {
   imports = [
     ../common/global
-    ../common/users/uday
 
-    ./battery.nix
-    ./asusctl.nix
+    ../common/users/hooman
+
     ./bluetooth.nix
     ./cpu.nix
-    ./gpu.nix
     ./dev.nix
     ./disks.nix
-    ./gui.nix
     ./filesystem.nix
     ./network.nix
   ];
 
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [];
+  nixpkgs = {
+    overlays = builtins.attrValues outputs.overlays;
+    config = {
+      allowUnfree = true;
+    };
   };
-  system.stateVersion = "23.11";
+
+  users.users.root.openssh.authorizedKeys.keys = [
+    # change this to your ssh key
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ8yGpF8gsJNiJy6rWB5b1ZFS8xKQcPhxB3iW9Te7CKP uday@nixos"
+  ];
+
+  programs.nh.flake = "${config.users.users.hooman.home}/gitjargan/nix-config";
+  system.stateVersion = "24.05";
 }

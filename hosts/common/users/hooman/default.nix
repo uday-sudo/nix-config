@@ -7,13 +7,13 @@
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {
   sops.secrets = {
-    "user_password/uday".neededForUsers = true;
+    "user_password/hooman".neededForUsers = true;
   };
 
   users.mutableUsers = false;
-  users.users.uday = {
+  users.users.hooman = {
     isNormalUser = true;
-    description = "Uday";
+    description = "hooman";
     shell = pkgs.zsh;
     extraGroups =
       [
@@ -23,7 +23,6 @@ in {
         "audio"
       ]
       ++ ifTheyExist [
-        "minecraft"
         "network"
         "i2c"
         "git"
@@ -31,20 +30,8 @@ in {
       ];
 
     packages = with pkgs; [
-      home-manager
-
-      discord
-      spotify
-
-      # yes i like chess
-      en-croissant
     ];
 
-    hashedPasswordFile = config.sops.secrets."user_password/uday".path;
-  };
-
-  programs.gaming = {
-    enable = true;
-    enableWine = false;
+    hashedPasswordFile = config.sops.secrets."user_password/hooman".path;
   };
 }

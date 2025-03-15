@@ -12,11 +12,9 @@
       ./sops.nix
       ./locale.nix
       ./nix.nix
-      ./steam-hardware.nix
       ./boot.nix
       ./filesystem.nix
       ./packages.nix
-      ./audio.nix
       ./bluetooth.nix
       ./network.nix
     ]

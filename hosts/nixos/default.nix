@@ -1,6 +1,7 @@
 {
   outputs,
   pkgs,
+  config,
   ...
 }: {
   imports = [
@@ -8,6 +9,8 @@
     ../common/optional/de.nix
     ../common/optional/fonts.nix
     ../common/optional/quietboot.nix
+    ../common/optional/audio.nix
+    ../common/optional/grub2theme.nix
     ../common/users/uday
 
     ./battery.nix
@@ -23,9 +26,7 @@
     ./services.nix
   ];
 
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [];
-  };
+  hardware.steam-hardware.enable = true;
+
   system.stateVersion = "23.11";
 }

@@ -1,6 +1,10 @@
 # nix-config
 
-### firefox-config
+## sops guide
+- Put the host age key at ```/var/lib/sops-nix/key.txt```
+- Put the user ssh key at ```~/.config/sops/age/keys.txt```
+
+## firefox-config
 
 I use sidebery in my config and am unable to declare it's config fully declaratively. So follow some steps to complete the setup manually:
 - Go to ```about:addons``` in firefox url bar, enable all installed extension and themes.

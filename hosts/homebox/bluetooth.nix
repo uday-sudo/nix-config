@@ -1,7 +1,7 @@
 {config, ...}: {
-  services.blueman.enable = config.hardware.bluetooth.enable;
+  services.blueman.enable = false;
   hardware.bluetooth = {
-    enable = true;
+    enable = false;
     powerOnBoot = false;
   };
 }
