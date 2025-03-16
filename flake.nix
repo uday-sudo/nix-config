@@ -125,5 +125,7 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # selfhostblocks.url = "github:ibizaman/selfhostblocks";
   };
 }

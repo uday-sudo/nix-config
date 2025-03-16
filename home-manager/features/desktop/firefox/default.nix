@@ -211,6 +211,7 @@
         user-agent-string-switcher
         tabliss
         tab-stash
+        keepassxc-browser
       ];
     };
   };

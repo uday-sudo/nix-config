@@ -13,6 +13,7 @@
     ./firefox
     ./cursor.nix
     ./plasma.nix
+    ./syncthing.nix
   ];
 
   home.packages = with pkgs; [

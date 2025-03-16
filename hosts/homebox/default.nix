@@ -7,6 +7,7 @@
 }: {
   imports = [
     ../common/global
+    ../server
 
     ../common/users/hooman
 

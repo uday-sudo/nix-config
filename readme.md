@@ -14,3 +14,17 @@ select "sidebery.json" from the downloaded archive or from [shimmer](https://git
 keep the toggles at default and click "import".
 - Go to ```about:config``` where ```shimmer.disable-collapsing-sidebar``` is set to ```true``` to disable the collapsing sidebar (unfortunately this also requires commenting out some sidebery styles, they are marked in the styles editor inside of sidebery settings). So you have to comment it out manually
 - Sometimes the theme is not automatically installed, since it is being installed using policies go to ```about:policies``` to check for any errors.
+
+
+## servers access 
+- ssh: ```<address>:22```
+- Syncthing GUI: ```<address>:8384```
+- Filebrowser: ```<address>:3030```
+- forgejo: ```<address>:3000```
+- torrent: ```<address>:7044```
+- Owncast: ```<address>:9990```
+
+
+## Start servers(Not all services are enabled all the time):
+- Filebrowser: ```sudo systemctl start filebowser```
+- Torrent: ```sudo systemctl start qbittorent```

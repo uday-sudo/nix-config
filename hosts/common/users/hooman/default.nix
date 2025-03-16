@@ -27,6 +27,8 @@ in {
         "i2c"
         "git"
         "libvirtd"
+        "media"
+        "qbittorrent"
       ];
 
     packages = with pkgs; [
