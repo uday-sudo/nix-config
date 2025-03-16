@@ -10,8 +10,8 @@
     ./syncthing.nix
     ./filebrowser.nix
     ./torrent.nix
-    # ./hangout.nix
     ./forgejo.nix
     ./containers.nix
+    ./video.nix
   ];
 }
