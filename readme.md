@@ -29,3 +29,9 @@ keep the toggles at default and click "import".
 - Filebrowser: ```sudo systemctl start filebowser```
 - Torrent: ```sudo systemctl start qbittorent```
 - Jellyfin Media server: ```jellyfin```
+
+
+## Initial Config
+- Enable flakes and nix command using experimental features option
+- Use ```nix-shell shell.nix``` to get all required utilities (git, sops etc)
+- ```sudo nixos-rebuild switch --flake .#nixos```

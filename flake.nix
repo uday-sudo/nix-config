@@ -7,6 +7,7 @@
     home-manager,
     grub2-themes,
     disko,
+    deploy-rs,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -31,8 +32,6 @@
     nixosModules = import ./modules/nixos;
     homeManagerModules = import ./modules/home-manager;
 
-    #TODO Add templates and Dev-SHell stuff after research
-
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
@@ -50,6 +49,20 @@
         ] ++ (builtins.attrValues disko.nixosModules);
       };
     };
+
+    deploy = {
+        nodes.homebox = {
+          hostname = "homebox";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.homebox;
+          };
+        };
+        remoteBuild = true;
+    };
+
+    # This is highly advised, and will prevent many possible mistakes
+    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
@@ -126,6 +139,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # selfhostblocks.url = "github:ibizaman/selfhostblocks";
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+    };
   };
 }
