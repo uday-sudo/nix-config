@@ -22,9 +22,10 @@ keep the toggles at default and click "import".
 - Filebrowser: ```<address>:3030```
 - forgejo: ```<address>:3000```
 - torrent: ```<address>:7044```
-- Owncast: ```<address>:9990```
+- jellyfin: ```<address>:8096```
 
 
 ## Start servers(Not all services are enabled all the time):
 - Filebrowser: ```sudo systemctl start filebowser```
 - Torrent: ```sudo systemctl start qbittorent```
+- Jellyfin Media server: ```jellyfin```

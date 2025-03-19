@@ -26,6 +26,8 @@
     '';
   };
 
+  programs.command-not-found.enable = true;
+
   home = {
     shellAliases = {
       reborn = "reboot";

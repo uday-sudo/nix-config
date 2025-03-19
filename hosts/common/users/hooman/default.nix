@@ -29,6 +29,7 @@ in {
         "libvirtd"
         "media"
         "qbittorrent"
+        "forgejo"
       ];
 
     packages = with pkgs; [

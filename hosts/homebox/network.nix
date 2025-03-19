@@ -10,7 +10,7 @@
 
   services.openssh = {
     settings = {
-      AllowUsers = [ "hooman" ];
+      AllowUsers = [ "hooman" "root" ];
     };
   };
 }
