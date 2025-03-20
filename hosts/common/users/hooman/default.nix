@@ -30,6 +30,8 @@ in {
         "media"
         "qbittorrent"
         "forgejo"
+        "filebrowser"
+        "syncthing"
       ];
 
     packages = with pkgs; [

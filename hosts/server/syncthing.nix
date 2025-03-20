@@ -37,7 +37,7 @@
 
       gui = {
         user = "hooman";
-        password = "1234";
+        password = "12345678";
       };
     };
   };

@@ -6,7 +6,7 @@
     settings = {
       devices = {
         "server" = {
-          id = "3DDSIAR-OO4H7PG-HQO6HEC-WGWJRLF-XCHTS6M-3Y3NP6N-RFZFYBB-3HNQQA6";
+          id = "A6DW2IE-KN6I32O-MS33KRN-47DNDSA-OHWTGM6-RARNDY2-JETDPPQ-SW2TCQC";
         };
         "phone" = {
           id = "ZQWSMLR-YLJZIC7-RJGE2N4-V3BBW2P-NCSUFJ5-BYK7P32-4VCRBUZ-FFJ53A4";

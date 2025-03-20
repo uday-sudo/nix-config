@@ -38,6 +38,7 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ8yGpF8gsJNiJy6rWB5b1ZFS8xKQcPhxB3iW9Te7CKP uday@nixos"
   ];
 
+  environment.enableAllTerminfo = true;
   programs.nh.flake = "${config.users.users.hooman.home}/gitjargan/nix-config";
   system.stateVersion = "24.05";
 }

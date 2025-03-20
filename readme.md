@@ -18,11 +18,11 @@ keep the toggles at default and click "import".
 
 ## servers access 
 - ssh: ```<address>:22```
-- Syncthing GUI: ```<address>:8384```
-- Filebrowser: ```<address>:3030```
+- Syncthing GUI: ```<address>:8384``` (hooman, 12345678)
+- Filebrowser: ```<address>:3030``` (admin, admin)
 - forgejo: ```<address>:3000```
-- torrent: ```<address>:7044```
-- jellyfin: ```<address>:8096```
+- torrent: ```<address>:7044```  (hooman, 12345678)
+- jellyfin: ```<address>:8096```  (hooman, 12345678)
 
 
 ## Start servers(Not all services are enabled all the time):

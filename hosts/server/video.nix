@@ -19,7 +19,7 @@
   };
   services.jellyfin = {
     enable = true;
-    dataDir = "/run/media/hdd";
+    dataDir = "/run/media/hdd/jellyfin";
     user = "hooman";
     openFirewall = true;
   };
@@ -28,4 +28,6 @@
     pkgs.jellyfin-web
     pkgs.jellyfin-ffmpeg
   ];
+
+  systemd.services.jellyfin.wantedBy = lib.mkForce [];
 }
