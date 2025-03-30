@@ -11,11 +11,14 @@ in
   services.nginx = {
     virtualHosts.${cfg.settings.server.DOMAIN} = {
       forceSSL = true;
-      enableACME = true;
+      sslCertificate = config.sops.secrets."nginx/SSL-cert".path;
+      sslCertificateKey = config.sops.secrets."nginx/SSL-key".path;
       extraConfig = ''
         client_max_body_size 512M;
       '';
-      locations."/".proxyPass = "http://localhost:${toString srv.HTTP_PORT}";
+      locations."/" = {
+        proxyPass = "http://localhost:${toString srv.HTTP_PORT}";
+      };
     };
   };
 
@@ -56,7 +59,7 @@ in
     instances.default = {
       enable = true;
       name = "monolith";
-      url = "https://git.example.com";
+      url = "https://git.homebox.com";
       # Obtaining the path to the runner token file may differ
       # tokenFile should be in format TOKEN=<secret>, since it's EnvironmentFile for systemd
       tokenFile = "/var/lib/forgejo/token";

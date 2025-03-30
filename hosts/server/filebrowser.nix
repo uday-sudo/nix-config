@@ -1,5 +1,19 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 {
+  imports = [
+    inputs.sops-nix.nixosModules.sops
+  ];
+
+  services.nginx = {
+    virtualHosts."filebowser.homebox.com" = {
+      forceSSL = true;
+      sslCertificate = config.sops.secrets."nginx/SSL-cert".path;
+      sslCertificateKey = config.sops.secrets."nginx/SSL-key".path;
+      locations."/" = {
+        proxyPass = "http://localhost:3030";
+      };
+    };
+  };
   users.users.filebowser.isSystemUser = true;
   users.users.filebowser.group = "users";
   users.groups.filebowser = {};

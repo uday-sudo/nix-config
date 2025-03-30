@@ -1,5 +1,19 @@
-{ pkgs, lib, config, ... }:
+{ inputs, pkgs, lib, config, ... }:
 {
+  imports = [
+    inputs.sops-nix.nixosModules.sops
+  ];
+
+  services.nginx = {
+    virtualHosts."jellyfin.homebox.com" = {
+      forceSSL = true;
+      sslCertificate = config.sops.secrets."nginx/SSL-cert".path;
+      sslCertificateKey = config.sops.secrets."nginx/SSL-key".path;
+      locations."/" = {
+        proxyPass = "http://localhost:8096";
+      };
+    };
+  };
 
   # 1. enable vaapi on OS-level
   nixpkgs.config.packageOverrides = pkgs: {

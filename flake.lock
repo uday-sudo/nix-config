@@ -152,10 +152,10 @@
     "mysecrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1742125541,
-        "narHash": "sha256-qU8xdJI7sE+49CVcN1S3tAsppb2otfqnBsegVsuV0jI=",
+        "lastModified": 1743343232,
+        "narHash": "sha256-t7BCc3yVLdRsGta6LKRv9Ke5K4o1yILABBF6E2hZ34c=",
         "ref": "main",
-        "rev": "878a06b24821c7e7648c777d907c233e9b535337",
+        "rev": "6a4ed21ffa293c4a631a43d31f0bc9b38f71552a",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/uday-sudo/nix-secrets.git"

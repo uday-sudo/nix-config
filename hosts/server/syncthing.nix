@@ -1,5 +1,19 @@
-{config, lib, pkgs, ...}:
+{ inputs, config, lib, pkgs, ...}:
 {
+  imports = [
+    inputs.sops-nix.nixosModules.sops
+  ];
+
+  services.nginx = {
+    virtualHosts."sync.homebox.com" = {
+      forceSSL = true;
+      sslCertificate = config.sops.secrets."nginx/SSL-cert".path;
+      sslCertificateKey = config.sops.secrets."nginx/SSL-key".path;
+      locations."/" = {
+        proxyPass = "http://localhost:8384";
+      };
+    };
+  };
   services.syncthing = {
     group = "users";
     guiAddress = "0.0.0.0:8384";
