@@ -2,7 +2,7 @@
 
 ## sops guide
 - Put the host age key at ```/var/lib/sops-nix/key.txt```
-- Put the user ssh key at ```~/.config/sops/age/keys.txt```
+- Put the user age key at ```~/.config/sops/age/keys.txt```
 
 ## firefox-config
 
@@ -22,13 +22,14 @@ keep the toggles at default and click "import".
 - Filebrowser: ```<address>:3030``` (admin, admin)
 - forgejo: ```<address>:3000```
 - torrent: ```<address>:7044```  (hooman, 12345678)
+    - Disable CSRF in qbittorent settings to be able to access it over nginx
 - jellyfin: ```<address>:8096```  (hooman, 12345678)
 
 
 ## Start servers(Not all services are enabled all the time):
 - Filebrowser: ```sudo systemctl start filebowser```
 - Torrent: ```sudo systemctl start qbittorent```
-- Jellyfin Media server: ```jellyfin```
+- Jellyfin Media server: ```sudo systemctl start jellyfin```
 
 
 ## Initial Config
