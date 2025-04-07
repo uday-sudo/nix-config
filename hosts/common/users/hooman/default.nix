@@ -32,6 +32,7 @@ in {
         "forgejo"
         "filebrowser"
         "syncthing"
+        "olivetin"
       ];
 
     packages = with pkgs; [

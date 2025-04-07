@@ -83,7 +83,7 @@ in
           "!${preStartScript}";
 
         #ExecStart = "${pkgs.qbittorrent-nox}/bin/qbittorrent-nox";
-        ExecStart = "${cfg.package}/bin/qbittorrent-nox";
+        ExecStart = "${cfg.package}/bin/qbittorrent-nox --confirm-legal-notice";
         # To prevent "Quit & shutdown daemon" from working; we want systemd to
         # manage it!
         #Restart = "on-success";
