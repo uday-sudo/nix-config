@@ -153,7 +153,7 @@
             definedAliases = ["gh"];
           };
         };
-        default = "DuckDuckGo";
+        default = "Google";
       };
 
       #Example For bookmarks, will overwrite other bookmarks
