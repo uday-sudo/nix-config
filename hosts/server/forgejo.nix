@@ -25,7 +25,6 @@ in
   services.forgejo = {
     enable = true;
     database.type = "postgres";
-    # lfs.enable = true;
     settings = {
       session.COOKIE_SECURE = true;
       DEFAULT = {

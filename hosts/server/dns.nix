@@ -17,9 +17,7 @@
         blackLists = {
           #Adblocking
           ads = ["https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"];
-          #Another filter for blocking adult sites
           # adult = ["https://blocklistproject.github.io/Lists/porn.txt"];
-          #You can add additional categories
         };
         #Configure what block categories are used
         clientGroupsBlock = {

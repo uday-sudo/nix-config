@@ -15,6 +15,14 @@
       sslCertificateKey = config.sops.secrets."nginx/SSL-key".path;
       locations."/" = {
         proxyPass = "http://localhost:1337";
+        proxyWebsockets = true;
+        extraConfig = ''
+          proxy_redirect http://localhost:1337/ http://localhost/OliveTin/;
+        '';
+      };
+      locations."/websocket" = {
+        proxyPass = "http://localhost:1337/websocket";
+        proxyWebsockets = true;
       };
     };
   };
@@ -37,9 +45,10 @@
   ];
 
   systemd.services.olivetin = {
+    path = with pkgs; [ bash sudo ];
     description = "OliveTin web interface for running commands";
     after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = []; #[ "multi-user.target" ];
     
     serviceConfig = {
       Type = "simple";
@@ -50,6 +59,18 @@
       RestartSec = 5;
     };
   };
+
+  security.sudo.extraRules = [
+    {
+      users = [ "olivetin" ];
+      commands = [
+        {
+          command = "ALL";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
 
   # environment.etc."olivetin/config.yaml".text = ''
   #   # Basic OliveTin configuration
@@ -73,6 +94,13 @@
   #               value: "reboot"
   #             - title: "Shutdown"
   #               value: "poweroff"
+      
+  #     # This uses `popupOnStart: execution-dialog-stdout-only` to simply show just
+  #     # the command output.
+  #     - title: Check disk space
+  #       icon: disk
+  #       shell: df -h /media
+  #       popupOnStart: execution-dialog-stdout-only
 
   #     - title: "Manage Tailscale Connection"
   #       shell: "sudo tailscale {{ command }}"
@@ -87,3 +115,4 @@
   #               value: "down"
   # '';
 }
+

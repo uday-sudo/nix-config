@@ -14,7 +14,8 @@
     ./containers.nix
     ./video.nix
     ./dns.nix
-    ./olivetin.nix
+    ./olive.nix
+    ./gameserver.nix
     inputs.sops-nix.nixosModules.sops
   ];
 
