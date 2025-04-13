@@ -25,7 +25,6 @@ in
   services.forgejo = {
     enable = true;
     database.type = "postgres";
-    # lfs.enable = true;
     settings = {
       session.COOKIE_SECURE = true;
       DEFAULT = {
@@ -73,15 +72,15 @@ in
       ];
     };
   };
-  sops.secrets.forgejo-admin-password.owner = "forgejo";
-  systemd.services.forgejo.preStart = let 
-    adminCmd = "${lib.getExe cfg.package} admin user";
-    pwd = config.sops.secrets.forgejo-admin-password;
-    user = "admin";
-  in ''
-    #${adminCmd} create --admin --email "root@localhost" --username ${user} --password "$(tr -d '\n' < ${pwd.path})" || true
-    ${adminCmd} create --email "root@localhost" --username hooman --password "12345678" || true
-    ## uncomment this line to change an admin user which was already created
-    # ${adminCmd} change-password --username ${user} --password "$(tr -d '\n' < ${pwd.path})" || true
-  '';
+  # sops.secrets.forgejo-admin-password.owner = "forgejo";
+  # systemd.services.forgejo.preStart = let 
+  #   adminCmd = "${lib.getExe cfg.package} admin user";
+  #   pwd = config.sops.secrets.forgejo-admin-password;
+  #   user = "admin";
+  # in ''
+  #   #${adminCmd} create --admin --email "root@localhost" --username ${user} --password "$(tr -d '\n' < ${pwd.path})" || true
+  #   ${adminCmd} create --email "root@localhost" --username hooman --password "12345678" || true
+  #   ## uncomment this line to change an admin user which was already created
+  #   # ${adminCmd} change-password --username ${user} --password "$(tr -d '\n' < ${pwd.path})" || true
+  # '';
 }

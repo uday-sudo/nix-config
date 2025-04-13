@@ -23,12 +23,14 @@ keep the toggles at default and click "import".
 - forgejo: ```<address>:3000```
 - torrent: ```<address>:7044```  (hooman, 12345678)
 - jellyfin: ```<address>:8096```  (hooman, 12345678)
+- puffepanel: ```<address>:7566```  (hooman, hooman@example.com, 12345678) (5657 for sftp)
 
 
 ## Start servers(Not all services are enabled all the time):
 - Filebrowser: ```sudo systemctl start filebowser```
 - Torrent: ```sudo systemctl start qbittorent```
 - Jellyfin Media server: ```sudo systemctl start jellyfin```
+- Pufferpanel: ```sudo systemctl start pufferpanel```
 
 
 ## Initial Config
