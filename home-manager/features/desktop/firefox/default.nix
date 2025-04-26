@@ -200,7 +200,7 @@
         "media.ffmpeg.vaapi.enabled" = true; # enable hardware acceleration
       };
 
-      extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
+      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         firefox-color
         ublock-origin
         sidebery
