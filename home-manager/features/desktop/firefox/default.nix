@@ -33,10 +33,10 @@
         force = true;
         engines = {
           # don't need these default ones
-          "Amazon.com".metaData.hidden = true;
-          "Bing".metaData.hidden = true;
-          "eBay".metaData.hidden = true;
-          "Google" = {
+          "amazondotcom-us".metaData.hidden = true;
+          "bing".metaData.hidden = true;
+          "ebay".metaData.hidden = true;
+          "google" = {
             urls = [
               {
                 template = "https://google.com/search";
@@ -50,7 +50,7 @@
             ];
             definedAliases = [",g"];
           };
-          "DuckDuckGo" = {
+          "ddg" = {
             urls = [
               {
                 template = "https://duckduckgo.com";
@@ -96,7 +96,7 @@
             ];
             definedAliases = ["np"];
           };
-          "YouTube" = {
+          "youtube" = {
             urls = [
               {
                 template = "https://www.youtube.com/results";
@@ -153,7 +153,7 @@
             definedAliases = ["gh"];
           };
         };
-        default = "Google";
+        default = "google";
       };
 
       #Example For bookmarks, will overwrite other bookmarks

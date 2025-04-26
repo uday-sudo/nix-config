@@ -14,7 +14,7 @@
     # autosuggestion.enable = true;
 
     # My prefered keybinds
-    initExtra = ''
+    initContent = ''
       # Home key
       bindkey "^[OH" beginning-of-line
       # End key
