@@ -204,7 +204,8 @@
         firefox-color
         ublock-origin
         sidebery
-        youtube-shorts-block
+        # youtube-shorts-block
+        enhancer-for-youtube
         privacy-badger
         competitive-companion
         leechblock-ng
