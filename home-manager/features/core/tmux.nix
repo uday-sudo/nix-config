@@ -124,6 +124,9 @@ in
       set -g focus-events on
       set -g status on
 
+      bind-key -n Home send Escape "OH"
+      bind-key -n End send Escape "OF"
+
       bind \` switch-client -t'{marked}'
       set -g base-index 1
       setw -g pane-base-index 1

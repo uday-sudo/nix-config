@@ -19,6 +19,7 @@
     ./fzf.nix
     ./bat.nix
     ./tmux.nix
+    ./zellij.nix
   ];
 
   home.packages = with pkgs; [
