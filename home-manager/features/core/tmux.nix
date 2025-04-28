@@ -124,6 +124,8 @@ in
       set -g focus-events on
       set -g status on
 
+      set-option -g status-position top
+
       bind-key -n Home send Escape "OH"
       bind-key -n End send Escape "OF"
 
