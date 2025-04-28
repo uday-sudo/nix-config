@@ -49,7 +49,7 @@ let
     '';
 
     outputHashMode = "recursive";
-    outputHash = "sha256-V/6/h9kjAIytdavS2jlb/4Rhd61aFEXVCiBCf+PnTA4=";
+    outputHash = "sha256-7WtMJhvslswFjqx6wE6k+O+PZzQW32YVtuNRFYn/1zE=";
   };
 
   webui = buildNpmPackage {
