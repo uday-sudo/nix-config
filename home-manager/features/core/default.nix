@@ -9,7 +9,7 @@
   imports = [
     # ./cli
     ./shell.nix
-    ./starship.nix
+    ./prompt.nix
     ./git.nix
     ./lf.nix
     ./direnv.nix

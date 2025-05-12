@@ -1,0 +1,94 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+    "blocks": [
+        {
+            "alignment": "left",
+            "newline": true,
+            "segments": [
+                {
+                    "foreground": "#87CEFA",
+                    "properties": {
+                        "time_format": "15:04"
+                    },
+                    "style": "plain",
+                    "template": "[{{ .CurrentDate | date .Format }}]",
+                    "type": "time"
+                },
+                {
+                    "type": "shell",
+                    "style": "plain",
+                    "foreground": "#20B2AA",
+                    "template": " \uf007 {{ .UserName }}"
+                },
+                {
+                    "foreground": "#c16ae9",
+                    "foreground_templates": [
+                        "{{ if or (.Working.Changed) (.Staging.Changed) }}#bb8fce     {{ end }}",
+                        "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FF6347{{ end }}",
+                        "{{ if gt .Ahead 0 }}#9370DB{{ end }}",
+                        "{{ if gt .Behind 0 }}#9370DB{{ end }}"
+                    ],
+                    "properties": {
+                        "branch_template": "{{ trunc 25 .Branch }}",
+                        "fetch_stash_count": true,
+                        "fetch_status": true,
+                        "fetch_upstream_icon": true
+                    },
+                    "style": "plain",
+                    "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+                    "type": "git"
+                }
+            ],
+            "type": "prompt"
+        },
+        {
+            "alignment": "left",
+            "newline": true,
+            "segments": [
+                {
+                    "foreground": "#87CEFA",
+                    "properties": {
+                        "style": "full"
+                    },
+                    "style": "plain",
+                    "template": "\ue5ff {{ .Path }}",
+                    "type": "path"
+                },
+                {
+                    "foreground": "#f7dc6f ",
+                    "foreground_templates": [
+                        "{{ if gt .Code 0 }}#FF6347{{ end }}"
+                    ],
+                    "properties": {
+                        "style": "roundrock",
+                        "always_enabled": true
+                    },
+                    "style": "diamond",
+                    "template": " \uf43a  {{ .FormattedMs }} ",
+                    "type": "executiontime"
+                }
+            ],
+            "type": "prompt"
+        },
+        {
+            "alignment": "left",
+            "newline": true,
+            "segments": [
+                {
+                    "type": "status",
+                    "style": "plain",
+                    "foreground_templates": [
+                        "{{ if eq .Code 0 }}#00FF7F{{ else }}#FF6347{{ end }}"
+                    ],
+                    "template": "❯",
+                    "properties": {
+                        "always_enabled": true
+                    }
+                }
+            ],
+            "type": "prompt"
+        }
+    ],
+    "final_space": true,
+    "version": 3
+}
