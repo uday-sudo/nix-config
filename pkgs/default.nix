@@ -2,5 +2,5 @@
 # You can build them using 'nix build .#example'
 {pkgs, ...}: {
   # example = pkgs.callPackage ./example { };
-  olivetin = pkgs.callPackage ./olivetin.nix { };
+  # olivetin = pkgs.callPackage ./olivetin.nix { };
 }
