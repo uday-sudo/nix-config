@@ -96,7 +96,7 @@
         }
         {
           title = "Check Service Statuses";
-          shell = "systemctl status filebrowser qbittorrent jellyfin pufferpanel forgejo";
+          shell = "systemctl status filebowser qbittorrent jellyfin pufferpanel forgejo";
           icon = "info";
           popupOnStart = "execution-dialog-stdout-only";
         }
@@ -104,13 +104,14 @@
           title = "Manage Services";
           icon = "settings";
           shell = "systemctl {{ action }} {{ service }}";
+          timeout = 10;
           arguments = [
             {
               name = "service";
               title = "Select Service";
               type = "choice";
               choices = [
-                { title = "FileBrowser"; value = "filebrowser"; }
+                { title = "FileBowser"; value = "filebowser"; }
                 { title = "qBittorrent"; value = "qbittorrent"; }
                 { title = "Jellyfin"; value = "jellyfin"; }
                 { title = "PufferPanel"; value = "pufferpanel"; }
