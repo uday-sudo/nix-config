@@ -63,12 +63,9 @@ in
       # tokenFile should be in format TOKEN=<secret>, since it's EnvironmentFile for systemd
       tokenFile = "/var/lib/forgejo/token";
       labels = [
-        "ubuntu-latest:docker://node:16-bullseye"
-        "ubuntu-22.04:docker://node:16-bullseye"
-        "ubuntu-20.04:docker://node:16-bullseye"
-        "ubuntu-18.04:docker://node:16-buster"     
+        "ubuntu-22.04:docker://ubuntu:22.04"
         ## optionally provide native execution on the host:
-        # "native:host"environment
+        "native:host"
       ];
     };
   };
