@@ -7,20 +7,18 @@ in
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
-
-  services.nginx = {
+  services.caddy = {
     virtualHosts.${cfg.settings.server.DOMAIN} = {
-      forceSSL = true;
-      sslCertificate = config.sops.secrets."nginx/SSL-cert".path;
-      sslCertificateKey = config.sops.secrets."nginx/SSL-key".path;
       extraConfig = ''
-        client_max_body_size 512M;
+        reverse_proxy "http://localhost:${toString srv.HTTP_PORT}"
+        request_body {
+            max_size 512MB
+        }
+        tls internal
       '';
-      locations."/" = {
-        proxyPass = "http://localhost:${toString srv.HTTP_PORT}";
-      };
     };
   };
+
 
   services.forgejo = {
     enable = true;
@@ -41,7 +39,7 @@ in
       actions = {
         ENABLED = true;
         DEFAULT_ACTIONS_URL = "github";
-        ARTIFACT_RETENTION_DAYS = 120;
+        ARTIFACT_RETENTION_DAYS = 30;
       };
     };
     dump = {

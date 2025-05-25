@@ -18,6 +18,7 @@
     age
     sshfs
     devenv
+    caddy # reverse proxy
   ];
   programs.zsh = {
     enable = lib.mkDefault true;
