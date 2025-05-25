@@ -10,7 +10,7 @@ in
   services.caddy = {
     virtualHosts.${cfg.settings.server.DOMAIN} = {
       extraConfig = ''
-        reverse_proxy "http://localhost:${toString srv.HTTP_PORT}"
+        reverse_proxy http://localhost:${toString srv.HTTP_PORT}
         request_body {
             max_size 512MB
         }

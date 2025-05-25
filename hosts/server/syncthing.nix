@@ -4,14 +4,12 @@
     inputs.sops-nix.nixosModules.sops
   ];
 
-  services.nginx = {
+  services.caddy = {
     virtualHosts."sync.homebox.com" = {
-      forceSSL = true;
-      sslCertificate = config.sops.secrets."nginx/SSL-cert".path;
-      sslCertificateKey = config.sops.secrets."nginx/SSL-key".path;
-      locations."/" = {
-        proxyPass = "http://localhost:8384";
-      };
+      extraConfig = ''
+        reverse_proxy http://localhost:8384
+        tls internal
+      '';
     };
   };
   services.syncthing = {

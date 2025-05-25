@@ -1,23 +1,11 @@
 { inputs, config, lib, pkgs, ...}:
 {
-  services.nginx = {
+  services.caddy = {
     virtualHosts."game.homebox.com" = {
-      forceSSL = true;
-      sslCertificate = config.sops.secrets."nginx/SSL-cert".path;
-      sslCertificateKey = config.sops.secrets."nginx/SSL-key".path;
-      locations."/" = {
-        proxyPass = "http://localhost:7566";
-        extraConfig = ''
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_http_version 1.1;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header Host $host;
-          proxy_set_header Connection "Upgrade";
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header X-Nginx-Proxy true;
-          proxy_set_header X-Forwarded-Proto $scheme;
-        '';
-      };
+      extraConfig = ''
+        reverse_proxy http://localhost:7566
+        tls internal
+      '';
     };
   };
 

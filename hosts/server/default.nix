@@ -30,5 +30,6 @@
       mode = "0444";
     };
   };
-  services.nginx.enable = true;
+  services.nginx.enable = false;
+  services.caddy.enable = true;
 }

@@ -8,23 +8,12 @@
     olivetin
   ];
 
-  services.nginx = {
-    virtualHosts."olive.homebox.com" = {
-      forceSSL = true;
-      sslCertificate = config.sops.secrets."nginx/SSL-cert".path;
-      sslCertificateKey = config.sops.secrets."nginx/SSL-key".path;
-      locations."/" = {
-        proxyPass = "http://localhost:1337";
-        proxyWebsockets = true;
-        extraConfig = ''
-          proxy_redirect http://localhost:1337/ http://localhost/OliveTin/;
-        '';
-      };
-      locations."/websocket" = {
-        proxyPass = "http://localhost:1337/websocket";
-        proxyWebsockets = true;
-      };
-    };
+  services.caddy = {
+    enable = true;
+    virtualHosts."olive.homebox.com".extraConfig = ''
+      reverse_proxy * http://localhost:1337
+      tls internal
+    '';
   };
 
   services.olivetin = {
