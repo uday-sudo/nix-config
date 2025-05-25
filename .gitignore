@@ -1,2 +1,5 @@
 # Ignore all .yaml files
 *.yaml
+
+# But NOT the ones in .forgejo/workflows/
+!.forgejo/workflows/*.yaml
