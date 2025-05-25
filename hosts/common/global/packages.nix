@@ -6,6 +6,7 @@
 }: {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  nix.settings.trusted-users = [ "root" "uday" "hooman" ];
   environment.systemPackages = with pkgs; [
     acpi
     brightnessctl
@@ -16,6 +17,7 @@
     sops
     age
     sshfs
+    devenv
   ];
   programs.zsh = {
     enable = lib.mkDefault true;

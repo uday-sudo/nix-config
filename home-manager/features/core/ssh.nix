@@ -12,7 +12,7 @@
 
     matchBlocks = {
       "hosts" = {
-        host = "gitlab.com github.com";
+        host = "gitlab.com github.com git.homebox.com";
         identitiesOnly = false;
         identityFile = [
           "~/.ssh/id_ed25519"
