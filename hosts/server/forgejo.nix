@@ -56,7 +56,7 @@ in
     instances.default = {
       enable = true;
       name = "monolith";
-      url = "https://git.homebox.com";
+      url = "http://localhost:${toString srv.HTTP_PORT}";
       # Obtaining the path to the runner token file may differ
       # tokenFile should be in format TOKEN=<secret>, since it's EnvironmentFile for systemd
       tokenFile = "/var/lib/forgejo/token";
@@ -64,6 +64,23 @@ in
         "ubuntu-22.04:docker://ubuntu:22.04"
         ## optionally provide native execution on the host:
         "native:host"
+      ];
+      settings = {
+        runner = {
+          insecure = true;
+        };
+      };
+      hostPackages = with pkgs; [
+        bash
+        coreutils
+        curl
+        gawk
+        gitMinimal
+        openssh
+        nodejs
+        gnused
+        wget
+        alejandra
       ];
     };
   };
