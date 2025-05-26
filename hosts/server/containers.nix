@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   virtualisation = {
     # oci-containers.containers = {
     #   jitsi-try = {
@@ -24,6 +23,6 @@
   # environment.variables.DOCKER_HOST = "unix://${XDG_RUNTIME_DIR}/podman/podman.sock";
 
   users.users.hooman = {
-    extraGroups = [ "podman" ];
+    extraGroups = ["podman"];
   };
 }

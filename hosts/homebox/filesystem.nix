@@ -1,5 +1,9 @@
-{ lib, config, inputs, ... }:
 {
+  lib,
+  config,
+  inputs,
+  ...
+}: {
   boot = {
     tmp.cleanOnBoot = true;
     supportedFilesystems = ["btrfs" "fat32" "ntfs" "vfat"];

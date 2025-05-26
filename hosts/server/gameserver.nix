@@ -1,5 +1,10 @@
-{ inputs, config, lib, pkgs, ...}:
 {
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   services.caddy = {
     virtualHosts."game.homebox.com" = {
       extraConfig = ''
@@ -27,7 +32,7 @@
       PUFFER_PANEL_REGISTRATIONENABLED = "false";
     };
   };
-  # systemd.services.pufferpanel.preStart = let 
+  # systemd.services.pufferpanel.preStart = let
   #   adminCmd = "${lib.getExe config.services.pufferpanel.package}";
   # in ''
   #   echo "${adminCmd} user add --workDir /var/lib/pufferpanel"

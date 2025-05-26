@@ -1,5 +1,10 @@
-{ inputs, config, lib, pkgs, ...}:
 {
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
@@ -30,7 +35,7 @@
       folders = {
         "keepass" = {
           path = "/run/media/hdd/SYNC/keepass";
-          devices = [ "laptop" "phone" ];
+          devices = ["laptop" "phone"];
           versioning = {
             type = "simple";
             params.keep = "10";
@@ -39,7 +44,7 @@
 
         "vault" = {
           path = "/run/media/hdd/SYNC/vault";
-          devices = [ "laptop" "phone" ];
+          devices = ["laptop" "phone"];
           versioning = {
             type = "simple";
             params.keep = "40";

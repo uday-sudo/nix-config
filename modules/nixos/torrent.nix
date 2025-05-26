@@ -1,13 +1,14 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.services.qbittorrent;
   UID = 888;
   GID = 888;
-in
-{
+in {
   options.services.qbittorrent = {
     enable = mkEnableOption (lib.mdDoc "qBittorrent headless");
 
@@ -58,8 +59,8 @@ in
       # based on the plex.nix service module and
       # https://github.com/qbittorrent/qBittorrent/blob/master/dist/unix/systemd/qbittorrent-nox%40.service.in
       description = "qBittorrent-nox service";
-      documentation = [ "man:qbittorrent-nox(1)" ];
-      after = [ "network.target" ];
+      documentation = ["man:qbittorrent-nox(1)"];
+      after = ["network.target"];
       # wantedBy = [ "multi-user.target" ];
 
       serviceConfig = {
@@ -78,9 +79,8 @@ in
               echo "Creating initial qBittorrent data directory in: $QBT_PROFILE"
               install -d -m 0755 -o "${cfg.user}" -g "${cfg.group}" "$QBT_PROFILE"
             fi
-         '';
-        in
-          "!${preStartScript}";
+          '';
+        in "!${preStartScript}";
 
         #ExecStart = "${pkgs.qbittorrent-nox}/bin/qbittorrent-nox";
         ExecStart = "${cfg.package}/bin/qbittorrent-nox --confirm-legal-notice";
@@ -92,8 +92,8 @@ in
       };
 
       environment = {
-        QBT_PROFILE=cfg.dataDir;
-        QBT_WEBUI_PORT=toString cfg.port;
+        QBT_PROFILE = cfg.dataDir;
+        QBT_WEBUI_PORT = toString cfg.port;
       };
     };
 
@@ -105,7 +105,7 @@ in
     };
 
     users.groups = mkIf (cfg.group == "qbittorrent") {
-      qbittorrent = { gid = GID; };
+      qbittorrent = {gid = GID;};
     };
   };
 }

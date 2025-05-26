@@ -1,5 +1,9 @@
-{config, lib, pkgs, ...}:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   services.syncthing = {
     enable = true;
 
@@ -16,12 +20,12 @@
       folders = {
         "keepass" = {
           path = "${config.home.homeDirectory}/SYNC/keepass";
-          devices = [ "server" "phone" ];
+          devices = ["server" "phone"];
         };
 
         "vault" = {
           path = "${config.home.homeDirectory}/SYNC/vault";
-          devices = [ "server" "phone" ];
+          devices = ["server" "phone"];
         };
       };
 

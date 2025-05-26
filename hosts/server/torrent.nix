@@ -1,5 +1,9 @@
-{ inputs, lib, config, ...}:
 {
+  inputs,
+  lib,
+  config,
+  ...
+}: {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
@@ -21,5 +25,4 @@
     port = 7044;
   };
   systemd.services.qbittorrent.wantedBy = lib.mkForce [];
-
 }

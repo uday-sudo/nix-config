@@ -41,24 +41,26 @@
           grub2-themes.nixosModules.default
         ];
       };
-      
+
       homebox = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [
-          ./hosts/homebox
-        ] ++ (builtins.attrValues disko.nixosModules);
+        modules =
+          [
+            ./hosts/homebox
+          ]
+          ++ (builtins.attrValues disko.nixosModules);
       };
     };
 
     deploy = {
-        nodes.homebox = {
-          hostname = "homebox";
-          profiles.system = {
-            user = "root";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.homebox;
-          };
+      nodes.homebox = {
+        hostname = "homebox";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.homebox;
         };
-        remoteBuild = true;
+      };
+      remoteBuild = true;
     };
 
     # This is highly advised, and will prevent many possible mistakes

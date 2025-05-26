@@ -1,5 +1,10 @@
-{ inputs, pkgs, lib, config, ... }:
 {
+  inputs,
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
@@ -15,7 +20,7 @@
 
   # # 1. enable vaapi on OS-level
   systemd.services.jellyfin.environment.LIBVA_DRIVER_NAME = "iHD"; # Or "i965" if using older driver
-  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };  
+  environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [

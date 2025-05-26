@@ -1,5 +1,10 @@
-{ inputs, config, lib, pkgs, ...}:
 {
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
@@ -100,11 +105,26 @@
               title = "Select Service";
               type = "choice";
               choices = [
-                { title = "FileBowser"; value = "filebowser"; }
-                { title = "qBittorrent"; value = "qbittorrent"; }
-                { title = "Jellyfin"; value = "jellyfin"; }
-                { title = "PufferPanel"; value = "pufferpanel"; }
-                { title = "Forgejo"; value = "forgejo"; }
+                {
+                  title = "FileBowser";
+                  value = "filebowser";
+                }
+                {
+                  title = "qBittorrent";
+                  value = "qbittorrent";
+                }
+                {
+                  title = "Jellyfin";
+                  value = "jellyfin";
+                }
+                {
+                  title = "PufferPanel";
+                  value = "pufferpanel";
+                }
+                {
+                  title = "Forgejo";
+                  value = "forgejo";
+                }
               ];
             }
             {
@@ -112,9 +132,18 @@
               title = "Select Action";
               type = "choice";
               choices = [
-                { title = "Start"; value = "start"; }
-                { title = "Stop"; value = "stop"; }
-                { title = "Restart"; value = "restart"; }
+                {
+                  title = "Start";
+                  value = "start";
+                }
+                {
+                  title = "Stop";
+                  value = "stop";
+                }
+                {
+                  title = "Restart";
+                  value = "restart";
+                }
               ];
             }
           ];
@@ -144,4 +173,3 @@
     };
   };
 }
-

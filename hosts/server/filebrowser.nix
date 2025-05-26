@@ -1,5 +1,9 @@
-{ inputs, config, pkgs, ... }:
 {
+  inputs,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
@@ -22,11 +26,11 @@
   ];
 
   # re-login to take effect
-  users.users.hooman.extraGroups = [ "filebowser" ];
+  users.users.hooman.extraGroups = ["filebowser"];
 
   systemd.services.filebowser = {
     enable = true;
-    after = [ "network.target" ];
+    after = ["network.target"];
 
     # The below line makes it not autstart on boot
     # wantedBy = [ "multi-user.target" ];

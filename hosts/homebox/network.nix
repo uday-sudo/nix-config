@@ -10,7 +10,7 @@
 
   services.openssh = {
     settings = {
-      AllowUsers = [ "hooman" "root" "forgejo" "git"];
+      AllowUsers = ["hooman" "root" "forgejo" "git"];
     };
   };
 }

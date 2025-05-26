@@ -1,8 +1,13 @@
-{config, lib, pkgs, ...}:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   thm = config.theme.colors;
 
-  tmux-current-pane-hostname = pkgs.tmuxPlugins.mkTmuxPlugin
+  tmux-current-pane-hostname =
+    pkgs.tmuxPlugins.mkTmuxPlugin
     {
       pluginName = "tmux-current-pane-hostname";
       version = "27-04-2025";
@@ -14,7 +19,8 @@ let
         sha256 = "sha256-FRzEDp5RS2BMy0EHGPpy/C81GSWVzmyqpEcIogJf8NM=";
       };
     };
-  tmux-floating-terminal = pkgs.tmuxPlugins.mkTmuxPlugin
+  tmux-floating-terminal =
+    pkgs.tmuxPlugins.mkTmuxPlugin
     {
       pluginName = "tmux-floating-terminal";
       version = "27-04-2025";
@@ -26,11 +32,10 @@ let
         sha256 = "sha256-h/ZMNzRBXpjG/aKDDGB8XnuL6vELHVWv4wd4mHz/NVo=";
       };
     };
-in
-{
+in {
   programs.tmux = {
     enable = true;
-    baseIndex =  1;
+    baseIndex = 1;
     clock24 = true;
     terminal = "tmux-256color";
     historyLimit = 5000;
@@ -41,7 +46,7 @@ in
       tmuxPlugins.vim-tmux-navigator
       tmuxPlugins.sensible
       {
-        plugin = tmuxPlugins.catppuccin; 
+        plugin = tmuxPlugins.catppuccin;
         # Hacking this to work like base16 theme :)
         extraConfig = ''
 
@@ -71,7 +76,7 @@ in
           set -g @catppuccin_surface_0 "${thm.base02}"
           set -g @catppuccin_mantle "${thm.base01}"
           set -g @catppuccin_crust "${thm.base00}"
-          
+
           # General statusline customisation
           set -g status-left-length 100
           set -g status-left ""

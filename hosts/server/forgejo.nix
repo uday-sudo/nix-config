@@ -1,9 +1,13 @@
-{ lib, pkgs, config, inputs, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  inputs,
+  ...
+}: let
   cfg = config.services.forgejo;
   srv = cfg.settings.server;
-in
-{
+in {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
@@ -19,7 +23,6 @@ in
     };
   };
 
-
   services.forgejo = {
     enable = true;
     database.type = "postgres";
@@ -31,10 +34,10 @@ in
       };
       server = {
         DOMAIN = "git.homebox.com";
-        ROOT_URL = "https://${srv.DOMAIN}/"; 
+        ROOT_URL = "https://${srv.DOMAIN}/";
         HTTP_PORT = 3000;
       };
-      service.DISABLE_REGISTRATION = false; 
+      service.DISABLE_REGISTRATION = false;
       # Add support for actions, based on act: https://github.com/nektos/act
       actions = {
         ENABLED = true;
@@ -49,7 +52,6 @@ in
       type = "tar.zst";
     };
   };
-
 
   services.gitea-actions-runner = {
     package = pkgs.forgejo-actions-runner;

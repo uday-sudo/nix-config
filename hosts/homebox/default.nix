@@ -32,7 +32,6 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ8yGpF8gsJNiJy6rWB5b1ZFS8xKQcPhxB3iW9Te7CKP uday@nixos"
   ];
 
-
   users.users.hooman.openssh.authorizedKeys.keys = [
     # change this to your ssh key
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ8yGpF8gsJNiJy6rWB5b1ZFS8xKQcPhxB3iW9Te7CKP uday@nixos"

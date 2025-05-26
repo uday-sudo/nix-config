@@ -1,8 +1,6 @@
-{lib, ...}:
-let 
+{lib, ...}: let
   locale = "en_US.utf8";
-in
-{
+in {
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
 

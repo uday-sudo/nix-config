@@ -1,5 +1,10 @@
-{ lib, pkgs, config, inputs, ... }:
 {
+  lib,
+  pkgs,
+  config,
+  inputs,
+  ...
+}: {
   services.blocky = {
     enable = true;
     settings = {
@@ -10,7 +15,7 @@
       # For initially solving DoH/DoT Requests when no system Resolver is available.
       bootstrapDns = {
         upstream = "https://one.one.one.one/dns-query";
-        ips = [ "1.1.1.1" "1.0.0.1" "8.8.8.8" ];
+        ips = ["1.1.1.1" "1.0.0.1" "8.8.8.8"];
       };
       #Enable Blocking of certian domains.
       blocking = {
@@ -21,7 +26,7 @@
         };
         #Configure what block categories are used
         clientGroupsBlock = {
-          default = [ "ads" ];
+          default = ["ads"];
           # kids-ipad = ["ads" "adult"];
         };
       };
