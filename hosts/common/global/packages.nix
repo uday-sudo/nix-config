@@ -6,7 +6,7 @@
 }: {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  nix.settings.trusted-users = [ "root" "uday" "hooman" ];
+  nix.settings.trusted-users = [ "root" "uday" "hooman" "forgejo"];
   environment.systemPackages = with pkgs; [
     acpi
     brightnessctl

@@ -1,6 +1,12 @@
 on: [push]
+
 jobs:
-  test:
-    runs-on: ubuntu-22.04
+  nixfmt-check:
+    runs-on: native
+    env:
+      GIT_SSL_NO_VERIFY: true
     steps:
-      - run: echo All Good
+      - name: Checkout code via SSH
+        uses: actions/checkout@v4
+      - name: Run nix format check
+        run: alejandra --check .
