@@ -1,15 +1,28 @@
 {pkgs, ...}: {
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the XFCE Desktop Environment.
-  #   services.xserver.displayManager.lightdm.enable = true;
-  #   services.xserver.desktopManager.xfce.enable = true;
+  # services.xserver.enable = true;
 
   # Enable KDE Plasma DE;
-  services.displayManager.sddm.enable = true;
-  services.displayManager.defaultSession = "plasma";
-  services.desktopManager.plasma6.enable = true;
+  services = {
+    displayManager = {
+      sddm = {
+        enable = true;
+        theme = "catppuccin-sddm-corners";
+      };
+      defaultSession = "plasma";
+    };
+
+    desktopManager.plasma6.enable = true;
+
+    xserver = {
+      xkb.layout = "us";
+      xkb.variant = "";
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
+    catppuccin-sddm-corners
+  ];
 
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     plasma-browser-integration
@@ -21,10 +34,4 @@
     kwallet-pam
     kwalletmanager
   ];
-
-  # Configure keymap in X11
-  services.xserver = {
-    xkb.layout = "us";
-    xkb.variant = "";
-  };
 }
