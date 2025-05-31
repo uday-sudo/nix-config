@@ -1,5 +1,5 @@
 {lib, ...}: let
-  locale = "en_US.utf8";
+  locale = "en_US.UTF-8";
 in {
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";

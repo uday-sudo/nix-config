@@ -15,7 +15,7 @@
       "splash"
       "udev.log_level=3"
     ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages;
     consoleLogLevel = 3;
     initrd.verbose = false;
   };
