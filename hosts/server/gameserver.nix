@@ -22,7 +22,7 @@
       "podman"
     ];
     extraPackages = [
-      pkgs.jre
+      pkgs.openjdk
     ];
     environment = {
       PUFFER_WEB_HOST = ":7566";
