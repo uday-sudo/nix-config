@@ -1,15 +1,51 @@
 { config, pkgs, ... }:
-
+let
+  thm = config.theme.colors;
+in
 {
   programs.zellij = {
     enable = true;
-    enableZshIntegration = config.programs.zsh.enable;
-    enableBashIntegration = config.programs.bash.enable;
+    enableZshIntegration = false;
+    enableBashIntegration = false;
   };
 
   # Custom layouts using xdg.configFile (since programs.zellij doesn't directly support custom layouts)
   xdg.configFile = {
+    "zellij/config.kdl".force = true;
     "zellij/config.kdl".text = ''
+
+      // Define color themes for Zellij
+      themes {
+          dracula {
+              fg 248 248 242
+              bg 40 42 54
+              black 0 0 0
+              red 255 85 85
+              green 80 250 123
+              yellow 241 250 140
+              blue 98 114 164
+              magenta 255 121 198
+              cyan 139 233 253
+              white 255 255 255
+              orange 255 184 108
+          }
+          base16 {
+              fg "${thm.base05}"
+              bg "${thm.base00}"
+              black "${thm.base00}"
+              red "${thm.base08}"
+              green "${thm.base0B}"
+              yellow "${thm.base0A}"
+              blue "${thm.base0D}"
+              magenta "${thm.base0E}"
+              cyan "${thm.base0C}"
+              white "${thm.base07}"
+              orange "${thm.base09}"
+          }
+      }
+
+      theme "base16"
+
       keybinds {
           normal {
               // uncomment this and adjust key if using copy_on_select=false
@@ -233,31 +269,6 @@
       //
       // auto_layout true
 
-      // Define color themes for Zellij
-      // For more examples, see: https://github.com/zellij-org/zellij/tree/main/example/themes
-      // Once these themes are defined, one of them should to be selected in the "theme" section of this file
-      //
-      themes {
-        dracula {
-              fg 248 248 242
-              bg 40 42 54
-              black 0 0 0
-              red 255 85 85
-              green 80 250 123
-              yellow 241 250 140
-              blue 98 114 164
-              magenta 255 121 198
-              cyan 139 233 253
-              white 255 255 255
-              orange 255 184 108
-          }
-      }
-
-      // Choose the theme that is specified in the themes section.
-      // Default: default
-      //
-      theme "dracula"
-
       // The name of the default layout to load on startup
       // Default: "default"
       //
@@ -338,6 +349,7 @@
       //}
     '';
 
+    "zellij/layouts/myl.kdl".force = true;
     "zellij/layouts/myl.kdl".text = ''
       layout {
           pane
@@ -347,6 +359,7 @@
       }
     '';
 
+    "zellij/layouts/custom.kdl".force = true;
     "zellij/layouts/custom.kdl".text = ''
       layout {
         tab_template name="ui" {

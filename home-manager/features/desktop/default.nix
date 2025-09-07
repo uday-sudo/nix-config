@@ -14,10 +14,13 @@
     ./cursor.nix
     ./plasma.nix
     ./syncthing.nix
+    ./anifetch.nix
   ];
 
   home.packages = with pkgs; [
     brave
     keepassxc
+    obsidian
+    # logseq
   ];
 }
