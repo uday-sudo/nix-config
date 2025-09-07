@@ -1,4 +1,5 @@
 {
+  sources,
   inputs,
   outputs,
   lib,
@@ -25,8 +26,6 @@
       bindkey "^[[1;5D" backward-word
     '';
   };
-
-  programs.command-not-found.enable = true;
 
   home = {
     shellAliases = {
