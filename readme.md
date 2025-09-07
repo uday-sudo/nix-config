@@ -38,3 +38,6 @@ keep the toggles at default and click "import".
 - Enable flakes and nix command using experimental features option
 - Use ```nix-shell shell.nix``` to get all required utilities (git, sops etc)
 - ```sudo nixos-rebuild switch --flake .#nixos```
+
+## Credits
+- [Tailscale guide for DNS, Exit Node and Subnet setup](https://youtu.be/vOFI4_qMfd4?si=J1jNnsAmrr4YVuWy)

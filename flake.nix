@@ -5,6 +5,7 @@
     self,
     nixpkgs,
     home-manager,
+    anifetch,
     grub2-themes,
     disko,
     deploy-rs,
@@ -81,6 +82,7 @@
         modules =
           [
             ./home-manager/uday/home.nix
+            { _module.args = { inherit anifetch; }; }
           ]
           ++ (builtins.attrValues outputs.homeManagerModules);
       };
@@ -107,6 +109,11 @@
 
     sops-nix = {
       url = "github:mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    anifetch = {
+      url = "github:uday-sudo/anifetch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

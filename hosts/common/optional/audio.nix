@@ -20,6 +20,16 @@
     audio.enable = true;
     pulse.enable = true;
     jack.enable = true;
+    extraConfig.pipewire.adjust-sample-rate = {
+      "context.properties" = {
+        # "default.clock.rate" = 192000;
+        #"defautlt.allowed-rates" = [ 192000 48000 44100 ];
+        # "defautlt.allowed-rates" = [ 192000 ];
+        #"default.clock.quantum" = 32;
+        "default.clock.min-quantum" = 1024;
+        #"default.clock.max-quantum" = 32;
+      };
+    };
     wireplumber = {
       # TODO: check out NixOS wiki for updates on this
       configPackages = [

@@ -7,10 +7,13 @@
 }: {
   programs.ssh = {
     enable = true;
-
-    addKeysToAgent = lib.mkDefault "yes";
+    enableDefaultConfig = false; # optional, to avoid future defaults surprise
 
     matchBlocks = {
+      "*" = {
+        addKeysToAgent = lib.mkDefault "yes";
+      };
+
       "hosts" = {
         host = "gitlab.com github.com git.homebox.com";
         identitiesOnly = false;

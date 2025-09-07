@@ -37,7 +37,7 @@ in {
       spotify
 
       # yes i like chess
-      en-croissant
+      # en-croissant
     ];
 
     hashedPasswordFile = config.sops.secrets."user_password/uday".path;
