@@ -2,6 +2,7 @@
   inputs,
   lib,
   config,
+  pkgs,
   ...
 }: {
   imports = [
@@ -20,9 +21,10 @@
     };
   };
   services.qbittorrent = {
+    package = pkgs.qbittorrent-nox;
     enable = true;
     group = "users";
-    port = 7044;
-  };
+    webuiPort = 7044;
+  };  
   systemd.services.qbittorrent.wantedBy = lib.mkForce [];
 }

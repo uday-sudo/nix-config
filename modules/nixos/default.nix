@@ -3,5 +3,5 @@
   colors = import ../colors;
   nvidia = import ./nvidia.nix;
   gaming = import ./gaming.nix;
-  torrent = import ./torrent.nix;
+  # torrent = import ./torrent.nix;
 }
