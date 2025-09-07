@@ -25,6 +25,6 @@
     enable = true;
     group = "users";
     webuiPort = 7044;
-  };  
+  };
   systemd.services.qbittorrent.wantedBy = lib.mkForce [];
 }

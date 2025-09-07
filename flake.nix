@@ -82,7 +82,7 @@
         modules =
           [
             ./home-manager/uday/home.nix
-            { _module.args = { inherit anifetch; }; }
+            {_module.args = {inherit anifetch;};}
           ]
           ++ (builtins.attrValues outputs.homeManagerModules);
       };

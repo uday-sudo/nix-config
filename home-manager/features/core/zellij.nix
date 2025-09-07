@@ -1,8 +1,10 @@
-{ config, pkgs, ... }:
-let
-  thm = config.theme.colors;
-in
 {
+  config,
+  pkgs,
+  ...
+}: let
+  thm = config.theme.colors;
+in {
   programs.zellij = {
     enable = true;
     enableZshIntegration = false;
