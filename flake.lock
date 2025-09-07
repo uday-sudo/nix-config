@@ -1,25 +1,5 @@
 {
   "nodes": {
-    "anifetch": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1748765027,
-        "narHash": "sha256-pqzIjuRovWQt5S4WfXlr05EYNBvMd/JWA/DMv1kscoE=",
-        "owner": "uday-sudo",
-        "repo": "anifetch",
-        "rev": "b8fbf6fbedf3c61d71b6553d6d113be2e7e5d327",
-        "type": "github"
-      },
-      "original": {
-        "owner": "uday-sudo",
-        "repo": "anifetch",
-        "type": "github"
-      }
-    },
     "deploy-rs": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -342,7 +322,6 @@
     },
     "root": {
       "inputs": {
-        "anifetch": "anifetch",
         "deploy-rs": "deploy-rs",
         "disko": "disko",
         "firefox-theme": "firefox-theme",
