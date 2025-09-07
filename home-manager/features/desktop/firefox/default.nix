@@ -205,7 +205,8 @@
         ublock-origin
         sidebery
         # youtube-shorts-block
-        enhancer-for-youtube
+        web-clipper-obsidian
+        tweaks-for-youtube
         privacy-badger
         competitive-companion
         leechblock-ng
