@@ -17,7 +17,8 @@
     # interfaces.wlp1s0.useDHCP = lib.mkDefault true;
   };
 
-  services.tailscale.enable = true;
+  services.tailscale.enable = lib.mkDefault true;
+
   services.openssh = {
     allowSFTP = lib.mkDefault true;
     enable = lib.mkDefault true;
