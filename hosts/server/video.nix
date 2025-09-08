@@ -29,7 +29,7 @@
       intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
       # OpenCL support for intel CPUs before 12th gen
       # see: https://github.com/NixOS/nixpkgs/issues/356535
-      intel-media-sdk # QSV up to 11th gen
+      vpl-gpu-rt # QSV Alternative
       intel-ocl
     ];
   };

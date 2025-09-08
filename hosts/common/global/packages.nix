@@ -18,6 +18,7 @@
     age
     sshfs
     devenv
+    bind # nslookup and stuff
     caddy # reverse proxy
   ];
   programs.zsh = {
