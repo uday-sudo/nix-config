@@ -139,7 +139,7 @@
     };
 
     wallpapers = {
-      url = "github:uday-sudo/wallpapers?shallow=1";
+      url = "git+ssh://git@github.com/uday-sudo/wallpapers.git?shallow=1&lfs=1&ref=main";
     };
 
     disko = {

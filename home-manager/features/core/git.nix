@@ -15,6 +15,7 @@
       enable = true;
       userName = lib.mkDefault "uday-sudo";
       userEmail = lib.mkDefault "udayavengerdude@gmail.com";
+      lfs.enable = true;
 
       ignores = lib.mkDefault ["*.tmp" "*.temp" "tmp.*" "temp.*"];
 

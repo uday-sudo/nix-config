@@ -396,17 +396,21 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1748764905,
-        "narHash": "sha256-GalE4EdFhHGstCXuXaM7uMT8cEooD5sjIl4jlOXj07w=",
-        "owner": "uday-sudo",
-        "repo": "wallpapers",
-        "rev": "f97392d98c7e4bbc68043dddff638f2662e42c30",
-        "type": "github"
+        "lastModified": 1757357387,
+        "lfs": true,
+        "narHash": "sha256-s/UOnMHowLKLbbD7tbtoOIhRTQbmBk2HflBFjZBoQaw=",
+        "ref": "main",
+        "rev": "9073a26754ffcbf149d12f2274db3a719f66ff37",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/uday-sudo/wallpapers.git"
       },
       "original": {
-        "owner": "uday-sudo",
-        "repo": "wallpapers",
-        "type": "github"
+        "lfs": true,
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/uday-sudo/wallpapers.git"
       }
     }
   },

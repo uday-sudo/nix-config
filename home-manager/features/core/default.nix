@@ -20,11 +20,10 @@
     ./bat.nix
     ./tmux.nix
     ./zellij.nix
+    ./fetch.nix
   ];
 
   home.packages = with pkgs; [
-    neofetch
-
     zip
     xz
     unzip
