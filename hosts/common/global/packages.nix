@@ -13,6 +13,7 @@
     vim
     neovim
     wget
+    killall
     lz4
     sops
     age
