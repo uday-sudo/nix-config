@@ -157,7 +157,7 @@
             {
               name = "delay";
               title = "Delay (in minutes)";
-              type = "text";
+              type = "int";
               default = "10";
             }
           ];
