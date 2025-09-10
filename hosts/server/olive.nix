@@ -41,6 +41,7 @@
         }
         {
           title = "System Power Options";
+          icon = "<iconify-icon icon=\"streamline-color:button-power-1-flat\"></iconify-icon>";
           shell = "systemctl {{ action }}";
           arguments = [
             {
@@ -64,12 +65,13 @@
         {
           title = "Check disk space";
           shell = "df -h /run/media/hdd && df -h";
-          icon = "disk";
+          icon = "<iconify-icon icon=\"fluent:hard-drive-32-regular\"></iconify-icon>";
           popupOnStart = "execution-dialog-stdout-only";
         }
         {
           title = "Manage Tailscale Connection";
           shell = "tailscale {{ command }}";
+          icon = "<iconify-icon icon=\"simple-icons:tailscale\"></iconify-icon>";
           arguments = [
             {
               name = "command";
@@ -91,12 +93,12 @@
         {
           title = "Check Service Statuses";
           shell = "systemctl status filebowser qbittorrent jellyfin pufferpanel forgejo";
-          icon = "info";
+          icon = "<iconify-icon icon=\"icon-park-solid:more-app\"></iconify-icon>";
           popupOnStart = "execution-dialog-stdout-only";
         }
         {
           title = "Manage Services";
-          icon = "settings";
+          icon = "<iconify-icon icon=\"uil:setting\"></iconify-icon>";
           shell = "systemctl {{ action }} {{ service }}";
           timeout = 10;
           arguments = [
@@ -151,13 +153,13 @@
         }
         {
           title = "Schedule Shutdown";
-          icon = "clock";
-          shell = "shutdown +{{ delay }}";
+          icon = "<iconify-icon icon=\"streamline-color:button-power-1-flat\"></iconify-icon>";
+          shell = "shutdown -h \+{{ delay }}";
           arguments = [
             {
               name = "delay";
               title = "Delay (in minutes)";
-              type = "text";
+              type = "int";
               default = "10";
             }
           ];
@@ -167,6 +169,12 @@
           title = "Check Scheduled Shutdown";
           icon = "info";
           shell = "shutdown --show";
+          popupOnStart = "execution-dialog-stdout-only";
+        }
+        {
+          title = "Cancel Scheduled Shutdown";
+          icon = "<iconify-icon icon=\"streamline-stickies-color:cancel-2\"></iconify-icon>";
+          shell = "shutdown -c";
           popupOnStart = "execution-dialog-stdout-only";
         }
       ];
