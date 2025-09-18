@@ -11,7 +11,6 @@
     acpi
     brightnessctl
     vim
-    neovim
     wget
     killall
     lz4

@@ -16,6 +16,7 @@
     ../features/core
     ../features/productivity
     ../features/desktop
+    ../features/productivity/neovim
 
     ./secrets.nix
   ];
