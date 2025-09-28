@@ -54,7 +54,7 @@ in {
 
     package = mkOption {
       type = types.package;
-      default = config.boot.kernelPackages.nvidiaPackages.stable;
+      default = config.boot.kernelPackages.nvidiaPackages.production;
       description = "The NVIDIA driver package to use.";
     };
   };
