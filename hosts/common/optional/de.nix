@@ -1,4 +1,17 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: let
+  custom-sddm-astronaut = pkgs.sddm-astronaut.override {
+    embeddedTheme = "jake_the_dog";
+    themeConfig = {
+      AllowUppercaseLettersInUsernames = "true";
+      Background = "${inputs.wallpapers}/regular/042.jpg";
+    };
+  };
+in {
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
@@ -7,7 +20,13 @@
     displayManager = {
       sddm = {
         enable = true;
-        theme = "catppuccin-sddm-corners";
+        package = lib.mkForce pkgs.kdePackages.sddm;
+        theme = "sddm-astronaut-theme";
+        extraPackages = with pkgs; [
+          custom-sddm-astronaut
+        ];
+        # wayland.enable = true;
+        autoNumlock = true;
       };
       defaultSession = "plasma";
     };
@@ -21,7 +40,8 @@
   };
 
   environment.systemPackages = with pkgs; [
-    catppuccin-sddm-corners
+    custom-sddm-astronaut
+    kdePackages.qtmultimedia
   ];
 
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
