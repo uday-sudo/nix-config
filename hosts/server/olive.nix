@@ -41,13 +41,11 @@
         }
         {
           title = "System Power Options";
-          icon = "<iconify-icon icon=\"streamline-color:button-power-1-flat\"></iconify-icon>";
           shell = "systemctl {{ action }}";
           arguments = [
             {
               name = "action";
               title = "Choose Action";
-              type = "choice";
               choices = [
                 {
                   title = "Reboot";
@@ -61,11 +59,11 @@
             }
           ];
           popupOnStart = "execution-dialog-stdout-only";
+          icon = "<iconify-icon icon=\"streamline-color:button-power-1-flat\"></iconify-icon>";
         }
         {
           title = "Check disk space";
           shell = "df -h /run/media/hdd && df -h";
-          icon = "<iconify-icon icon=\"fluent:hard-drive-32-regular\"></iconify-icon>";
           popupOnStart = "execution-dialog-stdout-only";
         }
         {
@@ -76,7 +74,6 @@
             {
               name = "command";
               title = "Tailscale Command";
-              type = "choice";
               choices = [
                 {
                   title = "Up";
@@ -105,7 +102,6 @@
             {
               name = "service";
               title = "Select Service";
-              type = "choice";
               choices = [
                 {
                   title = "FileBowser";
@@ -132,7 +128,6 @@
             {
               name = "action";
               title = "Select Action";
-              type = "choice";
               choices = [
                 {
                   title = "Start";
