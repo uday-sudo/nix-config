@@ -33,6 +33,7 @@ in {
         "filebrowser"
         "syncthing"
         "olivetin"
+        "immich"
       ];
 
     packages = with pkgs; [

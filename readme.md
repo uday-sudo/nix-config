@@ -25,6 +25,7 @@ keep the toggles at default and click "import".
     - Disable CSRF in qbittorent settings to be able to access it over nginx
 - jellyfin: ```<address>:8096```  (hooman, 12345678)
 - puffepanel: ```<address>:7566```  (hooman, hooman@example.com, 12345678) (5657 for sftp)
+- immich: ```<address>:9833```  (hooman, hooman@example.com, 12345678)
 
 
 ## Start servers(Not all services are enabled all the time):
@@ -32,6 +33,7 @@ keep the toggles at default and click "import".
 - Torrent: ```sudo systemctl start qbittorent```
 - Jellyfin Media server: ```sudo systemctl start jellyfin```
 - Pufferpanel: ```sudo systemctl start pufferpanel```
+- Immich: ```sudo systemctl start immich```
 
 
 ## Initial Config

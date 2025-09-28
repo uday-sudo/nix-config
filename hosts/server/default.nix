@@ -16,6 +16,7 @@
     ./dns.nix
     ./olive.nix
     ./gameserver.nix
+    ./immich.nix
     inputs.sops-nix.nixosModules.sops
   ];
 

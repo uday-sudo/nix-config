@@ -19,7 +19,6 @@
     sshfs
     devenv
     bind # nslookup and stuff
-    caddy # reverse proxy
   ];
   programs.zsh = {
     enable = lib.mkDefault true;
