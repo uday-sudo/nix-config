@@ -9,10 +9,13 @@
     #     ];
     #   };
     # };
+    containers.containersConf.settings.network.dns_bind_port = 5353;
     podman = {
       enable = true;
       dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true;
+      defaultNetwork.settings = {
+        dns_enabled = true;
+      };
     };
   };
 

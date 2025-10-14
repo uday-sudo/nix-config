@@ -64,6 +64,7 @@ in {
       tokenFile = "/var/lib/forgejo/token";
       labels = [
         "ubuntu-22.04:docker://ubuntu:22.04"
+        "nixos-nix-flake:docker://localhost/nix-flake-container:latest"
         ## optionally provide native execution on the host:
         "native:host"
       ];
@@ -83,6 +84,15 @@ in {
         gnused
         wget
         alejandra
+
+        # Nix tooling
+        # nix
+        # nix-prefetch-git
+        # nixfmt-rfc-style # or alejandra for formatting
+        alejandra
+        cacert # required for HTTPS with nix
+        gitFull
+        # nixVersions.stable
       ];
     };
   };
