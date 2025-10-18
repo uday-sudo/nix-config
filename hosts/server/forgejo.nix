@@ -64,7 +64,7 @@ in {
       tokenFile = "/var/lib/forgejo/token";
       labels = [
         "ubuntu-22.04:docker://ubuntu:22.04"
-        "nixos-nix-flake:docker://localhost/nix-flake-container:latest"
+        "nixos-nix-flake:docker://git.homebox.com/uday-sudo/nix-flake-container:latest"
         ## optionally provide native execution on the host:
         "native:host"
       ];
