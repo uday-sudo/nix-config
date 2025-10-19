@@ -24,6 +24,8 @@
     ./filesystem.nix
     ./network.nix
     ./services.nix
+
+    ../server/containers.nix
   ];
 
   hardware.steam-hardware.enable = true;

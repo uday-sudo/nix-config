@@ -27,6 +27,7 @@ in {
         "i2c"
         "git"
         "libvirtd"
+        "podman"
         "media"
         "qbittorrent"
         "forgejo"
