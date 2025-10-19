@@ -65,6 +65,8 @@ in {
       labels = [
         "ubuntu-22.04:docker://ubuntu:22.04"
         "nixos-nix-flake:docker://git.homebox.com/uday-sudo/nix-flake-container:latest"
+        "docker:docker://docker:latest"
+        "podman:docker://podman:latest"
         ## optionally provide native execution on the host:
         "native:host"
       ];
