@@ -53,4 +53,8 @@
 
   #colorscheme module
   theme.enable = true;
+  theme.oh-my-posh = {
+    enable = true;
+    configFile = "emodipt-extend";
+  };
 }
