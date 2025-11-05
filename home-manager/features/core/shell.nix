@@ -33,11 +33,13 @@
       die = "shutdown -P now";
       pls = "sudo";
       icat = "kitten icat";
+      lazypodman = "DOCKER_HOST=unix:///run/user/1000/podman/podman.sock lazydocker";
     };
     sessionVariables = {
       TERMINAL = "ghostty";
       EDITOR = "nvim";
       MANPAGER = "nvim +Man!";
+      DOCKER_HOST = "unix:///run/user/1000/podman/podman.sock";
     };
   };
 }

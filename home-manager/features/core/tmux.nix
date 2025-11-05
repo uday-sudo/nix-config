@@ -155,7 +155,7 @@ in {
 
       # Set easier window split keys
       bind-key v split-window -h -c '#{pane_current_path}'
-      bind-key n split-window -v -c '#{pane_current_path}'
+      bind-key h split-window -v -c '#{pane_current_path}'
 
       # Swap windows
       bind -r "<" swap-window -d -t -1
@@ -186,8 +186,8 @@ in {
       # Browsers also select last tab with M-9.
       bind -n "M-9" select-window -t ":$"
       # Match iTerm2.
-      bind -n "M-{" previous-window
-      bind -n "M-}" next-window
+      bind -n "M-[" previous-window
+      bind -n "M-]" next-window
     '';
   };
 }
