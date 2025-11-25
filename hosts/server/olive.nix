@@ -125,7 +125,7 @@
                 }
                 {
                   title = "Immich";
-                  value = "immich";
+                  value = "immich-server";
                 }
               ];
             }
