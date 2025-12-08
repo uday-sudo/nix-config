@@ -20,6 +20,5 @@
     inputs.sops-nix.nixosModules.sops
   ];
 
-  services.nginx.enable = false;
   services.caddy.enable = true;
 }

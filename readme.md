@@ -22,7 +22,7 @@ keep the toggles at default and click "import".
 - Filebrowser: ```<address>:3030``` (admin, admin)
 - forgejo: ```<address>:3000```
 - torrent: ```<address>:7044```  (hooman, 12345678)
-    - Disable CSRF in qbittorent settings to be able to access it over nginx
+    - Disable CSRF in qbittorent settings to be able to access it over nginx/caddy
 - jellyfin: ```<address>:8096```  (hooman, 12345678)
 - puffepanel: ```<address>:7566```  (hooman, hooman@example.com, 12345678) (5657 for sftp)
 - immich: ```<address>:9833```  (hooman, hooman@example.com, 12345678)
