@@ -41,10 +41,10 @@
 
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+      breadboard = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./hosts/nixos
+          ./hosts/breadboard
           grub2-themes.nixosModules.default
         ];
       };
@@ -75,7 +75,7 @@
 
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      "uday@nixos" = home-manager.lib.homeManagerConfiguration {
+      "uday@breadboard" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules =

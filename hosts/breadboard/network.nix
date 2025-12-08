@@ -1,6 +1,6 @@
 {...}: {
   networking = {
-    hostName = "nixos";
+    hostName = "breadboard";
 
     firewall = {
       # enable = false;
