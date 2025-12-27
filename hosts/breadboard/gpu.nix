@@ -12,15 +12,6 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-
-    extraPackages = with pkgs; [
-      amdvlk
-    ];
-    # For 32 bit applications
-    # Only available on unstable
-    extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
-    ];
   };
 
   hardware.nvidia.prime = {
