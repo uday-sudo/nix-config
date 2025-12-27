@@ -4,15 +4,19 @@
   lib,
   config,
   ...
-}: {
+}: let
+  domain = config.homebox.domain;
+  svcName = "jellyfin";
+  port = 8096;
+in {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
 
   services.caddy = {
-    virtualHosts."jellyfin.homebox.com" = {
+    virtualHosts."${svcName}.${domain}" = {
       extraConfig = ''
-        reverse_proxy http://localhost:8096
+        reverse_proxy http://localhost:${toString port}
         tls internal
       '';
     };

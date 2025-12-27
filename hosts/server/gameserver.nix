@@ -4,11 +4,16 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  domain = config.homebox.domain;
+  svcName = "game";
+  webPort = 7566;
+  sftpPort = 5657;
+in {
   services.caddy = {
-    virtualHosts."game.homebox.com" = {
+    virtualHosts."${svcName}.${domain}" = {
       extraConfig = ''
-        reverse_proxy http://localhost:7566
+        reverse_proxy http://localhost:${toString webPort}
         tls internal
       '';
     };
@@ -25,8 +30,8 @@
       pkgs.openjdk
     ];
     environment = {
-      PUFFER_WEB_HOST = ":7566";
-      PUFFER_DAEMON_SFTP_HOST = ":5657";
+      PUFFER_WEB_HOST = ":${toString webPort}";
+      PUFFER_DAEMON_SFTP_HOST = ":${toString sftpPort}";
       PUFFER_DAEMON_CONSOLE_BUFFER = "1000";
       PUFFER_DAEMON_CONSOLE_FORWARD = "true";
       PUFFER_PANEL_REGISTRATIONENABLED = "false";

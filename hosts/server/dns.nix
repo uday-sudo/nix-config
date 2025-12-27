@@ -4,7 +4,9 @@
   config,
   inputs,
   ...
-}: {
+}: let
+  domain = config.homebox.domain;
+in {
   services.blocky = {
     enable = true;
     settings = {
@@ -32,8 +34,8 @@
       };
       customDNS = {
         mapping = {
-          "homebox.com" = "192.168.0.169";
-          "*.homebox.com" = "192.168.0.169";
+          "${domain}" = "192.168.0.169";
+          "*.${domain}" = "192.168.0.169";
         };
         customTTL = "2h";
       };

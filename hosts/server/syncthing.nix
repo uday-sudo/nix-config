@@ -4,22 +4,26 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  domain = config.homebox.domain;
+  svcName = "sync";
+  port = 8384;
+in {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
 
   services.caddy = {
-    virtualHosts."sync.homebox.com" = {
+    virtualHosts."${svcName}.${domain}" = {
       extraConfig = ''
-        reverse_proxy http://localhost:8384
+        reverse_proxy http://localhost:${toString port}
         tls internal
       '';
     };
   };
   services.syncthing = {
     group = "users";
-    guiAddress = "0.0.0.0:8384";
+    guiAddress = "0.0.0.0:${toString port}";
     enable = true;
 
     settings = {

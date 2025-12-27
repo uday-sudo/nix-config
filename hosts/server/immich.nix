@@ -4,11 +4,15 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  domain = config.homebox.domain;
+  svcName = "immich";
+  port = 9833;
+in {
   services.caddy = {
-    virtualHosts."immich.homebox.com" = {
+    virtualHosts."${svcName}.${domain}" = {
       extraConfig = ''
-        reverse_proxy http://localhost:9833
+        reverse_proxy http://localhost:${toString port}
         request_body {
             max_size 1000MB
         }
@@ -17,7 +21,7 @@
     };
   };
   services.immich = {
-    port = 9833;
+    port = port;
     enable = true;
   };
 }

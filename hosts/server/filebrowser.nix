@@ -3,32 +3,40 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  domain = config.homebox.domain;
+  svcName = "filebowser";
+  hostName = "${svcName}.${domain}";
+  port = 3030;
+in {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
 
   services.caddy = {
-    virtualHosts."filebowser.homebox.com" = {
+    virtualHosts."${hostName}" = {
       extraConfig = ''
-        reverse_proxy http://localhost:3030
+        reverse_proxy http://localhost:${toString port}
         tls internal
       '';
     };
   };
-  users.users.filebowser.isSystemUser = true;
-  users.users.filebowser.group = "users";
-  users.groups.filebowser = {};
+
+  users.users."${svcName}" = {
+    isSystemUser = true;
+    group = "users";
+  };
+  users.groups."${svcName}" = {};
 
   systemd.tmpfiles.rules = [
-    "d /var/lib/filebowser 0770 filebowser filebowser"
-    "d /var/lib/filebowser/storage 0770 filebowser filebowser"
+    "d /var/lib/${svcName} 0770 ${svcName} ${svcName}"
+    "d /var/lib/${svcName}/storage 0770 ${svcName} ${svcName}"
   ];
 
   # re-login to take effect
-  users.users.hooman.extraGroups = ["filebowser"];
+  users.users.hooman.extraGroups = ["${svcName}"];
 
-  systemd.services.filebowser = {
+  systemd.services."${svcName}" = {
     enable = true;
     after = ["network.target"];
 
@@ -36,13 +44,13 @@
     # wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "simple";
-      User = "filebowser";
+      User = "${svcName}";
       Restart = "on-failure";
       ExecStart = ''
         ${pkgs.filebrowser}/bin/filebrowser \
-          --port 3030 \
+          --port ${toString port} \
           --address 0.0.0.0 \
-          --database /var/lib/filebowser/filebrowser.db \
+          --database /var/lib/${svcName}/filebrowser.db \
           --root /run/media/hdd/
       '';
     };

@@ -4,15 +4,19 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  domain = config.homebox.domain;
+  svcName = "torrent";
+  port = 7044;
+in {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
 
   services.caddy = {
-    virtualHosts."torrent.homebox.com" = {
+    virtualHosts."${svcName}.${domain}" = {
       extraConfig = ''
-        reverse_proxy http://localhost:7044
+        reverse_proxy http://localhost:${toString port}
         request_body {
             max_size 100MB
         }
@@ -24,7 +28,7 @@
     package = pkgs.qbittorrent-nox;
     enable = true;
     group = "users";
-    webuiPort = 7044;
+    webuiPort = port;
   };
   systemd.services.qbittorrent.wantedBy = lib.mkForce [];
 }

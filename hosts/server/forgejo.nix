@@ -7,12 +7,13 @@
 }: let
   cfg = config.services.forgejo;
   srv = cfg.settings.server;
+  domain = config.homebox.domain;
 in {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
   services.caddy = {
-    virtualHosts.${cfg.settings.server.DOMAIN} = {
+    virtualHosts."git.${domain}" = {
       extraConfig = ''
         reverse_proxy http://localhost:${toString srv.HTTP_PORT}
         request_body {
@@ -33,7 +34,7 @@ in {
         APP_SLOGAN = "To Code and beyond";
       };
       server = {
-        DOMAIN = "git.homebox.com";
+        DOMAIN = "git.${domain}";
         ROOT_URL = "https://${srv.DOMAIN}/";
         HTTP_PORT = 3000;
       };

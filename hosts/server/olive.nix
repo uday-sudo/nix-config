@@ -4,7 +4,11 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  domain = config.homebox.domain;
+  svcName = "olive";
+  port = 1337;
+in {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
@@ -15,8 +19,8 @@
 
   services.caddy = {
     enable = true;
-    virtualHosts."olive.homebox.com".extraConfig = ''
-      reverse_proxy * http://localhost:1337
+    virtualHosts."${svcName}.${domain}".extraConfig = ''
+      reverse_proxy * http://localhost:${toString port}
       tls internal
     '';
   };
@@ -31,7 +35,7 @@
       tailscale
     ];
     settings = {
-      ListenAddressSingleHTTPFrontend = "0.0.0.0:1337";
+      ListenAddressSingleHTTPFrontend = "0.0.0.0:${toString port}";
       actions = [
         {
           title = "Ping the Internet";
@@ -153,7 +157,7 @@
         {
           title = "Schedule Shutdown";
           icon = "<iconify-icon icon=\"streamline-color:button-power-1-flat\"></iconify-icon>";
-          shell = "shutdown -h \+{{ delay }}";
+          shell = "shutdown -h +{{ delay }}";
           arguments = [
             {
               name = "delay";
