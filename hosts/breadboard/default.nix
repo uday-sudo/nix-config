@@ -24,6 +24,7 @@
     ./filesystem.nix
     ./network.nix
     ./services.nix
+    ./wfh.nix
 
     ../server/containers.nix
   ];
