@@ -5,4 +5,5 @@
   lazydocker = import ./lazydocker.nix;
   ghostty = import ./ghostty.nix;
   ohmyposh = import ./ohmyposh.nix;
+  wallpapers = import ./wallpapers.nix;
 }

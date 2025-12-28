@@ -58,4 +58,7 @@
     enable = true;
     configFile = "emodipt-extend";
   };
+
+  # wallpapers module
+  services.wallpapers.enable = true;
 }
