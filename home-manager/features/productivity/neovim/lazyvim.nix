@@ -12,6 +12,10 @@
       stylua
       # Telescope
       ripgrep
+      # Find alternative
+      fd
+      # Treesitter
+      tree-sitter
     ];
 
     plugins = with pkgs.vimPlugins; [
@@ -45,9 +49,25 @@
         nvim-lspconfig
         nvim-notify
         nvim-spectre
-        nvim-treesitter
         nvim-treesitter-context
-        nvim-treesitter-textobjects
+        {
+          name = "nvim-treesitter";
+          path = pkgs.fetchFromGitHub {
+            owner = "nvim-treesitter";
+            repo = "nvim-treesitter";
+            rev = "main";
+            sha256 = "sha256-AMEzUaVVPzHT7vpPJUFt5UbBiN9tygH5UMio/lU/baw=";
+          };
+        }
+        {
+          name = "nvim-treesitter-textobjects";
+          path = pkgs.fetchFromGitHub {
+            owner = "nvim-treesitter";
+            repo = "nvim-treesitter-textobjects";
+            rev = "main";
+            sha256 = "sha256-mMxCAkrGqTstEgaf/vwQMEF7D8swH3oyUJtaxuXzpcs=";
+          };
+        }
         nvim-ts-autotag
         nvim-ts-context-commentstring
         nvim-web-devicons
