@@ -95,6 +95,20 @@
           ++ (builtins.attrValues outputs.homeManagerModules);
       };
     };
+
+    # Dev Shell for helping edit this config itself.
+    devShells = forAllSystems (
+      system: let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        default = pkgs.mkShell {
+          packages = with pkgs; [
+            nixd
+            nil
+          ];
+        };
+      }
+    );
   };
 
   inputs = {

@@ -15,6 +15,9 @@ in {
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
+  # Enable Hyprland
+  programs.hyprland.enable = true;
+
   # Enable KDE Plasma DE;
   services = {
     displayManager = {
@@ -22,7 +25,7 @@ in {
         enable = true;
         package = lib.mkForce pkgs.kdePackages.sddm;
         theme = "sddm-astronaut-theme";
-        extraPackages = with pkgs; [
+        extraPackages = [
           custom-sddm-astronaut
         ];
         # wayland.enable = true;

@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  lib,
   ...
 }: {
   # home.file.".config/gtk-3.0/settings.ini".force = true;
