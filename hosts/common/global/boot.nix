@@ -1,10 +1,8 @@
 {
-  inputs,
   lib,
-  pkgs,
-  config,
   ...
-}: {
+}:
+{
   boot.loader = {
     grub = {
       enable = lib.mkDefault true;

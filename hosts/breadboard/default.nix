@@ -1,16 +1,10 @@
 {
-  outputs,
-  pkgs,
-  config,
-  ...
-}: {
   imports = [
     ../common/global
     ../common/optional/de.nix
     ../common/optional/fonts.nix
     ../common/optional/quietboot.nix
     ../common/optional/audio.nix
-    ../common/optional/grub2theme.nix
     ../common/users/uday
 
     ./battery.nix
@@ -25,6 +19,7 @@
     ./network.nix
     ./services.nix
     ./wfh.nix
+    ./boot.nix
 
     ../server/containers.nix
   ];

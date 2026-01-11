@@ -14,6 +14,7 @@
     ./cursor.nix
     ./plasma.nix
     ./syncthing.nix
+    ./hypr-rice
   ];
 
   home.packages = with pkgs; [

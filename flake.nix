@@ -1,115 +1,140 @@
 {
   description = "NixOS Config for uday-sudo";
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    grub2-themes,
-    disko,
-    deploy-rs,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    systems = [
-      "aarch64-linux"
-      "i686-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
-    forAllSystems = nixpkgs.lib.genAttrs systems;
-  in {
-    # Your custom packages
-    # Accessible through 'nix build', 'nix shell', etc
-    packages = forAllSystems (
-      system:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      grub2-themes,
+      disko,
+      deploy-rs,
+      lanzaboote,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
+      systems = [
+        "aarch64-linux"
+        "i686-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
+    in
+    {
+      # Your custom packages
+      # Accessible through 'nix build', 'nix shell', etc
+      packages = forAllSystems (
+        system:
         import ./pkgs {
           inherit (nixpkgs) legacyPackages;
           pkgs = nixpkgs.legacyPackages.${system};
           inherit inputs;
         }
-    );
-    # Formatter for your nix files, available through 'nix fmt'
-    # Other options beside 'alejandra' include 'nixpkgs-fmt'
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+      );
+      # Formatter for your nix files, available through 'nix fmt'
+      # Other options beside 'alejandra' include 'nixpkgs-fmt'
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-    # Your custom packages and modifications, exported as overlays
-    overlays = import ./overlays {inherit inputs;};
-    nixosModules = import ./modules/nixos;
-    homeManagerModules = import ./modules/home-manager;
+      # Your custom packages and modifications, exported as overlays
+      overlays = import ./overlays { inherit inputs; };
+      nixosModules = import ./modules/nixos;
+      homeManagerModules = import ./modules/home-manager;
 
-    # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = {
-      breadboard = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          ./hosts/breadboard
-          grub2-themes.nixosModules.default
-        ];
-      };
+      # Available through 'nixos-rebuild --flake .#your-hostname'
+      nixosConfigurations = {
+        breadboard = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/breadboard
+            grub2-themes.nixosModules.default
+            lanzaboote.nixosModules.lanzaboote
+            (
+              { pkgs, lib, ... }:
+              {
 
-      homebox = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules =
-          [
+                environment.systemPackages = [
+                  # For debugging and troubleshooting Secure Boot.
+                  pkgs.sbctl
+                ];
+
+                # Lanzaboote currently replaces the systemd-boot module.
+                # This setting is usually set to true in configuration.nix
+                # generated at installation time. So we force it to false
+                # for now.
+                boot.loader.systemd-boot.enable = lib.mkForce false;
+
+                boot.lanzaboote = {
+                  enable = true;
+                  pkiBundle = "/var/lib/sbctl";
+                };
+              }
+            )
+          ];
+        };
+
+        homebox = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
             ./hosts/homebox
           ]
           ++ (builtins.attrValues disko.nixosModules);
-      };
-    };
-
-    deploy = {
-      nodes.homebox = {
-        hostname = "homebox";
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.homebox;
         };
       };
-      remoteBuild = true;
-    };
 
-    # This is highly advised, and will prevent many possible mistakes
-    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+      deploy = {
+        nodes.homebox = {
+          hostname = "homebox";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.homebox;
+          };
+        };
+        remoteBuild = true;
+      };
 
-    # Available through 'home-manager --flake .#your-username@your-hostname'
-    homeConfigurations = {
-      "uday@breadboard" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules =
-          [
+      # This is highly advised, and will prevent many possible mistakes
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+
+      # Available through 'home-manager --flake .#your-username@your-hostname'
+      homeConfigurations = {
+        "uday@breadboard" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
             ./home-manager/uday/home.nix
           ]
           ++ (builtins.attrValues outputs.homeManagerModules);
-      };
+        };
 
-      "hooman@homebox" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules =
-          [
+        "hooman@homebox" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
             ./home-manager/hooman/home.nix
           ]
           ++ (builtins.attrValues outputs.homeManagerModules);
-      };
-    };
-
-    # Dev Shell for helping edit this config itself.
-    devShells = forAllSystems (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
-        default = pkgs.mkShell {
-          packages = with pkgs; [
-            nixd
-            nil
-          ];
         };
-      }
-    );
-  };
+      };
+
+      # Dev Shell for helping edit this config itself.
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          default = pkgs.mkShell {
+            packages = with pkgs; [
+              nixd
+              nil
+            ];
+          };
+        }
+      );
+    };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -163,6 +188,12 @@
 
     deploy-rs = {
       url = "github:serokell/deploy-rs";
+    };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.0.0";
+      # Optional but recommended to limit the size of your system closure.
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }

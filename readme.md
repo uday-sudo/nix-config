@@ -15,6 +15,9 @@ keep the toggles at default and click "import".
 - Go to ```about:config``` where ```shimmer.disable-collapsing-sidebar``` is set to ```true``` to disable the collapsing sidebar (unfortunately this also requires commenting out some sidebery styles, they are marked in the styles editor inside of sidebery settings). So you have to comment it out manually
 - Sometimes the theme is not automatically installed, since it is being installed using policies go to ```about:policies``` to check for any errors.
 
+## Secure Boot
+Follow the guide of using Lanzeboote [here](https://github.com/nix-community/lanzaboote/tree/master/docs) for enabling secure boot.
+
 
 ## servers access 
 - ssh: ```<address>:22```
