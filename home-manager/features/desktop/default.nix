@@ -1,8 +1,4 @@
 {
-  inputs,
-  outputs,
-  lib,
-  config,
   pkgs,
   ...
 }: {
@@ -15,6 +11,7 @@
     ./plasma.nix
     ./syncthing.nix
     ./hypr-rice
+    ./portal.nix
   ];
 
   home.packages = with pkgs; [

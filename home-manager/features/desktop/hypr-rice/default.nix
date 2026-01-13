@@ -1,9 +1,4 @@
 {
-  inputs,
-  config,
-  ...
-}:
-{
   imports = [
     ./keybinds.nix
   ];
