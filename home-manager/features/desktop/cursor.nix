@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   # home.file.".config/gtk-3.0/settings.ini".force = true;
   # home.file.".config/gtk-4.0/settings.ini".force = true;
   # home.file.".gtkrc-2.0".force = true;

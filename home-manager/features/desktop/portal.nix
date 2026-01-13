@@ -1,4 +1,4 @@
-{pkgs,...}:{
+{pkgs, ...}: {
   xdg.portal = {
     enable = true;
 
@@ -9,10 +9,10 @@
 
     config = {
       plasma = {
-        default = [ "kde" ];
+        default = ["kde"];
       };
       hyprland = {
-        default = [ "hyprland" ];
+        default = ["hyprland"];
       };
     };
   };
