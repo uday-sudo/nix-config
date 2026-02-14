@@ -46,3 +46,4 @@ Follow the guide of using Lanzeboote [here](https://github.com/nix-community/lan
 
 ## Credits
 - [Tailscale guide for DNS, Exit Node and Subnet setup](https://youtu.be/vOFI4_qMfd4?si=J1jNnsAmrr4YVuWy)
+- Rofi launcher theme inspired by adi1090x: https://github.com/adi1090x/rofi
