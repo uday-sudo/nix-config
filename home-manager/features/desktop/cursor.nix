@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   # home.file.".config/gtk-3.0/settings.ini".force = true;
   # home.file.".config/gtk-4.0/settings.ini".force = true;
   # home.file.".gtkrc-2.0".force = true;
@@ -13,7 +17,7 @@
   # };
   # };
 
-  home.pointerCursor = {
+  home.pointerCursor = lib.mkDefault {
     gtk.enable = true;
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Ice";
