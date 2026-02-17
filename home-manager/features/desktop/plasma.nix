@@ -35,10 +35,6 @@ in {
     #
     workspace = {
       clickItemTo = "select";
-      lookAndFeel =
-        if theme.scheme == "Catppuccin"
-        then "${theme.scheme}-${theme.flavor}-${theme.accent}"
-        else "org.kde.breezedark.desktop";
       cursor.theme = "Bibata-Modern-Ice";
       iconTheme = "Papirus-Dark";
       wallpaper = "${inputs.wallpapers}/regular/012.png";

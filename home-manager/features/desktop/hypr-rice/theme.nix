@@ -34,7 +34,7 @@ in {
     };
     targets = {
       gtk.enable = true;
-      qt.enable = true;
+      # qt.enable = true;
       kde.enable = true;
       btop.enable = true;
       hyprland.enable = true;
