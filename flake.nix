@@ -141,7 +141,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
-    # For some important hardware utilities for my Asus Laptops
+    # For some important hardware utilities for my Laptops
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     sops-nix = {

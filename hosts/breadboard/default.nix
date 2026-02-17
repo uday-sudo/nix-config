@@ -7,8 +7,6 @@
     ../common/optional/audio.nix
     ../common/users/uday
 
-    ./battery.nix
-    ./asusctl.nix
     ./bluetooth.nix
     ./cpu.nix
     ./gpu.nix
@@ -20,6 +18,13 @@
     ./services.nix
     ./wfh.nix
     ./boot.nix
+
+    # hardware specific import
+    # ./hp.nix
+
+    # Asus specific import
+    # ./asusctl.nix
+    # ./battery.nix
 
     ../server/containers.nix
   ];
