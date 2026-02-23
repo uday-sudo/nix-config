@@ -8,7 +8,7 @@
       availableKernelModules = ["xhci_pci" "ahci" "usb_storage" "sd_mod" "nvme" "usbhid"];
       kernelModules = [];
     };
-    kernelModules = ["kvm-amd"];
+    kernelModules = ["kvm-intel"];
     #Silent Boot
     kernelParams = [
       "quiet"

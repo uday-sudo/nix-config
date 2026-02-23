@@ -20,7 +20,7 @@
     ./boot.nix
 
     # hardware specific import
-    # ./hp.nix
+    ./hp.nix
 
     # Asus specific import
     # ./asusctl.nix

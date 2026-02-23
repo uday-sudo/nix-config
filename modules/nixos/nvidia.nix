@@ -21,13 +21,13 @@ in {
     powerManagement = {
       enable = mkOption {
         type = types.bool;
-        default = false;
+        default = true;
         description = "Enable NVIDIA power management (experimental).";
       };
 
       finegrained = mkOption {
         type = types.bool;
-        default = false;
+        default = true;
         description = "Enable fine-grained power management (experimental).";
       };
     };
@@ -42,7 +42,7 @@ in {
 
     open = mkOption {
       type = types.bool;
-      default = false;
+      default = true;
       description = "Use the open-source NVIDIA kernel module (alpha-quality).";
     };
 
@@ -54,7 +54,7 @@ in {
 
     package = mkOption {
       type = types.package;
-      default = config.boot.kernelPackages.nvidiaPackages.production;
+      default = config.boot.kernelPackages.nvidiaPackages.beta;
       description = "The NVIDIA driver package to use.";
     };
   };
@@ -69,7 +69,7 @@ in {
       enable32Bit = true;
     };
 
-    services.xserver.videoDrivers = ["nvidia"];
+    services.xserver.videoDrivers = ["nvidia" "modesetting"];
 
     hardware.nvidia = {
       modesetting.enable = cfg.modesetting.enable;

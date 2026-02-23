@@ -130,6 +130,7 @@
           packages = with pkgs; [
             nixd
             nil
+            git
           ];
         };
       }

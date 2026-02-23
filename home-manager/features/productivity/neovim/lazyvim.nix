@@ -65,7 +65,7 @@
             owner = "nvim-treesitter";
             repo = "nvim-treesitter-textobjects";
             rev = "main";
-            sha256 = "sha256-mMxCAkrGqTstEgaf/vwQMEF7D8swH3oyUJtaxuXzpcs=";
+            sha256 = "sha256-J3D+nbalJqZ4aeFBD7veW6TuI0BEU2jbx5pMEew4dkA=";
           };
         }
         nvim-ts-autotag
