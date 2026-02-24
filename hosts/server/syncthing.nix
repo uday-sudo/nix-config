@@ -29,7 +29,7 @@ in {
     settings = {
       devices = {
         "laptop" = {
-          id = "UC3MILQ-MXWD6R2-IW7AFWU-OY4PKOI-O7FFFCS-TBILQWP-SN3NJPK-P3U7PAP";
+          id = "RVVEIF5-YZ4IDJ6-ZFFJTV5-NEABCHB-U7B6R3Y-JD5ZJZ3-LPS52VH-N3DXWQP";
         };
         "phone" = {
           id = "ZQWSMLR-YLJZIC7-RJGE2N4-V3BBW2P-NCSUFJ5-BYK7P32-4VCRBUZ-FFJ53A4";
