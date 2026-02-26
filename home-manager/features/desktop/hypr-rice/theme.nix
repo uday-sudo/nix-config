@@ -3,10 +3,12 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   theme = config.theme;
   stripHash = lib.removePrefix "#";
-in {
+in
+{
   # ------- GRAPHICS THEME ---------
   stylix = {
     enable = true;
@@ -34,8 +36,11 @@ in {
     };
     targets = {
       gtk.enable = true;
-      # qt.enable = true;
+      qt.enable = true;
+      qt.platform = "kde";
+      qt.standardDialogs = "kde";
       kde.enable = true;
+      kde.plasmaWorkspacePackage = pkgs.kdePackages.plasma-workspace;
       btop.enable = true;
       hyprland.enable = true;
       zellij.enable = true;

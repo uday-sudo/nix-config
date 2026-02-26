@@ -4,28 +4,21 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   theme = config.theme;
-in {
+in
+{
   imports = [
     inputs.plasma-manager.homeModules.plasma-manager
   ];
 
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
       papirus-icon-theme
       bibata-cursors
-    ]
-    ++ (
-      if theme.scheme == "Catppuccin"
-      then [
-        (pkgs.catppuccin-kde.override {
-          flavour = [(lib.toLower theme.flavor)];
-          accents = [(lib.toLower theme.accent)];
-        })
-      ]
-      else []
-    );
+    ];
 
   programs.plasma = {
     enable = true;
