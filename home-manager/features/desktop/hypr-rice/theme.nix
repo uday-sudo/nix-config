@@ -3,12 +3,10 @@
   pkgs,
   config,
   ...
-}:
-let
+}: let
   theme = config.theme;
   stripHash = lib.removePrefix "#";
-in
-{
+in {
   # ------- GRAPHICS THEME ---------
   stylix = {
     enable = true;

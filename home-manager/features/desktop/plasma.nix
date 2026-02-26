@@ -4,21 +4,17 @@
   config,
   lib,
   ...
-}:
-let
+}: let
   theme = config.theme;
-in
-{
+in {
   imports = [
     inputs.plasma-manager.homeModules.plasma-manager
   ];
 
-  home.packages =
-    with pkgs;
-    [
-      papirus-icon-theme
-      bibata-cursors
-    ];
+  home.packages = with pkgs; [
+    papirus-icon-theme
+    bibata-cursors
+  ];
 
   programs.plasma = {
     enable = true;

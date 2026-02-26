@@ -5,6 +5,10 @@
 }: {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
+    input = {
+      scroll_method = "edge";
+    };
+    gesture = "3, horizontal, workspace";
     bind =
       [
         ", Print, exec, grimblast copy area"
