@@ -83,4 +83,17 @@ in {
       package = pkgs.papirus-icon-theme;
     };
   };
+
+  # -------- DECORATIONS -----------
+  wayland.windowManager.hyprland.settings = {
+    decoration.rounding = 10;
+    group.groupbar = {
+      enabled = true;
+      font_size = 8;
+      gradients = true;
+      height = 8;
+      render_titles = false;
+      priority = 8;
+    };
+  };
 }
