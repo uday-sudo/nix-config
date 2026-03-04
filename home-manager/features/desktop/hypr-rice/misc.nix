@@ -1,10 +1,21 @@
 {
   inputs,
+  config,
   lib,
   pkgs,
   ...
 }: let
   defaultWallpaper = "${inputs.wallpapers}/regular/047.jpg";
+  theme = config.theme.colors;
+  toHex = color:
+    if lib.hasPrefix "#" color
+    then color
+    else "#${color}";
+  hyprpolkitQml = pkgs.replaceVars ./hyprpolkit-main.qml {
+    BASE04 = toHex theme.base04;
+    BASE05 = toHex theme.base05;
+    BASE08 = toHex theme.base08;
+  };
 in {
   wayland.windowManager.hyprland.settings = {
     monitor = [
@@ -28,7 +39,16 @@ in {
     };
   };
 
-  services.hyprpolkitagent.enable = true;
+  services.hyprpolkitagent = {
+    enable = true;
+    package = pkgs.hyprpolkitagent.overrideAttrs (old: {
+      postPatch =
+        (old.postPatch or "")
+        + ''
+          cp ${hyprpolkitQml} qml/main.qml
+        '';
+    });
+  };
 
   home.packages = [
     pkgs.grim
