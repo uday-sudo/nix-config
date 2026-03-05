@@ -4,7 +4,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   imports = [
     ../common/global
     ../server
@@ -39,5 +40,5 @@
 
   environment.enableAllTerminfo = true;
   programs.nh.flake = "${config.users.users.hooman.home}/gitjargan/nix-config";
-  system.stateVersion = "24.05";
+  system.stateVersion = "26.05";
 }
