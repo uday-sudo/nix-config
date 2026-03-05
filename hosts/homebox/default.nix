@@ -4,8 +4,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   imports = [
     ../common/global
     ../server

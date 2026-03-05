@@ -33,10 +33,6 @@
       '';
     });
 
-    discord = prev.discord.override {
-      withVencord = true;
-    };
-
     lutris = prev.lutris.override {
       extraPkgs = pkgs: [
         pkgs.wineWowPackages.stagingFull

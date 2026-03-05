@@ -11,6 +11,8 @@
     ./portal.nix
   ];
 
+  programs.vesktop.enable = true;
+
   home.packages = with pkgs; [
     brave
     keepassxc
