@@ -20,6 +20,7 @@
     ../features/productivity/lazydocker.nix
 
     ./secrets.nix
+    inputs.ignis.homeManagerModules.default
   ];
 
   nixpkgs = {
@@ -49,8 +50,13 @@
   programs.home-manager.enable = true;
   systemd.user.startServices = "sd-switch";
 
+  programs.ignis = {
+    enable = true;
+    addToPythonEnv = true;
+  };
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.11";
+  home.stateVersion = "26.05";
 
   #colorscheme module
   theme.enable = true;
