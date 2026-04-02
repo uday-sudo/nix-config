@@ -9,7 +9,7 @@
 in {
   wayland.windowManager.hyprland = {
     plugins = [
-      pkgs.hyprlandPlugins.hyprbars
+      # pkgs.hyprlandPlugins.hyprbars
     ];
     settings.plugin.hyprbars = {
       enabled = false;

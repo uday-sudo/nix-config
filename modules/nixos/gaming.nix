@@ -10,10 +10,10 @@ with lib; let
   steam-with-pkgs = pkgs.steam.override {
     extraPkgs = pkgs:
       with pkgs; [
-        xorg.libXcursor
-        xorg.libXi
-        xorg.libXinerama
-        xorg.libXScrnSaver
+        libxcursor
+        libxi
+        libxinerama
+        libxscrnsaver
         libpng
         libpulseaudio
         libvorbis
@@ -56,7 +56,7 @@ in {
           # Winetricks for managing Wine environments
           winetricks
           # Native Wayland support for Wine (unstable)
-          wineWowPackages.waylandFull
+          wineWow64Packages.waylandFull
         ]
         else []
       );

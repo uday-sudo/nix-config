@@ -34,6 +34,7 @@ in {
     };
     targets = {
       gtk.enable = true;
+      gtk.fonts.enable = true;
       qt.enable = true;
       qt.platform = "kde";
       qt.standardDialogs = "kde";
@@ -42,6 +43,7 @@ in {
       btop.enable = true;
       hyprland.enable = true;
       zellij.enable = true;
+      obsidian.enable = true;
     };
     fonts = {
       serif = {
@@ -49,8 +51,8 @@ in {
         name = "DejaVu Serif";
       };
       sansSerif = {
-        package = pkgs.noto-fonts;
-        name = "Noto Sans";
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
       };
       monospace = {
         package = pkgs.nerd-fonts.iosevka;

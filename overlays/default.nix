@@ -35,7 +35,7 @@
 
     lutris = prev.lutris.override {
       extraPkgs = pkgs: [
-        pkgs.wineWowPackages.stagingFull
+        pkgs.wineWow64Packages.stagingFull
         pkgs.winetricks
       ];
     };

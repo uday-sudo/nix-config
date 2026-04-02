@@ -4,7 +4,7 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    helvum
+    crosspipe
     pavucontrol
     easyeffects
   ];
