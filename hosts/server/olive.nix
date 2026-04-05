@@ -11,6 +11,11 @@
 in {
   imports = [
     inputs.sops-nix.nixosModules.sops
+    {
+      nixpkgs.config.permittedInsecurePackages = [
+        "olivetin-2025.11.25"
+      ];
+    }
   ];
 
   environment.systemPackages = with pkgs; [
