@@ -5,6 +5,8 @@
   config,
   ...
 }: {
+  sops.secrets."host_password/homebox".neededForUsers = true;
+
   imports = [
     ../common/global
     ../server
@@ -19,6 +21,8 @@
     ./network.nix
     ./hardware-configuration.nix
   ];
+
+  users.users.root.hashedPasswordFile = config.sops.secrets."host_password/homebox".path;
 
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;

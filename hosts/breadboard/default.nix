@@ -1,4 +1,9 @@
 {
+  config,
+  ...
+}: {
+  sops.secrets."host_password/breadboard".neededForUsers = true;
+
   imports = [
     ../common/global
     ../common/optional/de.nix
@@ -28,6 +33,8 @@
 
     ../server/containers.nix
   ];
+
+  users.users.root.hashedPasswordFile = config.sops.secrets."host_password/breadboard".path;
 
   hardware.steam-hardware.enable = true;
 
