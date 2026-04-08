@@ -1,7 +1,4 @@
-{
-  config,
-  ...
-}: {
+{config, ...}: {
   sops.secrets."host_password/breadboard".neededForUsers = true;
 
   imports = [
