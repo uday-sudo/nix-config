@@ -103,7 +103,7 @@ in {
   systemd.services.forgejo.preStart = let
     adminCmd = "${lib.getExe cfg.package} admin user";
     pwd = config.sops.secrets.forgejo-admin-password;
-    user = "admin";
+    user = "hooman";
   in ''
     ${adminCmd} create --admin --email "root@localhost" --username ${user} --password "12345678" || true
     # ${adminCmd} create --email "udayavenegerdude@gmail.com" --username uday-sudo --password "12345678" || true

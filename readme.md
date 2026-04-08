@@ -23,7 +23,7 @@ Follow the guide of using Lanzeboote [here](https://github.com/nix-community/lan
 - ssh: ```<address>:22```
 - Syncthing GUI: ```<address>:8384``` (hooman, 12345678)
 - Filebrowser: ```<address>:3030``` (admin, admin)
-- forgejo: ```<address>:3000```
+- forgejo: ```<address>:3000``` (hooman, 12345678)
 - torrent: ```<address>:7044```  (hooman, 12345678)
     - Disable CSRF in qbittorent settings to be able to access it over nginx/caddy
 - jellyfin: ```<address>:8096```  (hooman, 12345678)
