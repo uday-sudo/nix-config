@@ -98,7 +98,7 @@ in {
         }
         {
           title = "Check Service Statuses";
-          shell = "systemctl status filebowser qbittorrent jellyfin pufferpanel forgejo immich";
+          shell = "systemctl status filebowser qbittorrent jellyfin pufferpanel forgejo immich-server";
           icon = "<iconify-icon icon=\"icon-park-solid:more-app\"></iconify-icon>";
           popupOnStart = "execution-dialog-stdout-only";
         }

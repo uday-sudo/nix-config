@@ -26,7 +26,7 @@ in {
 
   services.forgejo = {
     enable = true;
-    database.type = "postgres";
+    database.type = "sqlite3";
     settings = {
       session.COOKIE_SECURE = true;
       DEFAULT = {
@@ -50,7 +50,7 @@ in {
       enable = true;
       backupDir = "/run/media/hdd/forgejo";
       interval = "22:00";
-      type = "tar.zst";
+      type = "zip";
     };
   };
 
@@ -106,8 +106,8 @@ in {
     user = "admin";
   in ''
     ${adminCmd} create --admin --email "root@localhost" --username ${user} --password "12345678" || true
-    ${adminCmd} create --email "udayavenegerdude@gmail.com" --username uday-sudo --password "12345678" || true
-    ## uncomment this line to change an admin user which was already created
+    # ${adminCmd} create --email "udayavenegerdude@gmail.com" --username uday-sudo --password "12345678" || true
+    # uncomment this line to change an admin user which was already created
     # ${adminCmd} change-password --username ${user} --password "$(tr -d '\n' < ${pwd.path})" || true
   '';
 }
