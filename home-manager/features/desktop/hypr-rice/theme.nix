@@ -43,7 +43,10 @@ in {
       btop.enable = true;
       hyprland.enable = true;
       zellij.enable = true;
-      obsidian.enable = true;
+      obsidian = {
+        enable = true;
+        vaultNames = ["Notes"];
+      };
     };
     fonts = {
       serif = {

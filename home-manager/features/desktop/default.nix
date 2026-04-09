@@ -15,6 +15,7 @@
   programs.obsidian = {
     enable = true;
     cli.enable = true;
+    vaults.Notes.target = "SYNC/vault/Notes";
   };
 
   home.packages = with pkgs; [
