@@ -52,13 +52,10 @@
       config.services.postgresql.package
       pkgs.coreutils
       pkgs.zip
-      pkgs.gnugrep
-      pkgs.gawk
+      pkgs.util-linux
     ];
     serviceConfig = {
       Type = "oneshot";
-      User = "postgres";
-      Group = "postgres";
     };
     script = ''
       set -euo pipefail
@@ -73,7 +70,7 @@
       mkdir -p "$backup_dir"
       trap 'rm -rf "$tmpdir"' EXIT
 
-      pg_dumpall > "$sql_dump"
+      runuser -u postgres -- pg_dumpall > "$sql_dump"
       zip -j "$zip_path" "$sql_dump"
     '';
   };
@@ -82,7 +79,7 @@
     description = "Daily PostgreSQL backup timer for homebox";
     wantedBy = ["timers.target"];
     timerConfig = {
-      OnCalendar = "daily";
+      OnCalendar = "*-*-* 22:00:00";
       Persistent = true;
       RandomizedDelaySec = "15m";
     };
