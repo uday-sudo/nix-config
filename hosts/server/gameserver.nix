@@ -29,6 +29,7 @@ in {
     extraPackages = [
       pkgs.openjdk
       pkgs.unzip
+      pkgs.bash
     ];
     environment = {
       PUFFER_WEB_HOST = ":${toString webPort}";
