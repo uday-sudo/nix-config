@@ -10,6 +10,8 @@
       # LazyVim
       lua-language-server
       stylua
+      # Nix formatting
+      alejandra
       # Telescope
       ripgrep
       # Find alternative

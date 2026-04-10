@@ -115,6 +115,7 @@
           packages = with pkgs; [
             nixd
             nil
+            alejandra
             git
           ];
         };

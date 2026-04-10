@@ -7,8 +7,24 @@ return {
       -- List servers you want to enable
       servers = {
         pyright = {},
-        nil_ls = {},
-        nixd = {},
+        nil_ls = {
+          settings = {
+            ["nil"] = {
+              formatting = {
+                command = { "alejandra" },
+              },
+            },
+          },
+        },
+        nixd = {
+          settings = {
+            nixd = {
+              formatting = {
+                command = { "alejandra" },
+              },
+            },
+          },
+        },
         ruff = {},
         clangd = {},
       },
