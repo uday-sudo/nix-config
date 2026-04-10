@@ -104,6 +104,16 @@
           ]
           ++ (builtins.attrValues outputs.homeManagerModules);
       };
+
+      "uday-work" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules =
+          [
+            ./home-manager/uday-work/home.nix
+          ]
+          ++ (builtins.attrValues outputs.homeManagerModules);
+      };
     };
 
     # Dev Shell for helping edit this config itself.
