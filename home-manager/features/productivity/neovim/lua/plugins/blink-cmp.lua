@@ -30,7 +30,7 @@ return {
 		-- Merge custom sources with the existing ones from lazyvim
 		-- NOTE: by default lazyvim already includes the lazydev source, so not adding it here again
 		opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
-			default = { "lsp", "path", "snippets", "buffer", "emoji", "dictionary" },
+			default = { "lsp", "path", "snippets", "buffer", "emoji" },
 			providers = {
 				lsp = {
 					name = "lsp",
@@ -101,7 +101,7 @@ return {
 					name = "Dict",
 					score_offset = 20, -- the higher the number, the higher the priority
 					-- https://github.com/Kaiser-Yang/blink-cmp-dictionary/issues/2
-					enabled = true,
+					enabled = false,
 					max_items = 8,
 					min_keyword_length = 3,
 					opts = {
