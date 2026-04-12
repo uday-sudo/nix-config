@@ -84,7 +84,7 @@
       windowrule {
         name = float-satty
         float = true
-        match:class = ^(satty)$
+        match:class = ^(satty|com.gabm.satty)$
       }
     '';
   };
