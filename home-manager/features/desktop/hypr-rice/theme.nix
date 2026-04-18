@@ -42,6 +42,7 @@ in {
       kde.plasmaWorkspacePackage = pkgs.kdePackages.plasma-workspace;
       btop.enable = true;
       hyprland.enable = true;
+      niri.enable = true;
       zellij.enable = true;
       obsidian = {
         enable = true;
@@ -71,7 +72,7 @@ in {
   # -------- CURSOR THEME -----------
   home.pointerCursor = {
     gtk.enable = true;
-    x11.enable = true;
+    x11.enable = false;
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Ice";
     size = 24;

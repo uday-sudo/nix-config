@@ -1,6 +1,7 @@
 {inputs, ...}: {
   imports = [
     inputs.stylix.homeModules.stylix
+    ./niri
     ./keybinds.nix
     ./rofi.nix
     ./theme.nix

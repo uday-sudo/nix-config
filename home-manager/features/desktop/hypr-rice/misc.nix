@@ -39,6 +39,14 @@ in {
     };
   };
 
+  systemd.user.services.hyprpaper = {
+    Unit = {
+      After = lib.mkForce ["hyprland-session.target"];
+      PartOf = lib.mkForce ["hyprland-session.target"];
+    };
+    Install.WantedBy = lib.mkForce ["hyprland-session.target"];
+  };
+
   services.hyprpolkitagent = {
     enable = true;
     package = pkgs.hyprpolkitagent.overrideAttrs (old: {
@@ -48,6 +56,14 @@ in {
           cp ${hyprpolkitQml} qml/main.qml
         '';
     });
+  };
+
+  systemd.user.services.hyprpolkitagent = {
+    Unit = {
+      After = lib.mkForce ["hyprland-session.target"];
+      PartOf = lib.mkForce ["hyprland-session.target"];
+    };
+    Install.WantedBy = lib.mkForce ["hyprland-session.target"];
   };
 
   home.packages = [
