@@ -1,5 +1,6 @@
 {...}: {
   programs.niri.settings.layout = {
+    background-color = "#ffffff";
     gaps = 16;
     center-focused-column = "never";
     preset-column-widths = [
@@ -9,13 +10,14 @@
     ];
     default-column-width = {proportion = 0.5;};
     shadow = {
-      softness = 30;
+      enable = true;
+      softness = 10;
       spread = 5;
       offset = {
-        x = 0;
+        x = 3;
         y = 5;
       };
-      color = "#0007";
+      color = "#000a";
     };
   };
 }

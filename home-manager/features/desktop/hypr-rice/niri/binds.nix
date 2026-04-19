@@ -15,7 +15,7 @@
     "XF86MonBrightnessDown".action.spawn = ["brightnessctl" "--class=backlight" "set" "10%-"];
 
     "Mod+O".action.toggle-overview = {};
-    "Mod+Q".action.close-window = {};
+    "Mod+W".action.close-window = {};
 
     "Mod+Left".action.focus-column-left = {};
     "Mod+Down".action.focus-window-down = {};
@@ -139,7 +139,7 @@
 
     "Mod+V".action.toggle-window-floating = {};
     "Mod+Shift+V".action.switch-focus-between-floating-and-tiling = {};
-    "Mod+W".action.toggle-column-tabbed-display = {};
+    "Mod+T".action.toggle-column-tabbed-display = {};
 
     "Print".action.screenshot = {};
     "Ctrl+Print".action.screenshot-screen = {};
