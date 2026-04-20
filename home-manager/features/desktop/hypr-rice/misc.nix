@@ -71,6 +71,7 @@ in {
     pkgs.satty
     pkgs.slurp
     pkgs.hyprpicker
+    pkgs.cliphist
     pkgs.wl-clipboard
     pkgs.jq
     pkgs.libnotify

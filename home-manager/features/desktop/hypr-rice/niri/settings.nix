@@ -1,7 +1,10 @@
-{...}: {
+{...}: let
+  launcherCornerRadius = 12.0;
+in {
   imports = [
     ./input.nix
     ./layout.nix
+    ./animations.nix
     ./window-rules.nix
     ./binds.nix
   ];
@@ -17,13 +20,15 @@
           {namespace = "^(launcher|rofi)$";}
         ];
         geometry-corner-radius = {
-          top-left = 10.0;
-          top-right = 10.0;
-          bottom-left = 10.0;
-          bottom-right = 10.0;
+          top-left = launcherCornerRadius;
+          top-right = launcherCornerRadius;
+          bottom-left = launcherCornerRadius;
+          bottom-right = launcherCornerRadius;
         };
         shadow.enable = true;
       }
     ];
   };
+
+  services.cliphist.enable = true;
 }
