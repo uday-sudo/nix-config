@@ -27,6 +27,7 @@ return {
         },
         ruff = {},
         clangd = {},
+        cssls = {},
       },
       -- If you need custom setup / adjustments per server:
     --   setup = {

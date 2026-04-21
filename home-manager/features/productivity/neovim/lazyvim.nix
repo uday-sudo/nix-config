@@ -10,6 +10,10 @@
       # LazyVim
       lua-language-server
       stylua
+      # Python LSP
+      pyright
+      # CSS/SCSS/LESS LSP (cssls)
+      vscode-langservers-extracted
       # Nix formatting
       alejandra
       # Telescope

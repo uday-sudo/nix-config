@@ -125,6 +125,8 @@
           packages = with pkgs; [
             nixd
             nil
+            pyright
+            vscode-langservers-extracted
             alejandra
             git
           ];
