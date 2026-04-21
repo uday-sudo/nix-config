@@ -4,3 +4,9 @@
 
 # But NOT the ones in .forgejo/workflows/
 !.forgejo/workflows/*.yaml
+
+# Ignore output
+result
+
+# Temporary folder i use
+docs
