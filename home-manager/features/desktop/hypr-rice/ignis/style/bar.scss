@@ -5,10 +5,55 @@
   color: $base05;
   border-bottom: 1px solid $base02;
   padding: 6px 12px;
+  font-family: "Iosevka Nerd Font Mono", "Iosevka NF", "Iosevka", monospace;
 }
 
 .bar-section {
   color: $base05;
+}
+
+
+.workspace {
+  min-width: 26px;
+  min-height: 26px;
+  border-radius: 8px;
+  background: $base01;
+  padding: 2px;
+}
+
+.workspace:hover {
+  background: $base02;
+  color: $base05;
+}
+
+.workspace.active {
+  background: $base0D;
+  border-color: $base0D;
+  color: $base00;
+}
+
+.workspace-label {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 1px;
+}
+
+.app-item {
+  min-width: 26px;
+  min-height: 26px;
+  border-radius: 8px;
+  background: $base01;
+  color: $base05;
+  padding: 2px;
+}
+
+.app-item:hover {
+  background: $base02;
+}
+
+.app-item.active {
+  background: $base0D;
+  color: $base00;
 }
 
 .clock {

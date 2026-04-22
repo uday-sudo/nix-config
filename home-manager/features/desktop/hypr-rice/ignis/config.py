@@ -5,7 +5,6 @@ from modules.settings.preferences import Preferences
 from modules.bar.bar import Bar
 preferences = Preferences()
 
-from ignis.widgets import Widget
 from ignis import utils
 from ignis.css_manager import CssManager, CssInfoPath
 
@@ -19,5 +18,6 @@ css_manager.apply_css(
     )
 )
 
-Bar(0)
+for monitor in [0]:
+    Bar(monitor=monitor, orientation="top")
 
