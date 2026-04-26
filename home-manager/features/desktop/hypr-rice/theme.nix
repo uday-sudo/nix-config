@@ -51,16 +51,16 @@ in {
     };
     fonts = {
       serif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Serif";
+        package = pkgs.inter;
+        name = "Inter Variable";
       };
       sansSerif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
+        package = pkgs.inter;
+        name = "Inter Variable";
       };
       monospace = {
-        package = pkgs.nerd-fonts.iosevka;
-        name = "Iosevka Nerd Font Mono";
+        package = pkgs.fira-code;
+        name = "Fira Code";
       };
       emoji = {
         package = pkgs.noto-fonts-color-emoji;

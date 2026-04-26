@@ -20,7 +20,6 @@
     ../features/productivity/lazydocker.nix
 
     ./secrets.nix
-    inputs.ignis.homeManagerModules.default
   ];
 
   nixpkgs = {

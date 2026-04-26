@@ -10,3 +10,6 @@ result
 
 # Temporary folder i use
 docs
+
+# Local qmlls project cache/config
+home-manager/features/desktop/hypr-rice/quickshell/.qmlls.ini

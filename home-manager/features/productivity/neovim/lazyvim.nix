@@ -14,6 +14,8 @@
       pyright
       # CSS/SCSS/LESS LSP (cssls)
       vscode-langservers-extracted
+      # QML LSP (qmlls)
+      qt6.qtdeclarative
       # Nix formatting
       alejandra
       # Telescope
@@ -55,6 +57,7 @@
         nvim-lspconfig
         nvim-notify
         nvim-spectre
+        oil-nvim
         nvim-treesitter-context
         {
           name = "nvim-treesitter";
@@ -170,6 +173,7 @@
           with plugins; [
             c
             lua
+            qmljs
           ])).dependencies;
     };
   in "${parsers}/parser";
