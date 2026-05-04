@@ -16,6 +16,8 @@ in {
     inputs.niri.nixosModules.niri
   ];
 
+  systemd.user.services.niri-flake-polkit.enable = false;
+
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
