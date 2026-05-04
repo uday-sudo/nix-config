@@ -21,8 +21,7 @@ in {
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-  # Enable Hyprland
-  programs.hyprland.enable = true;
+  programs.hyprland.enable = false;
   programs.niri.enable = true;
 
   # Enable KDE Plasma DE;

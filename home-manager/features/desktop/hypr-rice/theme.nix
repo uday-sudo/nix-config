@@ -41,7 +41,7 @@ in {
       kde.enable = true;
       kde.plasmaWorkspacePackage = pkgs.kdePackages.plasma-workspace;
       btop.enable = true;
-      hyprland.enable = true;
+      hyprland.enable = false;
       niri.enable = true;
       zellij.enable = true;
       obsidian = {
