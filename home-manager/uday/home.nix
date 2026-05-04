@@ -28,6 +28,7 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
+      inputs.niri.overlays.niri
       inputs.nur.overlays.default
 
       # You can also add overlays exported from other flakes:

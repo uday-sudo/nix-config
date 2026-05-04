@@ -1,5 +1,7 @@
-{...}: {
-  programs.niri.settings.window-rules = [
+{inputs, ...}: let
+  inherit (inputs.niri.lib.kdl) leaf plain;
+in {
+  typed = [
     {
       draw-border-with-background = false;
       geometry-corner-radius = {
@@ -23,5 +25,16 @@
       ];
       open-floating = true;
     }
+  ];
+
+  raw = [
+    (plain "window-rule" [
+      (leaf "match" {
+        app-id = "^(com\\.mitchellh\\.ghostty|ghostty)$";
+      })
+      (plain "background-effect" [
+        (leaf "blur" true)
+      ])
+    ])
   ];
 }

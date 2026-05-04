@@ -1,11 +1,11 @@
-{...}: let
+{inputs, ...}: let
   launcherCornerRadius = 12.0;
+  windowRules = import ./window-rules.nix {inherit inputs;};
 in {
   imports = [
     ./input.nix
     ./layout.nix
     ./animations.nix
-    ./window-rules.nix
     ./binds.nix
   ];
 
@@ -13,6 +13,7 @@ in {
     prefer-no-csd = true;
     spawn-at-startup = [];
     screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
+    window-rules = windowRules.typed;
 
     layer-rules = [
       {
