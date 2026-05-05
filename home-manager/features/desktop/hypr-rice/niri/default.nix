@@ -25,7 +25,6 @@ in {
   imports = [
     inputs.niri.homeModules.niri
     inputs.niri.homeModules.stylix
-    inputs.dms.homeModules.niri
     ./settings.nix
   ];
 

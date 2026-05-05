@@ -607,7 +607,6 @@ in {
   programs.dank-material-shell = {
     enable = true;
     systemd.enable = true;
-    niri.enableSpawn = false;
 
     enableSystemMonitoring = true;
     # Keep DMS theme stable and sourced from Stylix/Base16 instead of wallpaper-driven recoloring.
