@@ -37,6 +37,7 @@ in {
       gtk.fonts.enable = true;
       qt.enable = true;
       qt.platform = "qtct";
+      gnome.enable = true;
       kde.enable = false;
       kde.plasmaWorkspacePackage = pkgs.kdePackages.plasma-workspace;
       btop.enable = true;

@@ -15,6 +15,11 @@
 
   programs.vesktop.enable = true;
   services.easyeffects.enable = true;
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      icon-theme = "Papirus-Dark";
+    };
+  };
   programs.obsidian = {
     enable = true;
     cli.enable = true;

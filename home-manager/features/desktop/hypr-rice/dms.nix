@@ -195,7 +195,7 @@
       "useAutoLocation": true,
       "weatherEnabled": true,
       "networkPreference": "auto",
-      "iconTheme": "Papirus-Dark",
+      "iconTheme": "System Default",
       "cursorSettings": {
         "theme": "System Default",
         "size": 24,
@@ -604,6 +604,12 @@
     info = c.base0C;
   };
 in {
+  systemd.user.services.dms.Service.Environment = [
+    "XDG_DATA_DIRS=${config.home.profileDirectory}/share:/run/current-system/sw/share:/usr/local/share:/usr/share"
+    "QT_QPA_PLATFORMTHEME=qt6ct"
+    "QS_ICON_THEME=Papirus-Dark"
+  ];
+
   programs.dank-material-shell = {
     enable = true;
     systemd.enable = true;
