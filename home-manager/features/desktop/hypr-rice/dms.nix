@@ -101,14 +101,15 @@
       "privacyShowCameraIcon": false,
       "privacyShowScreenShareIcon": false,
       "controlCenterWidgets": [
+        { "id": "inputVolumeSlider", "enabled": true, "width": 50 },
         { "id": "volumeSlider", "enabled": true, "width": 50 },
-        { "id": "brightnessSlider", "enabled": true, "width": 50 },
         { "id": "wifi", "enabled": true, "width": 50 },
-        { "id": "bluetooth", "enabled": true, "width": 50 },
         { "id": "audioOutput", "enabled": true, "width": 50 },
         { "id": "audioInput", "enabled": true, "width": 50 },
         { "id": "nightMode", "enabled": true, "width": 50 },
-        { "id": "darkMode", "enabled": true, "width": 50 }
+        { "id": "builtin_tailscale", "enabled": true, "width": 50 },
+        { "id": "bluetooth", "enabled": true, "width": 50 },
+        { "id": "brightnessSlider", "enabled": true, "width": 100 }
       ],
       "showWorkspaceIndex": true,
       "showWorkspaceName": true,
@@ -194,7 +195,7 @@
       "useAutoLocation": true,
       "weatherEnabled": true,
       "networkPreference": "auto",
-      "iconTheme": "System Default",
+      "iconTheme": "Papirus-Dark",
       "cursorSettings": {
         "theme": "System Default",
         "size": 24,
