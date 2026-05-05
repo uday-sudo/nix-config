@@ -13,6 +13,7 @@ in {
     prefer-no-csd = true;
     spawn-at-startup = [];
     screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
+    gestures.hot-corners.enable = true;
     window-rules = windowRules.typed;
 
     layer-rules = [

@@ -13,7 +13,7 @@
     }
 
     * {
-      font: "Iosevka Nerd Font 11";
+      font: "Inter Variable 12";
       background: ${theme.base00};
       background-alt: ${theme.base01};
       foreground: ${theme.base05};
@@ -90,6 +90,7 @@
 
     prompt {
       enabled: true;
+      font: "Iosevka Nerd Font 12";
       background-color: inherit;
       text-color: inherit;
     }
@@ -259,7 +260,7 @@ in {
       }
 
       * {
-        font: "Iosevka Nerd Font 10";
+        font: "Inter Variable 11";
         background: ${theme.base00};
         background-alt: ${theme.base01};
         foreground: ${theme.base05};
@@ -315,6 +316,7 @@ in {
 
       prompt {
         enabled: true;
+        font: "Iosevka Nerd Font 11";
         background-color: inherit;
         text-color: inherit;
       }

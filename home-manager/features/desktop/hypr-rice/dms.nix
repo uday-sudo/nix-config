@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  lib,
   ...
 }: let
   c = config.theme.colors;
@@ -9,6 +10,7 @@
       "currentThemeName": "custom",
       "currentThemeCategory": "custom",
       "customThemeFile": "/home/uday/.config/DankMaterialShell/themes/stylix/theme.json",
+      "enableDynamicTheming": false,
       "registryThemeVariants": {},
       "matugenScheme": "scheme-tonal-spot",
       "matugenContrast": 0,
@@ -212,7 +214,7 @@
       "launcherLogoSizeOffset": 0,
       "fontFamily": "Inter Variable",
       "monoFontFamily": "Fira Code",
-      "fontWeight": 800,
+      "fontWeight": 600,
       "fontScale": 1,
       "notepadUseMonospace": true,
       "notepadFontFamily": "",
@@ -259,7 +261,7 @@
       "muxUseCustomCommand": false,
       "muxCustomCommand": "",
       "muxSessionFilter": "",
-      "runDmsMatugenTemplates": true,
+      "runDmsMatugenTemplates": false,
       "matugenTemplateGtk": true,
       "matugenTemplateNiri": true,
       "matugenTemplateHyprland": true,
@@ -278,7 +280,7 @@
       "matugenTemplateNeovim": false,
       "matugenTemplateWezterm": true,
       "matugenTemplateDgop": true,
-      "matugenTemplateKcolorscheme": true,
+      "matugenTemplateKcolorscheme": false,
       "matugenTemplateVscode": true,
       "matugenTemplateEmacs": true,
       "matugenTemplateZed": true,
@@ -610,6 +612,7 @@ in {
   programs.dank-material-shell = {
     enable = true;
     systemd.enable = true;
+    niri.enableSpawn = false;
 
     enableSystemMonitoring = true;
     # Keep DMS theme stable and sourced from Stylix/Base16 instead of wallpaper-driven recoloring.

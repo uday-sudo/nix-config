@@ -34,13 +34,14 @@ in {
         extraPackages = [
           custom-sddm-astronaut
         ];
-        # wayland.enable = true;
+        wayland.enable = true;
         autoNumlock = true;
       };
-      defaultSession = "plasma";
+      defaultSession = "niri";
     };
 
-    desktopManager.plasma6.enable = true;
+    desktopManager.plasma6.enable = false;
+    desktopManager.gnome.enable = true;
 
     xserver = {
       xkb.layout = "us";
@@ -51,6 +52,8 @@ in {
   environment.systemPackages = with pkgs; [
     custom-sddm-astronaut
     kdePackages.qtmultimedia
+    nemo
+    loupe
   ];
 
   environment.plasma6.excludePackages = with pkgs.kdePackages; [

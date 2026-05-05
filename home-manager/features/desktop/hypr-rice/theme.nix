@@ -36,9 +36,8 @@ in {
       gtk.enable = true;
       gtk.fonts.enable = true;
       qt.enable = true;
-      qt.platform = "kde";
-      qt.standardDialogs = "kde";
-      kde.enable = true;
+      qt.platform = "qtct";
+      kde.enable = false;
       kde.plasmaWorkspacePackage = pkgs.kdePackages.plasma-workspace;
       btop.enable = true;
       hyprland.enable = false;

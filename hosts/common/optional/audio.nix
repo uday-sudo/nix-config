@@ -6,7 +6,6 @@
   environment.systemPackages = with pkgs; [
     crosspipe
     pavucontrol
-    easyeffects
   ];
 
   # Enable sound with pipewire.

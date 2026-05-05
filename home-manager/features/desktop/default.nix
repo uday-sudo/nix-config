@@ -11,7 +11,10 @@
     ./portal.nix
   ];
 
+  fonts.fontconfig.enable = true;
+
   programs.vesktop.enable = true;
+  services.easyeffects.enable = true;
   programs.obsidian = {
     enable = true;
     cli.enable = true;
