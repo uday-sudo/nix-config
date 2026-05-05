@@ -19,5 +19,6 @@
       };
       color = "#000a";
     };
+    border.width = 3;
   };
 }
