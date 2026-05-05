@@ -91,7 +91,7 @@ in {
   };
 
   # Stylix's KDE apply step is useful in Plasma, but it emits noisy warnings in
-  # non-Plasma sessions (Hyprland/Niri). Gate it by desktop session.
+  # non-Plasma sessions (Niri). Gate it by desktop session.
   home.activation.stylixLookAndFeel = lib.mkForce (lib.hm.dag.entryAfter ["writeBoundary"] ''
     case "''${XDG_CURRENT_DESKTOP:-}" in
       *KDE*|*Plasma*)

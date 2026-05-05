@@ -40,7 +40,6 @@ in {
       kde.enable = false;
       kde.plasmaWorkspacePackage = pkgs.kdePackages.plasma-workspace;
       btop.enable = true;
-      hyprland.enable = false;
       niri.enable = true;
       zellij.enable = true;
       obsidian = {
@@ -75,10 +74,6 @@ in {
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Ice";
     size = 24;
-    hyprcursor = {
-      enable = true;
-      size = config.home.pointerCursor.size;
-    };
   };
   # -------- ICON THEME -----------
   gtk = {
@@ -86,19 +81,6 @@ in {
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
-    };
-  };
-
-  # -------- DECORATIONS -----------
-  wayland.windowManager.hyprland.settings = {
-    decoration.rounding = 10;
-    group.groupbar = {
-      enabled = true;
-      font_size = 8;
-      gradients = true;
-      height = 8;
-      render_titles = false;
-      priority = 8;
     };
   };
 }
