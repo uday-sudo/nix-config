@@ -29,6 +29,10 @@
   home.packages = with pkgs; [
     brave
     keepassxc
+    grim
+    slurp
+    satty
+    awww
     # logseq
   ];
 }

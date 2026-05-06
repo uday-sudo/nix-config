@@ -1,78 +1,55 @@
 {pkgs, ...}: let
-  cliphistRofi = pkgs.writeShellScript "niri-cliphist-rofi" ''
-    #!/usr/bin/env sh
-    set -eu
+  cliphistRofi = pkgs.writeShellApplication {
+    name = "niri-cliphist-rofi";
+    runtimeInputs = with pkgs; [
+      cliphist
+      wl-clipboard
+      coreutils
+      gnugrep
+    ];
+    text = builtins.readFile ./scripts/cliphist-rofi.sh;
+  };
 
-    cache_dir="''${XDG_CACHE_HOME:-$HOME/.cache}/cliphist-rofi"
-    mkdir -p "$cache_dir"
+  cliphistRofiDelete = pkgs.writeShellApplication {
+    name = "niri-cliphist-rofi-delete";
+    runtimeInputs = with pkgs; [
+      cliphist
+      coreutils
+      gnugrep
+    ];
+    text = builtins.readFile ./scripts/cliphist-rofi-delete.sh;
+  };
 
-    if [ -n "''${ROFI_INFO:-}" ]; then
-      cliphist decode "$ROFI_INFO" | wl-copy
-      exit 0
-    fi
+  screenshotFull = pkgs.writeShellApplication {
+    name = "niri-screenshot-full";
+    runtimeInputs = with pkgs; [
+      grim
+      libnotify
+      satty
+      coreutils
+    ];
+    text = builtins.readFile ./scripts/screenshot-full.sh;
+  };
 
-    cliphist list | while IFS="$(printf '\t')" read -r id preview; do
-      [ -n "$id" ] || continue
-      preview="''${preview:-$id}"
+  screenshotRegion = pkgs.writeShellApplication {
+    name = "niri-screenshot-region";
+    runtimeInputs = with pkgs; [
+      grim
+      slurp
+      wl-clipboard
+      libnotify
+      satty
+      coreutils
+    ];
+    text = builtins.readFile ./scripts/screenshot-region.sh;
+  };
 
-      if printf '%s' "$preview" | grep -q '^\[\[ binary data .* \]\]$'; then
-        icon="$cache_dir/$id.png"
-        if [ ! -s "$icon" ]; then
-          cliphist decode "$id" >"$icon" 2>/dev/null || true
-        fi
-
-        if [ -s "$icon" ]; then
-          printf '%s\0icon\x1f%s\x1finfo\x1f%s\n' "$preview" "$icon" "$id"
-          continue
-        fi
-      fi
-
-      printf '%s\0info\x1f%s\n' "$preview" "$id"
-    done
-  '';
-
-  cliphistRofiDelete = pkgs.writeShellScript "niri-cliphist-rofi-delete" ''
-    #!/usr/bin/env sh
-    set -eu
-
-    cache_dir="''${XDG_CACHE_HOME:-$HOME/.cache}/cliphist-rofi"
-    mkdir -p "$cache_dir"
-
-    if [ -n "''${ROFI_INFO:-}" ]; then
-      if [ "$ROFI_INFO" = "__WIPE__" ]; then
-        cliphist wipe
-      else
-        cliphist delete "$ROFI_INFO"
-      fi
-      exit 0
-    fi
-
-    printf '%s\0icon\x1f%s\x1finfo\x1f%s\n' "[Delete all entries]" "edit-delete" "__WIPE__"
-
-    cliphist list | while IFS="$(printf '\t')" read -r id preview; do
-      [ -n "$id" ] || continue
-      preview="''${preview:-$id}"
-
-      if printf '%s' "$preview" | grep -q '^\[\[ binary data .* \]\]$'; then
-        icon="$cache_dir/$id.png"
-        if [ ! -s "$icon" ]; then
-          cliphist decode "$id" >"$icon" 2>/dev/null || true
-        fi
-
-        if [ -s "$icon" ]; then
-          printf '%s\0icon\x1f%s\x1finfo\x1f%s\n' "$preview" "$icon" "$id"
-          continue
-        fi
-      fi
-
-      printf '%s\0info\x1f%s\n' "$preview" "$id"
-    done
-  '';
 in {
   programs.niri.settings.binds = {
     "Mod+Shift+Slash".action.show-hotkey-overlay = {};
     "Mod+Return".action.spawn = "ghostty";
     "Mod+D".action.spawn = ["rofi" "-show" "drun"];
+    "Mod+Alt+W".action.spawn = "rofi-wallpaper-picker";
     "Super+Alt+L".action.spawn = "swaylock";
     "Super+Alt+S".action.spawn-sh = "pkill orca || exec orca";
 
@@ -211,7 +188,7 @@ in {
       rofi \
         -theme "$HOME/.config/rofi/clipboard-theme.rasi" \
         -show clipboard \
-        -modi "clipboard:${cliphistRofi}" \
+        -modi "clipboard:${cliphistRofi}/bin/niri-cliphist-rofi" \
         -show-icons \
         -p Clipboard
     '';
@@ -220,27 +197,15 @@ in {
       rofi \
         -theme "$HOME/.config/rofi/clipboard-theme.rasi" \
         -show clipboard-delete \
-        -modi "clipboard-delete:${cliphistRofiDelete}" \
+        -modi "clipboard-delete:${cliphistRofiDelete}/bin/niri-cliphist-rofi-delete" \
         -show-icons \
         -p "Clipboard Delete"
     '';
     "Mod+T".action.toggle-column-tabbed-display = {};
 
-    "Mod+S".action.spawn-sh = ''
-      ts="$(date +%Y-%m-%d_%H-%M-%S)"
-      dir="$HOME/Pictures/Screenshots"
-      file="$dir/Screenshot_''${ts}.png"
-      mkdir -p "$dir"
-      grim - | tee "$file" | wl-copy
-    '';
-    "Mod+Shift+S".action.spawn-sh = ''
-      ts="$(date +%Y-%m-%d_%H-%M-%S)"
-      dir="$HOME/Pictures/Screenshots"
-      file="$dir/Screenshot_''${ts}.png"
-      mkdir -p "$dir"
-      grim -g "$(slurp)" - | tee "$file" | wl-copy
-    '';
-    "Print".action.screenshot = {};
+    "Mod+S".action.spawn = "${screenshotFull}/bin/niri-screenshot-full";
+    "Mod+Shift+S".action.screenshot = {};
+    "Print".action.spawn = "${screenshotRegion}/bin/niri-screenshot-region";
     "Ctrl+Print".action.screenshot-screen = {};
     "Alt+Print".action.screenshot-window = {};
 

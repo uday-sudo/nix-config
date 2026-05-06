@@ -1,7 +1,6 @@
 {
   config,
   inputs,
-  lib,
   ...
 }: let
   c = config.theme.colors;
@@ -54,7 +53,7 @@
       "modalElevationEnabled": true,
       "popoutElevationEnabled": true,
       "barElevationEnabled": true,
-      "blurEnabled": true,
+      "blurEnabled": false,
       "blurForegroundLayers": false,
       "blurLayerOutlineOpacity": 0,
       "blurBorderColor": "outline",
@@ -378,7 +377,9 @@
       "updaterCustomCommand": "",
       "updaterTerminalAdditionalParams": "",
       "displayNameMode": "system",
-      "screenPreferences": {},
+      "screenPreferences": {
+        "wallpaper": []
+      },
       "showOnLastDisplay": {},
       "niriOutputSettings": {},
       "displayProfiles": {},
@@ -604,6 +605,7 @@
     info = c.base0C;
   };
 in {
+  systemd.user.services.dms.Unit.ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
   systemd.user.services.dms.Service.Environment = [
     "XDG_DATA_DIRS=${config.home.profileDirectory}/share:/run/current-system/sw/share:/usr/local/share:/usr/share"
     "QT_QPA_PLATFORMTHEME=qt6ct"

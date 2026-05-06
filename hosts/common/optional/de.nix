@@ -50,6 +50,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     custom-sddm-astronaut
+    xwayland-satellite
     kdePackages.qtmultimedia
     nemo
     loupe

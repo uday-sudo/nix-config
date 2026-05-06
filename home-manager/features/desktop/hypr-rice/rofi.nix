@@ -1,10 +1,188 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }: let
   theme = config.theme.colors;
+  wallpaper = import ./rofi-wallpaper.nix {inherit inputs pkgs theme;};
+
+  launcherTheme = pkgs.writeText "rofi-theme.rasi" ''
+    configuration {
+      modi: "drun,run";
+      show-icons: true;
+      display-drun: " ";
+      display-run: " ";
+      drun-display-format: "{name}";
+    }
+
+    * {
+      font: "Inter Variable 11";
+      background: ${theme.base00};
+      background-alt: ${theme.base01};
+      foreground: ${theme.base05};
+      selected: ${theme.base0D};
+      active: ${theme.base0B};
+      urgent: ${theme.base08};
+      border: ${theme.base03};
+    }
+
+    window {
+      transparency: "real";
+      location: center;
+      anchor: center;
+      fullscreen: false;
+      width: 400px;
+      x-offset: 0px;
+      y-offset: 0px;
+
+      enabled: true;
+      margin: 0px;
+      padding: 0px;
+      border: 3px;
+      border-radius: 12px;
+      border-color: @border;
+      background-color: @background;
+      cursor: "default";
+    }
+
+    mainbox {
+      enabled: true;
+      spacing: 0px;
+      margin: 0px;
+      padding: 0px;
+      border: 0px solid;
+      border-radius: 0px;
+      border-color: @selected;
+      background-color: transparent;
+      children: [ "inputbar", "listview" ];
+    }
+
+    inputbar {
+      enabled: true;
+      spacing: 10px;
+      margin: 0px;
+      padding: 15px;
+      border: 0px solid;
+      border-radius: 0px;
+      border-color: @selected;
+      background-color: @selected;
+      text-color: @background;
+      children: [ "prompt", "entry" ];
+    }
+
+    prompt {
+      enabled: true;
+      font: "Iosevka Nerd Font 11";
+      background-color: inherit;
+      text-color: inherit;
+    }
+
+    textbox-prompt-colon {
+      enabled: true;
+      expand: false;
+      str: "::";
+      background-color: inherit;
+      text-color: inherit;
+    }
+
+    entry {
+      enabled: true;
+      background-color: inherit;
+      text-color: inherit;
+      cursor: text;
+      placeholder: "Search...";
+      placeholder-color: inherit;
+    }
+
+    listview {
+      enabled: true;
+      columns: 1;
+      lines: 6;
+      cycle: true;
+      dynamic: true;
+      scrollbar: false;
+      layout: vertical;
+      reverse: false;
+      fixed-height: true;
+      fixed-columns: true;
+
+      spacing: 5px;
+      margin: 0px;
+      padding: 0px;
+      border: 0px solid;
+      border-radius: 0px;
+      border-color: @selected;
+      background-color: transparent;
+      text-color: @foreground;
+      cursor: "default";
+    }
+
+    scrollbar {
+      handle-width: 5px;
+      handle-color: @selected;
+      border-radius: 0px;
+      background-color: @background-alt;
+    }
+
+    element {
+      enabled: true;
+      spacing: 10px;
+      margin: 0px;
+      padding: 8px;
+      border: 0px solid;
+      border-radius: 0px;
+      border-color: @selected;
+      background-color: transparent;
+      text-color: @foreground;
+      cursor: pointer;
+    }
+
+    element normal.normal {
+      background-color: @background;
+      text-color: @foreground;
+    }
+
+    element selected.normal {
+      background-color: @background-alt;
+      text-color: @foreground;
+    }
+
+    element-icon {
+      background-color: transparent;
+      text-color: inherit;
+      size: 32px;
+      cursor: inherit;
+    }
+
+    element-text {
+      background-color: transparent;
+      text-color: inherit;
+      highlight: inherit;
+      cursor: inherit;
+      vertical-align: 0.5;
+      horizontal-align: 0.0;
+    }
+
+    error-message {
+      padding: 15px;
+      border: 2px solid;
+      border-radius: 12px;
+      border-color: @selected;
+      background-color: @background;
+      text-color: @foreground;
+    }
+
+    textbox {
+      background-color: @background;
+      text-color: @foreground;
+      vertical-align: 0.5;
+      horizontal-align: 0.0;
+      highlight: none;
+    }
+  '';
+
   clipboardTheme = pkgs.writeText "rofi-clipboard-theme.rasi" ''
     configuration {
       show-icons: true;
@@ -243,6 +421,11 @@
     }
   '';
 in {
+  home.packages = [
+    wallpaper.wallpaperPickerMode
+    wallpaper.wallpaperPicker
+  ];
+
   programs.rofi = {
     enable = true;
     terminal = "${lib.getExe pkgs.ghostty}";
@@ -250,181 +433,9 @@ in {
       modi = "drun,run";
       show-icons = true;
     };
-    theme = "${pkgs.writeText "rofi-theme.rasi" ''
-      configuration {
-        modi: "drun,run";
-        show-icons: true;
-        display-drun: " ";
-        display-run: " ";
-        drun-display-format: "{name}";
-      }
-
-      * {
-        font: "Inter Variable 11";
-        background: ${theme.base00};
-        background-alt: ${theme.base01};
-        foreground: ${theme.base05};
-        selected: ${theme.base0D};
-        active: ${theme.base0B};
-        urgent: ${theme.base08};
-        border: ${theme.base03};
-      }
-
-      window {
-        transparency: "real";
-        location: center;
-        anchor: center;
-        fullscreen: false;
-        width: 400px;
-        x-offset: 0px;
-        y-offset: 0px;
-
-        enabled: true;
-        margin: 0px;
-        padding: 0px;
-        border: 3px;
-        border-radius: 12px;
-        border-color: @border;
-        background-color: @background;
-        cursor: "default";
-      }
-
-      mainbox {
-        enabled: true;
-        spacing: 0px;
-        margin: 0px;
-        padding: 0px;
-        border: 0px solid;
-        border-radius: 0px;
-        border-color: @selected;
-        background-color: transparent;
-        children: [ "inputbar", "listview" ];
-      }
-
-      inputbar {
-        enabled: true;
-        spacing: 10px;
-        margin: 0px;
-        padding: 15px;
-        border: 0px solid;
-        border-radius: 0px;
-        border-color: @selected;
-        background-color: @selected;
-        text-color: @background;
-        children: [ "prompt", "entry" ];
-      }
-
-      prompt {
-        enabled: true;
-        font: "Iosevka Nerd Font 11";
-        background-color: inherit;
-        text-color: inherit;
-      }
-
-      textbox-prompt-colon {
-        enabled: true;
-        expand: false;
-        str: "::";
-        background-color: inherit;
-        text-color: inherit;
-      }
-
-      entry {
-        enabled: true;
-        background-color: inherit;
-        text-color: inherit;
-        cursor: text;
-        placeholder: "Search...";
-        placeholder-color: inherit;
-      }
-
-      listview {
-        enabled: true;
-        columns: 1;
-        lines: 6;
-        cycle: true;
-        dynamic: true;
-        scrollbar: false;
-        layout: vertical;
-        reverse: false;
-        fixed-height: true;
-        fixed-columns: true;
-
-        spacing: 5px;
-        margin: 0px;
-        padding: 0px;
-        border: 0px solid;
-        border-radius: 0px;
-        border-color: @selected;
-        background-color: transparent;
-        text-color: @foreground;
-        cursor: "default";
-      }
-
-      scrollbar {
-        handle-width: 5px;
-        handle-color: @selected;
-        border-radius: 0px;
-        background-color: @background-alt;
-      }
-
-      element {
-        enabled: true;
-        spacing: 10px;
-        margin: 0px;
-        padding: 8px;
-        border: 0px solid;
-        border-radius: 0px;
-        border-color: @selected;
-        background-color: transparent;
-        text-color: @foreground;
-        cursor: pointer;
-      }
-
-      element normal.normal {
-        background-color: @background;
-        text-color: @foreground;
-      }
-
-      element selected.normal {
-        background-color: @background-alt;
-        text-color: @foreground;
-      }
-
-      element-icon {
-        background-color: transparent;
-        text-color: inherit;
-        size: 32px;
-        cursor: inherit;
-      }
-
-      element-text {
-        background-color: transparent;
-        text-color: inherit;
-        highlight: inherit;
-        cursor: inherit;
-        vertical-align: 0.5;
-        horizontal-align: 0.0;
-      }
-
-      error-message {
-        padding: 15px;
-        border: 2px solid;
-        border-radius: 12px;
-        border-color: @selected;
-        background-color: @background;
-        text-color: @foreground;
-      }
-
-      textbox {
-        background-color: @background;
-        text-color: @foreground;
-        vertical-align: 0.5;
-        horizontal-align: 0.0;
-        highlight: none;
-      }
-    ''}";
+    theme = "${launcherTheme}";
   };
 
   xdg.configFile."rofi/clipboard-theme.rasi".source = clipboardTheme;
+  xdg.configFile."rofi/wallpaper-theme.rasi".source = wallpaper.wallpaperTheme;
 }
