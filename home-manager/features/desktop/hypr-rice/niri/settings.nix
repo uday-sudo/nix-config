@@ -1,4 +1,8 @@
-{inputs, pkgs, ...}: let
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   launcherCornerRadius = 12.0;
   windowRules = import ./window-rules.nix {inherit inputs;};
   defaultWallpaper = "${inputs.wallpapers}/regular/047.jpg";

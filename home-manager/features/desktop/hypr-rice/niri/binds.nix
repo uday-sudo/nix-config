@@ -43,7 +43,6 @@
     ];
     text = builtins.readFile ./scripts/screenshot-region.sh;
   };
-
 in {
   programs.niri.settings.binds = {
     "Mod+Shift+Slash".action.show-hotkey-overlay = {};

@@ -33,6 +33,6 @@
     slurp
     satty
     awww
-    # logseq
+    qbittorrent
   ];
 }
