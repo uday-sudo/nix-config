@@ -11,7 +11,15 @@
     ./portal.nix
   ];
 
+  fonts.fontconfig.enable = true;
+
   programs.vesktop.enable = true;
+  services.easyeffects.enable = true;
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      icon-theme = "Papirus-Dark";
+    };
+  };
   programs.obsidian = {
     enable = true;
     cli.enable = true;
@@ -21,6 +29,10 @@
   home.packages = with pkgs; [
     brave
     keepassxc
-    # logseq
+    grim
+    slurp
+    satty
+    awww
+    qbittorrent
   ];
 }

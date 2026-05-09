@@ -14,7 +14,7 @@
       "cursor-style-blink" = false;
       "cursor-invert-fg-bg" = true;
       "mouse-hide-while-typing" = true;
-      "window-decoration" = true;
+      "window-decoration" = false;
       "window-padding-balance" = true;
       "window-save-state" = "always";
     };

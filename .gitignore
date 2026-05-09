@@ -4,3 +4,12 @@
 
 # But NOT the ones in .forgejo/workflows/
 !.forgejo/workflows/*.yaml
+
+# Ignore output
+result
+
+# Temporary folder i use
+docs
+
+# Local qmlls project cache/config
+home-manager/features/desktop/hypr-rice/quickshell/.qmlls.ini

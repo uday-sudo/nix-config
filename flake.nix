@@ -125,6 +125,9 @@
           packages = with pkgs; [
             nixd
             nil
+            pyright
+            vscode-langservers-extracted
+            qt6.qtdeclarative
             alejandra
             git
           ];
@@ -194,8 +197,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ignis = {
-      url = "github:ignis-sh/ignis";
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

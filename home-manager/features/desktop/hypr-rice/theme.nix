@@ -36,12 +36,12 @@ in {
       gtk.enable = true;
       gtk.fonts.enable = true;
       qt.enable = true;
-      qt.platform = "kde";
-      qt.standardDialogs = "kde";
-      kde.enable = true;
+      qt.platform = "qtct";
+      gnome.enable = true;
+      kde.enable = false;
       kde.plasmaWorkspacePackage = pkgs.kdePackages.plasma-workspace;
       btop.enable = true;
-      hyprland.enable = true;
+      niri.enable = true;
       zellij.enable = true;
       obsidian = {
         enable = true;
@@ -50,16 +50,16 @@ in {
     };
     fonts = {
       serif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Serif";
+        package = pkgs.inter;
+        name = "Inter Variable";
       };
       sansSerif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
+        package = pkgs.inter;
+        name = "Inter Variable";
       };
       monospace = {
-        package = pkgs.nerd-fonts.iosevka;
-        name = "Iosevka Nerd Font Mono";
+        package = pkgs.fira-code;
+        name = "Fira Code";
       };
       emoji = {
         package = pkgs.noto-fonts-color-emoji;
@@ -71,14 +71,10 @@ in {
   # -------- CURSOR THEME -----------
   home.pointerCursor = {
     gtk.enable = true;
-    x11.enable = true;
+    x11.enable = false;
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Ice";
     size = 24;
-    hyprcursor = {
-      enable = true;
-      size = config.home.pointerCursor.size;
-    };
   };
   # -------- ICON THEME -----------
   gtk = {
@@ -86,19 +82,6 @@ in {
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
-    };
-  };
-
-  # -------- DECORATIONS -----------
-  wayland.windowManager.hyprland.settings = {
-    decoration.rounding = 10;
-    group.groupbar = {
-      enabled = true;
-      font_size = 8;
-      gradients = true;
-      height = 8;
-      render_titles = false;
-      priority = 8;
     };
   };
 }

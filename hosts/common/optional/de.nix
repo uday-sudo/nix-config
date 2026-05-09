@@ -12,11 +12,16 @@
     };
   };
 in {
+  imports = [
+    inputs.niri.nixosModules.niri
+  ];
+
+  systemd.user.services.niri-flake-polkit.enable = false;
+
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-  # Enable Hyprland
-  programs.hyprland.enable = true;
+  programs.niri.enable = true;
 
   # Enable KDE Plasma DE;
   services = {
@@ -28,13 +33,14 @@ in {
         extraPackages = [
           custom-sddm-astronaut
         ];
-        # wayland.enable = true;
+        wayland.enable = true;
         autoNumlock = true;
       };
-      defaultSession = "plasma";
+      defaultSession = "niri";
     };
 
-    desktopManager.plasma6.enable = true;
+    desktopManager.plasma6.enable = false;
+    desktopManager.gnome.enable = true;
 
     xserver = {
       xkb.layout = "us";
@@ -44,7 +50,10 @@ in {
 
   environment.systemPackages = with pkgs; [
     custom-sddm-astronaut
+    xwayland-satellite
     kdePackages.qtmultimedia
+    nemo
+    loupe
   ];
 
   environment.plasma6.excludePackages = with pkgs.kdePackages; [

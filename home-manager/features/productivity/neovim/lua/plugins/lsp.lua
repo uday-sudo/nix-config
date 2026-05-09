@@ -27,6 +27,10 @@ return {
         },
         ruff = {},
         clangd = {},
+        cssls = {},
+        qmlls = {
+          filetypes = { "qml", "qmljs" },
+        },
       },
       -- If you need custom setup / adjustments per server:
     --   setup = {
