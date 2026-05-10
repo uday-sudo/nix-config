@@ -28,6 +28,7 @@ return {
         ruff = {},
         clangd = {},
         cssls = {},
+        gopls = {},
         qmlls = {
           filetypes = { "qml", "qmljs" },
         },

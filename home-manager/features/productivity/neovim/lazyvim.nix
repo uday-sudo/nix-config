@@ -172,6 +172,7 @@
         (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins:
           with plugins; [
             c
+            go
             lua
             qmljs
           ])).dependencies;
