@@ -34,5 +34,6 @@
     satty
     awww
     qbittorrent
+    antimicrox
   ];
 }
