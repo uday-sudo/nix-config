@@ -10,7 +10,7 @@ in {
     enable = mkEnableOption "Enable oh-my-posh theme configuration";
 
     configFile = mkOption {
-      type = types.enum ["emodipt-extend" "amro" "pure"];
+      type = types.enum ["emodipt-extend" "amro" "pure" "peru"];
       default = "emodipt-extend";
       description = "Name of the JSON config file (without .json extension) to use from the configs folder";
     };
