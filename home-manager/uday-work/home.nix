@@ -1,6 +1,7 @@
 {
   inputs,
   outputs,
+  lib,
   ...
 }: {
   # You can import other home-manager modules here
@@ -12,7 +13,6 @@
     # inputs.nix-colors.homeManagerModules.default
     ../features/core
     ../features/productivity/neovim
-    ../features/productivity/lazydocker.nix
   ];
 
   nixpkgs = {
@@ -35,8 +35,20 @@
   };
 
   home = {
-    username = "uday-work";
-    homeDirectory = "/home/uday-work";
+    username = "uday";
+    homeDirectory = "/home/uday";
+
+    shellAliases = lib.mkForce {
+      reborn = "reboot";
+      die = "shutdown -P now";
+      pls = "sudo";
+      icat = "kitten icat";
+    };
+    sessionVariables = lib.mkForce {
+      TERMINAL = "ghostty";
+      EDITOR = "nvim";
+      MANPAGER = "nvim +Man!";
+    };
   };
 
   programs.home-manager.enable = true;
@@ -51,4 +63,5 @@
     enable = true;
     configFile = "emodipt-extend";
   };
+
 }

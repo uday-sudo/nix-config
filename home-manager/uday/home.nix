@@ -17,7 +17,6 @@
     ../features/desktop
     ../features/productivity
     ../features/productivity/neovim
-    ../features/productivity/lazydocker.nix
 
     ./secrets.nix
   ];
