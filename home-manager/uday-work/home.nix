@@ -65,6 +65,7 @@
   programs.ssh.enable = lib.mkForce false;
   programs.ghostty.package = null;
   programs.ghostty.systemd.enable = false;
+  programs.ghostty.settings.font-size = lib.mkForce 10;
   programs.ghostty.settings."background-opacity" = lib.mkForce 1.0;
   programs.ghostty.settings."background-blur-radius" = lib.mkForce 0;
   programs.ghostty.settings."window-decoration" = lib.mkForce true;
