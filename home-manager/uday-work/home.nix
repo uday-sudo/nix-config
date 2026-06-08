@@ -14,6 +14,7 @@
     # inputs.nix-colors.homeManagerModules.default
     ../features/core
     ../features/desktop/ghostty.nix
+    ../features/productivity/work-utils.nix
     ../features/productivity/neovim
   ];
 
