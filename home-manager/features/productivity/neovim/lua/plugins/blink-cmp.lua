@@ -166,6 +166,7 @@ return {
 			--     range = "full",
 			--   },
 			menu = {
+				auto_show = true,
 				border = "single",
 			},
 			documentation = {
