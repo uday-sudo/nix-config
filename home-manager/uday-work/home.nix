@@ -42,6 +42,7 @@
     homeDirectory = "/home/uday";
     sessionPath = [
       "$HOME/.nix-profile/bin"
+      "$HOME/.local/bin"
     ];
 
     shellAliases = lib.mkForce {
