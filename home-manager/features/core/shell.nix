@@ -16,10 +16,16 @@
 
     # My prefered keybinds
     initContent = lib.mkOrder 1200 ''
-      # Home key
+      # Use terminfo first so key bindings follow the active terminal.
+      [[ -n ''${terminfo[khome]} ]] && bindkey "''${terminfo[khome]}" beginning-of-line
+      [[ -n ''${terminfo[kend]} ]] && bindkey "''${terminfo[kend]}" end-of-line
+      # Common fallback sequences used by terminals and by tmux.
+      bindkey "^[[H" beginning-of-line
+      bindkey "^[[F" end-of-line
       bindkey "^[OH" beginning-of-line
-      # End key
       bindkey "^[OF" end-of-line
+      bindkey "^[[1~" beginning-of-line
+      bindkey "^[[4~" end-of-line
       # Delete key
       bindkey "^[[3~" delete-char
       bindkey "^[[1;5C" forward-word
