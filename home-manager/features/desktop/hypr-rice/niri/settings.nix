@@ -26,7 +26,14 @@ in {
         command = [
           "sh"
           "-lc"
-          "${pkgs.awww}/bin/awww img ${defaultWallpaper} --resize crop"
+          ''
+            ${pkgs.awww}/bin/awww query \
+              | while IFS= read -r output; do
+                  output="''${output%%:*}"
+                  [ -n "$output" ] || continue
+                  ${pkgs.awww}/bin/awww img -o "$output" ${defaultWallpaper} --resize crop
+                done
+          ''
         ];
       }
     ];

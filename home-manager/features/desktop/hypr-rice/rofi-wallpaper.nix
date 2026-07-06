@@ -22,7 +22,13 @@
           printf '%s\n' center any random wipe wave grow outer \
             | shuf -n 1
         )"
-        exec ${pkgs.awww}/bin/awww img "$ROFI_INFO" --resize crop --transition-type "$transition" --transition-step 90 --transition-fps 60 --transition-duration 2
+        ${pkgs.awww}/bin/awww query \
+          | while IFS= read -r output; do
+              output="''${output%%:*}"
+              [ -n "$output" ] || continue
+              ${pkgs.awww}/bin/awww img -o "$output" "$ROFI_INFO" --resize crop --transition-type "$transition" --transition-step 90 --transition-fps 60 --transition-duration 2
+            done
+        exit 0
       fi
 
       find "$wallpaper_root" -type f \
