@@ -16,6 +16,32 @@ in {
 
   programs.niri.settings = {
     prefer-no-csd = true;
+    outputs = {
+      "01-external" = {
+        name = "HDMI-A-1";
+        focus-at-startup = true;
+        mode = {
+          width = 1920;
+          height = 1080;
+          refresh = 119.997;
+        };
+        position = {
+          x = 1920;
+          y = 0;
+        };
+      };
+      "02-laptop" = {
+        name = "eDP-1";
+        mode = {
+          width = 1920;
+          height = 1200;
+        };
+        position = {
+          x = 0;
+          y = 0;
+        };
+      };
+    };
     spawn-at-startup = [
       {
         command = [
