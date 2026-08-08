@@ -70,6 +70,7 @@ in {
 
   # -------- CURSOR THEME -----------
   home.pointerCursor = {
+    enable = true;
     gtk.enable = true;
     x11.enable = false;
     package = pkgs.bibata-cursors;

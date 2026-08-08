@@ -8,6 +8,7 @@
 
   programs.firefox = {
     enable = true;
+    configPath = ".mozilla/firefox";
     policies = {
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
@@ -29,6 +30,10 @@
       };
     };
     profiles.uday = {
+      id = 0;
+      isDefault = true;
+      storeId = "4ce8a2e0";
+
       search = {
         force = true;
         engines = {
@@ -211,7 +216,7 @@
         competitive-companion
         leechblock-ng
         user-agent-string-switcher
-        tabliss
+        tablissng
         tab-stash
         keepassxc-browser
       ];

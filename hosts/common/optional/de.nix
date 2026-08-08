@@ -22,6 +22,7 @@ in {
   # services.xserver.enable = true;
 
   programs.niri.enable = true;
+  programs.niri.package = pkgs.niri-unstable;
 
   # Enable KDE Plasma DE;
   services = {

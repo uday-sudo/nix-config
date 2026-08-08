@@ -6,6 +6,52 @@
   launcherCornerRadius = 12.0;
   windowRules = import ./window-rules.nix {inherit inputs;};
   defaultWallpaper = "${inputs.wallpapers}/regular/047.jpg";
+  applyWallpaper = pkgs.writeShellApplication {
+    name = "niri-apply-wallpaper";
+    runtimeInputs = with pkgs; [
+      awww
+      coreutils
+      dms-shell
+      gnused
+    ];
+    text = ''
+      set -eu
+
+      wallpaper="$(${pkgs.dms-shell}/bin/dms ipc call wallpaper get 2>/dev/null || true)"
+      [ -n "$wallpaper" ] || wallpaper='${defaultWallpaper}'
+
+      outputs="$(${pkgs.awww}/bin/awww query 2>/dev/null | sed -E 's/^: ([^:]+):.*/\1/')"
+      [ -n "$outputs" ] || exit 0
+
+      printf '%s\n' "$outputs" \
+        | while IFS= read -r output; do
+            [ -n "$output" ] || continue
+            ${pkgs.awww}/bin/awww img -o "$output" "$wallpaper" --resize crop
+          done
+    '';
+  };
+
+  watchWallpaper = pkgs.writeShellApplication {
+    name = "niri-watch-wallpaper";
+    runtimeInputs = with pkgs; [
+      gnugrep
+      niri
+    ];
+    text = ''
+      set -eu
+
+      ${applyWallpaper}/bin/niri-apply-wallpaper || true
+
+      ${pkgs.niri}/bin/niri msg -j event-stream \
+        | while IFS= read -r line; do
+            case "$line" in
+              *'"OutputsChanged"'*|*'"ConfigLoaded"'*)
+                ${applyWallpaper}/bin/niri-apply-wallpaper || true
+                ;;
+            esac
+          done
+    '';
+  };
 in {
   imports = [
     ./input.nix
@@ -53,12 +99,7 @@ in {
           "sh"
           "-lc"
           ''
-            ${pkgs.awww}/bin/awww query \
-              | while IFS= read -r output; do
-                  output="''${output%%:*}"
-                  [ -n "$output" ] || continue
-                  ${pkgs.awww}/bin/awww img -o "$output" ${defaultWallpaper} --resize crop
-                done
+            ${applyWallpaper}/bin/niri-apply-wallpaper
           ''
         ];
       }
@@ -84,4 +125,21 @@ in {
   };
 
   services.cliphist.enable = true;
+
+  systemd.user.services.niri-wallpaper-watch = {
+    Unit = {
+      Description = "Reapply wallpaper on Niri output changes";
+      PartOf = ["graphical-session.target"];
+      After = ["graphical-session.target"];
+      ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
+    };
+
+    Service = {
+      ExecStart = "${watchWallpaper}/bin/niri-watch-wallpaper";
+      Restart = "always";
+      RestartSec = 1;
+    };
+
+    Install.WantedBy = ["graphical-session.target"];
+  };
 }

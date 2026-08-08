@@ -30,6 +30,7 @@
 
   fileSystems."/run/media/hdd" = {
     device = "/dev/disk/by-uuid/f5e2fe11-40ed-4004-95e8-234b7988602a";
+    fsType = "ext4";
   };
 
   swapDevices = [];

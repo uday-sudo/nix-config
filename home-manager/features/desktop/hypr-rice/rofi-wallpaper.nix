@@ -8,6 +8,7 @@
     runtimeInputs = with pkgs; [
       awww
       coreutils
+      dms-shell
       findutils
       gnused
       coreutils
@@ -22,9 +23,10 @@
           printf '%s\n' center any random wipe wave grow outer \
             | shuf -n 1
         )"
+        ${pkgs.dms-shell}/bin/dms ipc call wallpaper set "$ROFI_INFO" >/dev/null
         ${pkgs.awww}/bin/awww query \
           | while IFS= read -r output; do
-              output="''${output%%:*}"
+              output="$(printf '%s\n' "$output" | sed -E 's/^: ([^:]+):.*/\1/')"
               [ -n "$output" ] || continue
               ${pkgs.awww}/bin/awww img -o "$output" "$ROFI_INFO" --resize crop --transition-type "$transition" --transition-step 90 --transition-fps 60 --transition-duration 2
             done

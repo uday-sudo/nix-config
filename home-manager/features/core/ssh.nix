@@ -9,7 +9,7 @@
     enable = true;
     enableDefaultConfig = false; # optional, to avoid future defaults surprise
 
-    matchBlocks = {
+    settings = {
       "*" = {
         addKeysToAgent = lib.mkDefault "yes";
       };

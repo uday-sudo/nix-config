@@ -15,6 +15,19 @@
     # ...
     # });
 
+    # Temporary compatibility alias for niri-flake revisions that still expect
+    # libdisplay-info_0_2 to exist in nixpkgs.
+    libdisplay-info_0_2 = final.libdisplay-info.overrideAttrs (_oldAttrs: rec {
+      version = "0.2.0";
+      src = final.fetchFromGitLab {
+        domain = "gitlab.freedesktop.org";
+        owner = "emersion";
+        repo = "libdisplay-info";
+        rev = version;
+        hash = "sha256-6xmWBrPHghjok43eIDGeshpUEQTuwWLXNHg7CnBUt3Q=";
+      };
+    });
+
     catppuccin-kde = prev.catppuccin-kde.overrideAttrs (oldAttrs: {
       postInstall = ''
         ${oldAttrs.postInstall or ""}  # Preserve existing postInstall steps

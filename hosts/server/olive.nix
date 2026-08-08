@@ -11,15 +11,10 @@
 in {
   imports = [
     inputs.sops-nix.nixosModules.sops
-    {
-      nixpkgs.config.permittedInsecurePackages = [
-        "olivetin-2025.11.25"
-      ];
-    }
   ];
 
   environment.systemPackages = with pkgs; [
-    olivetin
+    olivetin-3k
   ];
 
   services.caddy = {
@@ -32,6 +27,7 @@ in {
 
   services.olivetin = {
     enable = true;
+    package = pkgs.olivetin-3k;
     user = "root";
     path = with pkgs; [
       bash
